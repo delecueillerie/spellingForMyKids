@@ -15,13 +15,18 @@
 		090BE6AF18907F4000A1DE0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 090BE6AE18907F4000A1DE0C /* AppDelegate.m */; };
 		090BE6B218907F4000A1DE0C /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 090BE6B018907F4000A1DE0C /* Main_iPhone.storyboard */; };
 		090BE6B518907F4100A1DE0C /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 090BE6B318907F4100A1DE0C /* Main_iPad.storyboard */; };
-		090BE6B818907F4100A1DE0C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 090BE6B718907F4100A1DE0C /* ViewController.m */; };
 		090BE6BA18907F4100A1DE0C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 090BE6B918907F4100A1DE0C /* Images.xcassets */; };
 		090BE6C118907F4100A1DE0C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090BE6C018907F4100A1DE0C /* XCTest.framework */; };
 		090BE6C218907F4100A1DE0C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090BE69E18907F4000A1DE0C /* Foundation.framework */; };
 		090BE6C318907F4100A1DE0C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090BE6A218907F4000A1DE0C /* UIKit.framework */; };
 		090BE6CB18907F4100A1DE0C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 090BE6C918907F4100A1DE0C /* InfoPlist.strings */; };
 		090BE6CD18907F4100A1DE0C /* spellingForMyKidsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 090BE6CC18907F4100A1DE0C /* spellingForMyKidsTests.m */; };
+		090BE6D71890873000A1DE0C /* quadrillage.gif in Resources */ = {isa = PBXBuildFile; fileRef = 090BE6D61890873000A1DE0C /* quadrillage.gif */; };
+		090BE6D918911A1200A1DE0C /* quadrillage.png in Resources */ = {isa = PBXBuildFile; fileRef = 090BE6D818911A1100A1DE0C /* quadrillage.png */; };
+		090BE6DB189131FF00A1DE0C /* 14.png in Resources */ = {isa = PBXBuildFile; fileRef = 090BE6DA189131FF00A1DE0C /* 14.png */; };
+		090BE6DD1891345B00A1DE0C /* Headphones@Low.png in Resources */ = {isa = PBXBuildFile; fileRef = 090BE6DC1891345B00A1DE0C /* Headphones@Low.png */; };
+		090BE6DF1891374600A1DE0C /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 090BE6DE1891374600A1DE0C /* 5.png */; };
+		090BE6E2189137BB00A1DE0C /* SPTestPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 090BE6E1189137BB00A1DE0C /* SPTestPageVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,14 +52,19 @@
 		090BE6AE18907F4000A1DE0C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		090BE6B118907F4000A1DE0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		090BE6B418907F4100A1DE0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		090BE6B618907F4100A1DE0C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		090BE6B718907F4100A1DE0C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		090BE6B918907F4100A1DE0C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		090BE6BF18907F4100A1DE0C /* spellingForMyKidsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = spellingForMyKidsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		090BE6C018907F4100A1DE0C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		090BE6C818907F4100A1DE0C /* spellingForMyKidsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "spellingForMyKidsTests-Info.plist"; sourceTree = "<group>"; };
 		090BE6CA18907F4100A1DE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		090BE6CC18907F4100A1DE0C /* spellingForMyKidsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = spellingForMyKidsTests.m; sourceTree = "<group>"; };
+		090BE6D61890873000A1DE0C /* quadrillage.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = quadrillage.gif; sourceTree = SOURCE_ROOT; };
+		090BE6D818911A1100A1DE0C /* quadrillage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quadrillage.png; sourceTree = SOURCE_ROOT; };
+		090BE6DA189131FF00A1DE0C /* 14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 14.png; sourceTree = "<group>"; };
+		090BE6DC1891345B00A1DE0C /* Headphones@Low.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Headphones@Low.png"; sourceTree = "<group>"; };
+		090BE6DE1891374600A1DE0C /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
+		090BE6E0189137BB00A1DE0C /* SPTestPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTestPageVC.h; sourceTree = "<group>"; };
+		090BE6E1189137BB00A1DE0C /* SPTestPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPTestPageVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,13 +124,14 @@
 		090BE6A418907F4000A1DE0C /* spellingForMyKids */ = {
 			isa = PBXGroup;
 			children = (
-				090BE6AD18907F4000A1DE0C /* AppDelegate.h */,
-				090BE6AE18907F4000A1DE0C /* AppDelegate.m */,
 				090BE6B018907F4000A1DE0C /* Main_iPhone.storyboard */,
 				090BE6B318907F4100A1DE0C /* Main_iPad.storyboard */,
-				090BE6B618907F4100A1DE0C /* ViewController.h */,
-				090BE6B718907F4100A1DE0C /* ViewController.m */,
+				090BE6AD18907F4000A1DE0C /* AppDelegate.h */,
+				090BE6AE18907F4000A1DE0C /* AppDelegate.m */,
+				090BE6E0189137BB00A1DE0C /* SPTestPageVC.h */,
+				090BE6E1189137BB00A1DE0C /* SPTestPageVC.m */,
 				090BE6B918907F4100A1DE0C /* Images.xcassets */,
+				090BE6E31891386C00A1DE0C /* media */,
 				090BE6A518907F4000A1DE0C /* Supporting Files */,
 			);
 			path = spellingForMyKids;
@@ -153,6 +164,18 @@
 				090BE6C918907F4100A1DE0C /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		090BE6E31891386C00A1DE0C /* media */ = {
+			isa = PBXGroup;
+			children = (
+				090BE6DA189131FF00A1DE0C /* 14.png */,
+				090BE6D818911A1100A1DE0C /* quadrillage.png */,
+				090BE6D61890873000A1DE0C /* quadrillage.gif */,
+				090BE6DE1891374600A1DE0C /* 5.png */,
+				090BE6DC1891345B00A1DE0C /* Headphones@Low.png */,
+			);
+			name = media;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,10 +254,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				090BE6D71890873000A1DE0C /* quadrillage.gif in Resources */,
 				090BE6B518907F4100A1DE0C /* Main_iPad.storyboard in Resources */,
 				090BE6BA18907F4100A1DE0C /* Images.xcassets in Resources */,
+				090BE6DB189131FF00A1DE0C /* 14.png in Resources */,
 				090BE6B218907F4000A1DE0C /* Main_iPhone.storyboard in Resources */,
 				090BE6A918907F4000A1DE0C /* InfoPlist.strings in Resources */,
+				090BE6DF1891374600A1DE0C /* 5.png in Resources */,
+				090BE6DD1891345B00A1DE0C /* Headphones@Low.png in Resources */,
+				090BE6D918911A1200A1DE0C /* quadrillage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,8 +281,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				090BE6B818907F4100A1DE0C /* ViewController.m in Sources */,
 				090BE6AF18907F4000A1DE0C /* AppDelegate.m in Sources */,
+				090BE6E2189137BB00A1DE0C /* SPTestPageVC.m in Sources */,
 				090BE6AB18907F4000A1DE0C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

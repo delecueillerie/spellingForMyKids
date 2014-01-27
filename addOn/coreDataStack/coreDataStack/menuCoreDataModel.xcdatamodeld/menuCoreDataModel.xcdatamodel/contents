@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B42" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="CategoryDrink" representedClassName="CategoryDrink" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="label" attributeType="String" syncable="YES"/>
+        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rank" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="syncStatus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbnail" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="watermark" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="drinks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Drink" inverseName="category" inverseEntity="Drink" syncable="YES"/>
+    </entity>
+    <entity name="Drink" representedClassName="Drink" syncable="YES">
+        <attribute name="about" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="alcool" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="brand" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="containing" optional="YES" attributeType="String" defaultValueString="0" syncable="YES">
+            <userInfo>
+                <entry key="0" value="glass"/>
+                <entry key="1" value="pitcher"/>
+                <entry key="2" value="bottle"/>
+            </userInfo>
+        </attribute>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="syncStatus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbnail" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="volume" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoryDrink" inverseName="drinks" inverseEntity="CategoryDrink" syncable="YES"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="drinks" inverseEntity="Photo" syncable="YES"/>
+    </entity>
+    <entity name="Identity" representedClassName="Identity" syncable="YES">
+        <attribute name="about" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="adress" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="syncStatus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
+    <entity name="Photo" representedClassName="Photo" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="syncStatus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tags" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="drinks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Drink" inverseName="photos" inverseEntity="Drink" syncable="YES"/>
+    </entity>
+    <entity name="SquareMenuAd" representedClassName="SquareMenuAd" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="media" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="syncStatus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbnail" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="CategoryDrink" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Drink" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Identity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Photo" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="SquareMenuAd" positionX="0" positionY="0" width="0" height="0"/>
+    </elements>
+</model>
