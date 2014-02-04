@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8OR-fo-ww1">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <scenes>
+        <!--CameraVC-->
+        <scene sceneID="PlI-i7-1vx">
+            <objects>
+                <viewController id="8OR-fo-ww1" customClass="PHCameraVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="M8z-uQ-7rx"/>
+                        <viewControllerLayoutGuide type="bottom" id="2Qn-fA-U4q"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vjn-Cp-eIV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zgz-d4-DCd">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Item" systemItem="search" id="WEc-Iv-ilS">
+                                        <connections>
+                                            <action selector="showImagePickerForPhotoPicker:" destination="8OR-fo-ww1" id="gFa-38-RD7"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="3k6-QU-OSH"/>
+                                    <barButtonItem title="Item" systemItem="camera" id="Fm1-H9-fux">
+                                        <connections>
+                                            <action selector="showImagePickerForCamera:" destination="8OR-fo-ww1" id="245-DZ-uIx"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FvQ-po-fEJ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Zgz-d4-DCd" secondAttribute="trailing" id="Z8u-ZA-XJu"/>
+                            <constraint firstItem="Zgz-d4-DCd" firstAttribute="leading" secondItem="Vjn-Cp-eIV" secondAttribute="leading" id="ngb-Yv-5gz"/>
+                            <constraint firstItem="2Qn-fA-U4q" firstAttribute="top" secondItem="Zgz-d4-DCd" secondAttribute="bottom" id="xfg-aT-9Y9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="FvQ-po-fEJ" id="GYJ-T8-Ffi"/>
+                        <outlet property="toolBar" destination="Zgz-d4-DCd" id="2zx-3s-FTi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JdF-vL-OVg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="150" y="-279"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

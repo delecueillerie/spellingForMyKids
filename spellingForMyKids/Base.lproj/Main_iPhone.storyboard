@@ -34,7 +34,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="lnS-Cb-Gio" kind="push" id="7BP-OM-zVO"/>
+                                    <action selector="goToEditionPart:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="DpI-ta-D66"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2GJ-ow-I3d">
@@ -55,7 +55,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="151" y="-25"/>
+            <point key="canvasLocation" x="180" y="-14"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OHS-Bg-uIm">
@@ -72,31 +72,6 @@
             </objects>
             <point key="canvasLocation" x="-255" y="-19"/>
         </scene>
-        <!--Table View Controller - Root View Controller-->
-        <scene sceneID="hFG-Es-rHA">
-            <objects>
-                <tableViewController id="lnS-Cb-Gio" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="boj-Zy-rJY">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="9kU-SL-kxG">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9kU-SL-kxG" id="4RT-4f-0nv">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="gWW-P4-a10"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="S1v-k4-cme" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="643" y="652"/>
-        </scene>
         <!--Test PageVC - Elève-->
         <scene sceneID="Mr4-WN-LOT">
             <objects>
@@ -109,7 +84,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.15000000596046448" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="quadrillage.png" translatesAutoresizingMaskIntoConstraints="NO" id="ecs-8F-kh6">
+                            <imageView userInteractionEnabled="NO" alpha="0.15000000596046448" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="quadrillage.png" translatesAutoresizingMaskIntoConstraints="NO" id="ecs-8F-kh6">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
