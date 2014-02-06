@@ -7,12 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
 
 @interface WTViewController : UIViewController
 
-
 @property (nonatomic, strong) NSManagedObject *editedObject;
 @property (nonatomic, strong) NSDictionary *attributeDictionary;
-@property (nonatomic, strong) NSAttributeDescription *attributeDescription;
+@property (nonatomic, strong) NSAttributeDescription *selectedAttribute;
 @end
