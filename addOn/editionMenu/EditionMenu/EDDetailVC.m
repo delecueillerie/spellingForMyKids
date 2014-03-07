@@ -7,7 +7,7 @@
 //
 
 #import "EDDetailVC.h"
-#import "EDEditVC.h"
+#import "WTViewController.h"
 
 
 @interface EDDetailVC ()
@@ -144,19 +144,26 @@
 
     // Configure the cell...
 
-    NSArray *attributesArray = [[[self.object entity] attributesByName] allKeys];
-    for (NSString *attributeName in attributesArray) {
-        if ([[self.entityDictionary valueForKey:attributeName] valueForKey:@"rank"] == [NSNumber numberWithInteger:indexPath.row]) {
-            if ([self.object valueForKey:attributeName]) {
-                cell.textLabel.text = [self.object valueForKey:attributeName];
-            } else {
-                cell.textLabel.text = attributeName;
-            }
-        }
+    if ([self.object valueForKey:[self attributeNameAtIndexPath:indexPath]]) {
+        cell.textLabel.text = [self.object valueForKey:[self attributeNameAtIndexPath:indexPath]];
+    } else {
+        cell.textLabel.text = [self attributeNameAtIndexPath:indexPath];
     }
+
     return cell;
 }
 
+- (NSString *)attributeNameAtIndexPath:(NSIndexPath *)indexPath {
+
+    NSString *attributeNameAtIndex;
+    NSArray *attributesArray = [[[self.object entity] attributesByName] allKeys];
+    for (NSString *attributeName in attributesArray) {
+        if ([[self.entityDictionary valueForKey:attributeName] valueForKey:@"rank"] == [NSNumber numberWithInteger:indexPath.row]) {
+            attributeNameAtIndex = attributeName;
+        }
+    }
+    return attributeNameAtIndex;
+}
 
 - (void)updateRightBarButtonItemState {
     
@@ -184,8 +191,16 @@
     
     if (self.editing) {
         UINavigationController *navigationController = [self navigationController];
-        UIStoryboard *writingToolStoryboard = [UIStoryboard storyboardWithName:<#(NSString *)#> bundle:<#(NSBundle *)#>]
-        [self performSegueWithIdentifier:@"editSelectedItem" sender:self];
+        UIStoryboard *writingToolStoryboard = [UIStoryboard storyboardWithName:@"writingTool_iPhone" bundle:nil];
+        WTViewController *viewController = [writingToolStoryboard instantiateViewControllerWithIdentifier:@"default"];
+
+        NSDictionary * attributeDictionary = (NSDictionary *)[self.entityDictionary valueForKey:[self attributeNameAtIndexPath:indexPath]];
+        viewController.attributeDictionary = [NSDictionary dictionaryWithDictionary:attributeDictionary];
+        viewController.editedObject = self.object;
+        viewController.selectedAttribute = [[[self.object entity] attributesByName] valueForKey:[self attributeNameAtIndexPath:indexPath]];
+
+        
+        [navigationController pushViewController:viewController animated:YES];
     }
 }
 
@@ -276,27 +291,6 @@
         [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
     }
     return dateFormatter;
-}
-
-
-//////////////////////////////////////////////////////////////////////////////////////////
-//SEGUE MANAGEMENT
-//////////////////////////////////////////////////////////////////////////////////////////
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    if ([[segue identifier] isEqualToString:@"editSelectedItem"]) {
-        
-        EDEditVC *controller = (EDEditVC *)[segue destinationViewController];
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
-
-        NSArray *arrayOfAttributesNames = [[[self.object entity] attributesByName] allKeys];
-        NSString *attributeName = (NSString *)[arrayOfAttributesNames objectAtIndex:indexPath.row];
-
-        controller.editedObject = self.object;
-        controller.attributeDescription = [[[self.object entity] attributesByName] valueForKey:attributeName];
-        controller.editedFieldName = cell.textLabel.text;
-    }
 }
 
 
