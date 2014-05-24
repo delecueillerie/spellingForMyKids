@@ -6,12 +6,19 @@
 //  Copyright (c) 2014 Olivier Delecueillerie. All rights reserved.
 //
 #import "SPMenuVC.h"
-#import "DBCoreDataStack.h"
 
+
+//Category
+#import "UIImageView+cornerRadius.h"
+
+#import "DBCoreDataStack.h"
+//Controller
 #import "SPTestVC.h"
-//#import "polaroidAnimatedView.h"
-#import "polaroidView.h"
-#import "polaroidCollectionViewCell.h"
+#import "SPSpellingList.h"
+#import "SPAKidTVC.h"
+//View
+#import "SPKeyboardButton.h"
+#import "SPLevelButton.h"
 
 @interface SPMenuVC ()
 
@@ -19,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewForPicture;
 @property (weak, nonatomic) IBOutlet UILabel *labelForKidName;
+@property (weak, nonatomic) IBOutlet SPKeyboardButton *buttonKeyboard;
+@property (weak, nonatomic) IBOutlet SPLevelButton *buttonLevel;
 
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeRight;
 
@@ -28,13 +37,7 @@
 @property (nonatomic, strong) NSArray *arrayOfSpellings;
 @property (nonatomic,strong) Kid *kidSelected;
 @property (nonatomic,strong) Spelling *spellingSelected;
-@property (nonatomic, strong) NSString *labelForPickerView;
 
-
-
-
-@property (strong, nonatomic) NSArray *dataForPolaroidViews ;
-//@property (strong, nonatomic) polaroidAnimatedView *polaroidView;
 @end
 
 @implementation SPMenuVC
@@ -62,33 +65,34 @@
     return _arrayOfSpellings;
 }
 
-- (NSArray *) dataForPolaroidViews {
-    if (!_dataForPolaroidViews) {
-        NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
-        for (Kid *kid in self.arrayOfKids) {
-            UIImage *image = [[UIImage alloc] init];
-            if (kid.image) image = [UIImage imageWithData:kid.image];
-            [mutableArray addObject:@{@"image": image , @"label" : kid.name}];
-        }
-        _dataForPolaroidViews = [NSArray arrayWithArray:mutableArray];
-    }
-    return _dataForPolaroidViews;
-}
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-
+    
+    
+    //UI design of the navigation controller
+    self.navigationItem.title = @"Spelling";
+    [self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [UIColor blackColor], NSForegroundColorAttributeName,
+                                                           [UIFont fontWithName:@"Cursivestandard" size:20.0], NSFontAttributeName, nil]];
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    self.navigationController.view.backgroundColor = [UIColor whiteColor];
+    
+    //UI design
+    self.labelForKidName.font = [UIFont fontWithName:@"Cursivestandard" size:40.0];
+    
+    
     //Initialization of the pickerView data for row
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
 
-    //array of kids cannot be nil. This can happen when no kid are saved yet.
+  
+#warning if no spelling then error
+    //array of kids cannot be nil. This can happen when no kid are saved yet. ( ex. First Launch, etc.)
     if ([self.arrayOfKids count]==0)  {
         //Go to edition part directly to fill in data
-        UIViewController *destinationViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"edition"];
+        UIViewController *destinationViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"AKid"];
+        destinationViewController.editing = YES;
         [self.navigationController pushViewController:destinationViewController animated:NO];
     } else {
 
@@ -103,20 +107,16 @@
 - (void) refresh {
     self.arrayOfKids = nil;
     self.arrayOfSpellings = nil;
-    self.dataForPolaroidViews = nil;
-
 }
 
 - (void) refreshUI {
-    self.imageViewForPicture.image = [UIImage imageWithData:self.kidSelected.image];
+    [self.imageViewForPicture roundWithImage:[UIImage imageWithData:self.kidSelected.image]];
     self.labelForKidName.text = self.kidSelected.name;
 }
 
 - (void) viewWillAppear:(BOOL)animated {
     [self refresh];
     [self.pickerView reloadAllComponents];
-    self.navigationController.navigationBarHidden = YES;
-
 }
 
 //UIGestureRecognizer
@@ -126,6 +126,11 @@
 
 - (IBAction)swipeLeftOnPicture:(UISwipeGestureRecognizer *)sender {
     [self nextKid];
+}
+- (IBAction)tapOnPicture:(UITapGestureRecognizer *)sender {
+    SPAKidTVC *VC = (SPAKidTVC *)[self.storyboard instantiateViewControllerWithIdentifier:@"AKid"];
+    VC.objectSelected = self.kidSelected;
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 - (IBAction)buttonNext:(id)sender {
@@ -158,36 +163,22 @@
 }
 
 
-- (IBAction)goToEditionPart:(UIButton *)sender {
-
-    /*UIStoryboard *editionMenuStoryboard = [UIStoryboard storyboardWithName:storyboard1 bundle:[NSBundle mainBundle]];
-    UINavigationController *navVC = [editionMenuStoryboard instantiateInitialViewController];
-    EDEntitiesTVC *firstEditionVC = (EDEntitiesTVC *) [navVC.childViewControllers firstObject];
-    firstEditionVC.entitiesDictionary = [self.coreDataStack entitiesDictionary];
-    firstEditionVC.managedObjectContext = self.coreDataStack.managedObjectContext;
-
-    //Be careful, pushing a UINavigation instance is not supported, thus we push firstEditionVC instead of navVC
-    [self.navigationController pushViewController:firstEditionVC animated:NO];
-    */
-
-}
-
-
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
     if ([segue.identifier isEqualToString:@"openEditionPart"]) {
-        /*UITabBarController *destinationVC = (UITabBarController *) [segue destinationViewController];
 
-        EDRootVC *selectedVC = (EDRootVC *) destinationVC.selectedViewController;
-        selectedVC.managedObjectContext = self.coreDataStack.managedObjectContext;*/
+
     }
     else if ([segue.identifier isEqualToString:@"test"]) {
         SPTestVC *destinationVC = (SPTestVC *)segue.destinationViewController;
         destinationVC.managedObjectContext = self.managedObjectContext;
-        destinationVC.testedKid = self.kidSelected;
+        destinationVC.kidSelected = self.kidSelected;
 
         self.spellingSelected = [self.arrayOfSpellings objectAtIndex:[self.pickerView selectedRowInComponent:0]];
-        destinationVC.choosenSpelling = self.spellingSelected;
+        destinationVC.spellingSelected = self.spellingSelected;
+        
+        destinationVC.level = self.buttonLevel.level;
+        destinationVC.keyboardType = self.buttonKeyboard.keyboardType;
     }
 
 }

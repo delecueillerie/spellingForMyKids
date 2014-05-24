@@ -8,110 +8,226 @@
 
 #import "SPTestVC.h"
 #import "Word.h"
+#import "SPTestResult.h"
+#import "config.h"
+
+//ScrabbleKeyboard Module
+#import "config.h"
+#import "SKHUDView.h"
+#import "SKWordsData.h"
+
+//Category
+#import "UIImageView+cornerRadius.h"
+
+//View
+#import "SKStarDustView.h"
+
+
+
+#define scrabble @"scrabble"
+
 
 @interface SPTestVC ()
 
-@property (weak, nonatomic) IBOutlet UITextField *textField;
-@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
-@property (weak, nonatomic) IBOutlet UILabel *numberOfWords;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIView *viewBoard;
+@property (weak, nonatomic) IBOutlet UIView *viewStopwatch;
+@property (weak, nonatomic) IBOutlet SKHUDView *viewHud;
+@property (weak, nonatomic) IBOutlet SKCounterLabelView *viewCounter;
 
 
-@property (strong, nonatomic) Word *currentWord;
-@property (strong, nonatomic) NSArray *wordsUsedForThisTest;
-@property (strong, nonatomic) NSMutableDictionary *wordsTyppedIn;
 
+@property (strong, nonatomic) Word *wordSelected;
+@property (strong, nonatomic) NSArray *arrayWords;
 @property (strong, nonatomic) AVAudioPlayer *player;
-@property (strong, nonatomic) NSTimer *timer;
-@property (strong, nonatomic) NSTimer *timerForProgressView;
+
+
+
+
+//scrabbleKeyboard
+@property (strong, nonatomic) SKGameController* gameController;
+//@property (strong, nonatomic) SKBoardController *boardController;
+@property (strong, nonatomic) SKWordsData *spelling;
 
 @end
 
 @implementation SPTestVC
-static double delay = 10;
-static double delayForProgressViewUIUpdate = 0.1;
 
 
-- (NSArray *) wordsUsedForThisTest {
-    if (!_wordsUsedForThisTest) _wordsUsedForThisTest = [self.choosenSpelling.words allObjects];
-    return _wordsUsedForThisTest;
+
+
+- (NSArray *) arrayWords {
+    if (!_arrayWords) _arrayWords = [self.spellingSelected.words allObjects];
+    return _arrayWords;
+}
+
+- (SKWordsData *) spelling {
+    if (!_spelling) {
+        _spelling = [[SKWordsData alloc] init];
+        _spelling.pointsPerTile = 20;
+        _spelling.timeToSolve = 10;
+        NSMutableArray *arrayOfWordName = [[NSMutableArray alloc] init];
+        for (Word *word in self.arrayWords) {
+            [arrayOfWordName addObject:word.name];
+        }
+        _spelling.words = arrayOfWordName;
+    }
+    return _spelling;
+}
+
+- (SKGameController *) gameController {
+    if (!_gameController) {
+        //create the game controller
+        _gameController = [[SKGameController alloc] initWithKeyboard:self.keyboardType inView:self.viewBoard];
+        _gameController.delegate = self;
+        _gameController.spelling = self.spelling;
+        _gameController.hud = self.viewHud;
+    }
+    return _gameController;
+}
+
+- (NSUInteger) level {
+    if (!_level) _level = 1;
+    return _level;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+//VC LIFECYCLE
+///////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+-(instancetype)initWithCoder:(NSCoder *)decoder
+{
+    self = [super initWithCoder:decoder];
+    if (self) {
+        //create the game controller
+ //       self.controller = [[SKGameController alloc] initWithSuperviewsForTiles:self.viewKeyboard target:self.viewTarget hud:self.viewHud];
+    }
+    return self;
 }
 
 
-- (NSMutableDictionary *) wordsTyppedIn {
-    if (!_wordsTyppedIn) _wordsTyppedIn = [[NSMutableDictionary alloc]init];
-    return _wordsTyppedIn;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.textField becomeFirstResponder];
-    self.currentWord = [self.wordsUsedForThisTest firstObject];
-    [self listenTheWord];
-    [self updatePage];
+    
+    //Navigation Item
+    self.navigationItem.hidesBackButton = YES;
 
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:delay target:self selector:@selector(nextWord:) userInfo:nil repeats:YES];
-    self.timerForProgressView = [NSTimer scheduledTimerWithTimeInterval:delayForProgressViewUIUpdate target:self selector:@selector(progressViewUIUpdate:) userInfo:nil repeats:YES];
 }
 
+
+
+- (void) viewDidAppear:(BOOL)animated {
+    NSLog(@"viewDidAppear");
+    [self.gameController newQuestion];
+    [self updatePage];
+    [self.view layoutSubviews];
+    
+}
+
+
+/*
+- (void) keyboardWillShow:(NSNotification *) notification {
+    NSDictionary* userInfo = [notification userInfo];
+    CGRect keyboardFrameInWindowsCoordinates;
+    [[userInfo objectForKey:UIKeyboardDidShowNotification] getValue:&keyboardFrameInWindowsCoordinates];
+    CGRect keyboardFrameInViewCoordinates = [self.view convertRect:keyboardFrameInWindowsCoordinates fromView:nil];
+    self.viewBoard.frame = keyboardFrameInViewCoordinates;
+}
+*/
 
 - (void) updatePage {
-    NSUInteger currentIndex = [self.wordsUsedForThisTest indexOfObject:self.currentWord];
-    NSString * title = [NSString stringWithFormat:@"Word no %ld / %lu",(currentIndex ++),[self.wordsUsedForThisTest count]];
-    self.numberOfWords.text = title;
-}
+    NSUInteger currentIndex = [self.arrayWords indexOfObject:self.wordSelected];
+    NSString * title = [NSString stringWithFormat:@"Word no %lu / %lu",(unsigned long)(currentIndex+1),(unsigned long)[self.arrayWords count]];
+    self.navigationItem.title = title;
+    [self.imageView roundWithImage:[UIImage imageWithData:self.wordSelected.image]];
+    [self tapImageView:nil];
+   }
 
-- (void) saveTyppedInWord {
-    NSUInteger currentIndex = [self.wordsUsedForThisTest indexOfObject:self.currentWord];
-    [self.wordsTyppedIn setValue:self.textField.text forKey:[NSString stringWithFormat:@"%lu",currentIndex]];
-}
 
-- (void) progressViewUIUpdate:(NSTimer *)timer {
-    double timeInterval = [self.timer.fireDate timeIntervalSinceDate:[NSDate date]];
-    float progress = (delay -timeInterval)/delay;
-    [self.progressView setProgress:progress animated:YES];
-}
+- (NSString *) nextWord {
+    
+    NSString *nextWord = nil;
+    
+    if (!self.wordSelected) {
+        self.wordSelected = [self.arrayWords firstObject];
+        return self.wordSelected.name;
+    }
 
-- (void) nextWord:(NSTimer *)timer {
-    [self saveTyppedInWord];
-    NSUInteger index = [self.wordsUsedForThisTest indexOfObject:self.currentWord];
+    NSUInteger index = [self.arrayWords indexOfObject:self.wordSelected];
     index ++;
-    if ([self.wordsUsedForThisTest count] > index) {
-        Word *nextWord = [self.wordsUsedForThisTest objectAtIndex:index];
-        self.currentWord = nextWord;
+    
+    if ([self.arrayWords count] > index) {
+        self.wordSelected = [self.arrayWords objectAtIndex:index];
+        nextWord = self.wordSelected.name;
         [self updatePage];
-    } else {
-        //Stop the timers
-        [self.timer invalidate];
-        [self.timerForProgressView invalidate];
-        //Go to the test result
-        [self displayResultViewController];
+    }
+    return nextWord;
+}
+
+
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"testResult"]) {
+        SPTestResult *testResultViewController = (SPTestResult *) segue.destinationViewController;
+        testResultViewController.gameResult = self.gameController.gameResult;
     }
 }
 
-- (void) displayResultViewController {
-    UIViewController *resultViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"result"];
-[self presentViewController:resultViewController animated:YES completion:^{
-    //code
-}];
-}
-
-
-- (void) listenTheWord {
-    NSData *audio = self.currentWord.audio;
+- (IBAction)tapImageView:(id)sender {
+    NSData *audio = self.wordSelected.audio;
     NSError *error;
     self.player = [[AVAudioPlayer alloc] initWithData:audio error:&error];
     [self.player setDelegate:self];
     [self.player play];
 }
-
-- (IBAction)next:(UIButton *)sender {
-    [self nextWord:nil];
-    }
-
-- (IBAction)listen:(UIButton *)sender {
-    [self listenTheWord];
+- (IBAction)swipeGestureImageView:(id)sender {
+    [self.gameController newQuestion];
 }
 
 
+- (void) starDust {
+    
+    int startX = self.viewStopwatch.center.x;
+    int endX = self.imageView.frame.origin.x;
+    int startY = self.viewStopwatch.center.y;
+    
+    SKStarDustView* stars = [[SKStarDustView alloc] initWithFrame:CGRectMake(startX, startY, 10, 10)];
+    [self.view addSubview:stars];
+    [self.view sendSubviewToBack:stars];
+    
+    [UIView animateWithDuration:self.spelling.timeToSolve
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         stars.center = CGPointMake(endX, startY);
+                     } completion:^(BOOL finished) {
+                         
+                         //game finished
+                         [stars removeFromSuperview];
+                     }];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+//Game controller Delegate
+///////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+- (void) scoreBoardWithGameResult:(NSArray *)gameResult {
+    [self performSegueWithIdentifier:@"testResult" sender:self];
+}
+
+- (NSUInteger) timeToSolve {
+    return self.spelling.timeToSolve;
+}
+
+- (NSUInteger) maxWordLength {
+    NSUInteger max = 0;
+    for (NSString *word in self.spelling.words) {
+        max = MAX(max, [word length]);
+    }
+    return max;
+}
 @end

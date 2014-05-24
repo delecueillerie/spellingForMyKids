@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Word.h"
+#import "SPAnObject.h"
+#import "photoPicker.h"
+#import "MIViewController.h"
 
-@interface SPAWordTVC : UITableViewController
+@interface SPAWordTVC : SPAnObject <UITextFieldDelegate, photoPickerDelegate, microphonePlayerDelegate>
 
-@property (strong, nonatomic) Word *wordSelected;
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSData * dataImageCaptured;
+@property (nonatomic, strong) NSData *dataSoundRecorded;
+
+- (void) microphoneDidFinishRecording;
 
 @end

@@ -7,62 +7,133 @@
 //
 
 #import "SPAKidTVC.h"
-#import "WTViewController.h"
-
+//ManagedObject
+#import "Kid.h"
+#import "photoPickerViewController.h"
+//Category
+#import "UIImageView+cornerRadius.h"
 @interface SPAKidTVC ()
-@property (weak, nonatomic) IBOutlet UILabel *kidNameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *kidImage;
+
+//row 0
+@property (weak, nonatomic) IBOutlet UILabel *labelKidName;
+@property (weak, nonatomic) IBOutlet UITextField *textFielKidName;
+
+//row 1
+@property (weak, nonatomic) IBOutlet UIImageView *imageViewImage;
+
+@property (weak, nonatomic) IBOutlet UIView *viewContainerCamera;
+@property (strong,nonatomic) photoPicker *photoPicker;
+
+@property (strong, nonatomic) Kid *kidSelected;
 
 @end
 
 @implementation SPAKidTVC
 
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+// I - Lazy Instantiation
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+- (NSData *) dataImageCaptured {
+    if (!_dataImageCaptured) _dataImageCaptured = [[NSData alloc] init];
+    return _dataImageCaptured;
+}
 
--(void) viewWillAppear:(BOOL)animated {
+- (Kid *) kidSelected {
+    if (!_kidSelected) _kidSelected = (Kid *) self.objectSelected;
+    return _kidSelected;
+}
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+// II - overridding
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+- (void) viewDidLoad {
+    [super viewDidLoad];
+    
+    //load VC for container
+    photoPickerViewController *photoPickerVC = [photoPickerViewController instantiateInitialViewControllerWithPhotoPickerDelegate:self withCamera:YES];
+    [self addChildViewController:photoPickerVC];
+    [photoPickerVC didMoveToParentViewController:self];
+    photoPickerVC.view.frame=self.viewContainerCamera.bounds;
+    [self.viewContainerCamera addSubview:photoPickerVC.view];
+
+    
     [self updateUI];
 }
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+
+
+- (void) buttonSaveAction {
+    self.kidSelected.name = self.textFielKidName.text;
+    //self.kidSelected.image = self.dataImageCaptured;
+    
+    [super buttonSaveAction];
+}
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+// I -
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+- (void) updateUI {
+    
+    [super updateUI];
+    
+    self.labelKidName.text = self.kidSelected.name;
+    self.textFielKidName.text = self.kidSelected.name;
+    if (!self.kidSelected.image) {
+        [self.imageViewImage roundWithImage:[UIImage imageNamed:@"bonhommeVide.png"]];
+    } else {
+        [self.imageViewImage roundWithImage:[UIImage imageWithData:self.kidSelected.image]];
+    }
+
+
+    if (self.editing) {
+        self.textFielKidName.hidden=NO;
+        self.textFielKidName.delegate = self;
+        self.labelKidName.hidden=YES;
+        self.viewContainerCamera.hidden = NO;
+
+    } else {
+        self.textFielKidName.hidden = YES;
+        self.labelKidName.hidden = NO;
+        self.viewContainerCamera.hidden = YES;
+    }
 }
 
 
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+// Text Field Delegate
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
 
--(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//////////////////////////////////////////////////////////
+// II - a - delegate
+//////////////////////////////////////////////////////////
 
-    UIStoryboard *editingStoryboard = [UIStoryboard storyboardWithName:@"writingTool_iPhone" bundle:nil];
-    WTViewController *writingToolVC = [editingStoryboard instantiateInitialViewController];
-
-    NSString *fieldLabel;
-    NSString *attributesByNameKey;
-    switch (indexPath.row) {
+- (void) textFieldDidEndEditing:(UITextField *)textField {
+    switch (textField.tag) {
         case 0:
-        {
-            fieldLabel = @"Name";
-            attributesByNameKey = @"name";
-        }
+            self.kidSelected.name = textField.text;
             break;
-        case 1:
-        {
-            fieldLabel = @"Picture";
-            attributesByNameKey = @"image";
-
-        }
-            break;
-
         default:
             break;
     }
-    writingToolVC.fieldLabel = fieldLabel;
-    writingToolVC.selectedProperty= [[[self.kidSelected entity] attributesByName] valueForKey:attributesByNameKey];
-    writingToolVC.editedObject = self.kidSelected;
-    writingToolVC.managedObjectContext = self.managedObjectContext;
-    [self.navigationController pushViewController:writingToolVC animated:YES];
 }
 
-- (void) updateUI {
-    self.kidNameLabel.text = self.kidSelected.name;
-    self.kidImage.image = [UIImage imageWithData:self.kidSelected.image];
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+// PhotoPicker Delegate
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+- (void) photoPickerDidFinishPickingImage {
+    self.kidSelected.image = self.dataImageCaptured;
+    [self updateUI];
 }
 
 

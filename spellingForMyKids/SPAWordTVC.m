@@ -7,73 +7,167 @@
 //
 
 #import "SPAWordTVC.h"
-#import "WTViewController.h"
+//ManagedObject
+#import "Word.h"
+//Container
+#import "MIViewController.h"
+#import "photoPickerViewController.h"
+
+//Category
+#import "UIImageView+cornerRadius.h"
 
 @interface SPAWordTVC ()
-@property (weak, nonatomic) IBOutlet UIImageView *soundImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *imageImageView;
-@property (weak, nonatomic) IBOutlet UILabel *wordLabel;
 
+
+
+@property (strong, nonatomic) Word *wordSelected;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *labelWordName;
+@property (weak, nonatomic) IBOutlet UITextField *textFieldWordName;
+
+@property (weak, nonatomic) IBOutlet UIView *viewContainer;
+@property (weak, nonatomic) IBOutlet UIView *viewContainerCamera;
+@property (weak, nonatomic) IBOutlet UIImageView *imageViewImage;
+
+@property (strong, nonatomic) MIViewController *microphoneVC;
+//@property (nonatomic) BOOL editing;
 @end
 
 @implementation SPAWordTVC
 
--(void) viewWillAppear:(BOOL)animated {
-    [self updateUI];
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//Lazy Instantiation & Accessors
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
 
+- (Word *) wordSelected {
+    if (!_wordSelected) _wordSelected = (Word *) self.objectSelected;
+    return _wordSelected;
 }
 
+/*
+- (void) setEditing:(BOOL)editingValue {
+    _editing = editingValue;
+    self.microphoneVC.editing = editingValue;
+}
+*/
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+// III - VC Life Cycle Management
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
 
-- (void)viewDidLoad
-{
+- (void) viewDidLoad {
     [super viewDidLoad];
+    
+    //load Container VC
+    self.microphoneVC = [MIViewController instantiateInitialViewControllerWithMicrophoneDelegate:self];
+    self.microphoneVC.editing = self.editing;
+
+    [self addChildViewController:self.microphoneVC];
+    [self.microphoneVC didMoveToParentViewController:self];
+    self.microphoneVC.view.frame = self.viewContainer.bounds;
+    [self.viewContainer addSubview:self.microphoneVC.view];
+
+    
+    
+    photoPickerViewController *photoPickerVC = [photoPickerViewController instantiateInitialViewControllerWithPhotoPickerDelegate:self withCamera:YES];
+    [self addChildViewController:photoPickerVC];
+    [photoPickerVC didMoveToParentViewController:self];
+    photoPickerVC.view.frame=self.viewContainerCamera.bounds;
+    [self.viewContainerCamera addSubview:photoPickerVC.view];
+    
+    self.dataSoundRecorded = self.wordSelected.audio;
+    [self updateUI];
 }
 
--(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+/*
+- (void) viewWillAppear:(BOOL)animated {
+    self.microphoneVC.editing = self.editing;
+}
+ */
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+// II - Override method
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
 
-    UIStoryboard *editingStoryboard = [UIStoryboard storyboardWithName:@"writingTool_iPhone" bundle:nil];
-    WTViewController *writingToolVC = [editingStoryboard instantiateInitialViewController];
 
-    NSString *fieldLabel;
-    NSString *attributesByNameKey;
-    switch (indexPath.row) {
+- (void) updateUI {
+    
+    [super updateUI];
+
+    self.labelWordName.text = self.wordSelected.name;
+    self.textFieldWordName.text = self.wordSelected.name;
+    [self.imageViewImage roundWithImage:[UIImage imageWithData:self.wordSelected.image]];
+
+    if (self.editing) {
+        self.textFieldWordName.hidden=NO;
+        self.textFieldWordName.delegate = self;
+        self.textFieldWordName.text = self.wordSelected.name;
+        self.labelWordName.hidden=YES;
+        self.viewContainerCamera.hidden = NO;
+        self.microphoneVC.editing = self.editing;
+        
+    } else {
+        self.textFieldWordName.hidden = YES;
+        self.labelWordName.hidden = NO;
+        self.labelWordName.text = self.wordSelected.name;
+        self.viewContainerCamera.hidden = YES;
+        self.microphoneVC.editing = self.editing;
+        
+    }
+}
+
+- (void) buttonSaveAction {
+    //this method is called before the delegate method textFieldDidEndEditing
+    self.wordSelected.name = self.textFieldWordName.text;
+   // self.wordSelected.image = self.dataImageCaptured;
+    [super buttonSaveAction];
+}
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+// II - Text Field
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////
+// II - a - delegate
+//////////////////////////////////////////////////////////
+
+- (void) textFieldDidEndEditing:(UITextField *)textField {
+    switch (textField.tag) {
         case 0:
-        {
-            fieldLabel = @"Title";
-            attributesByNameKey = @"name";
-        }
+            NSLog(@"contenu du text field %@",textField.text);
+            self.wordSelected.name = textField.text;
             break;
-        case 1:
-        {
-            fieldLabel = @"Sound";
-            attributesByNameKey = @"audio";
-
-        }
-            break;
-
-        case 2:
-        {
-            fieldLabel = @"Image";
-            attributesByNameKey = @"image";
-        }
         default:
             break;
     }
-    writingToolVC.fieldLabel = fieldLabel;
-    writingToolVC.selectedProperty = [[[self.wordSelected entity] attributesByName] valueForKey:attributesByNameKey];
-    writingToolVC.editedObject = self.wordSelected;
-    writingToolVC.managedObjectContext = self.managedObjectContext;
-    [self.navigationController pushViewController:writingToolVC animated:YES];
 }
 
-- (void) updateUI {
-    self.wordLabel.text = self.wordSelected.name;
-    if (self.wordSelected.audio) {
-        self.soundImageView.image = [UIImage imageNamed:@"oscillation.png"];
-    } else self.soundImageView.image = nil;
-
-    self.imageImageView.image = [UIImage imageWithData:self.wordSelected.image];
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+// PhotoPicker Delegate
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+- (void) photoPickerDidFinishPickingImage {
+    self.wordSelected.image = self.dataImageCaptured;
+    [self updateUI];
 }
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+// Microphone Delegate
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+- (void) microphonePlayerDidFinishRecording {
+    self.wordSelected.audio = self.dataSoundRecorded;
+}
+
+
 
 
 @end

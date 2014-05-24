@@ -10,12 +10,29 @@
 #import <AVFoundation/AVFoundation.h>
 #import "Kid.h"
 #import "Spelling.h"
+#import "SKGameController.h"
 
 
-@interface SPTestVC : UIViewController <AVAudioPlayerDelegate>
+
+@interface SPTestVC : UIViewController <AVAudioPlayerDelegate, UIGestureRecognizerDelegate, gameProtocolDelegate>
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (strong, nonatomic) Kid *testedKid;
-@property (strong, nonatomic) Spelling *choosenSpelling;
+@property (strong, nonatomic) Kid *kidSelected;
+@property (strong, nonatomic) Spelling *spellingSelected;
+
+
+@property (nonatomic) NSUInteger level;
+@property (nonatomic, strong) NSString *keyboardType;
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+//gameProtocolDelegate
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+- (NSString *) nextWord;
+- (NSUInteger) timeToSolve;
+- (NSUInteger) maxWordLength;
+- (void) scoreBoardWithGameResult:(NSArray *)gameResult;
+- (void)starDust;
 
 @end

@@ -6,12 +6,10 @@
 //  Copyright (c) 2014 Olivier Delecueillerie. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "Kid.h"
+#import "SPAnObject.h"
+#import "photoPicker.h"
 
-@interface SPAKidTVC : UITableViewController
+@interface SPAKidTVC : SPAnObject <UITextFieldDelegate, photoPickerDelegate>
 
-@property (strong, nonatomic) Kid *kidSelected;
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-
+@property (nonatomic, strong) NSData * dataImageCaptured;
 @end
