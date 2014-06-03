@@ -7,13 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SPAnObject.h"
+#import "SPAnObjectWithList.h"
 #import "Spelling.h"
 #import "SPObjectList.h"
 
-@interface SPSpelling : SPAnObject <UITextFieldDelegate, objectListDelegate>
+@interface SPSpelling : SPAnObjectWithList <UITextFieldDelegate>
 
-@property (strong, nonatomic) NSPredicate *predicate;
-@property (nonatomic) BOOL allowsMultipleSelection;
-@property (strong, nonatomic) NSArray *objectList;
+
 @end

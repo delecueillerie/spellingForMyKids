@@ -12,7 +12,7 @@
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSManagedObject *objectSelected;
 @property (nonatomic) BOOL newObject;
-- (void) updateUI;
+
 - (void) buttonSaveAction;
 
 

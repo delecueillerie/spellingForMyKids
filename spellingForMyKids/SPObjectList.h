@@ -12,7 +12,7 @@
 @property (nonatomic, strong) NSPredicate *predicate;
 @property (nonatomic) BOOL allowsMultipleSelection;
 @optional
-@property (nonatomic, strong) NSArray *objectList;
+//@property (nonatomic, strong) NSArray *objectList;
 @end
 
 @interface SPObjectList : UITableViewController <NSFetchedResultsControllerDelegate, UITableViewDelegate, objectListDelegate>

@@ -9,7 +9,7 @@
 #import "SPAnObject.h"
 #import "photoPicker.h"
 
-@interface SPAKidTVC : SPAnObject <UITextFieldDelegate, photoPickerDelegate>
+@interface SPAKidTVC : SPAnObject <UITextFieldDelegate, photoPickerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (nonatomic, strong) NSData * dataImageCaptured;
 @end

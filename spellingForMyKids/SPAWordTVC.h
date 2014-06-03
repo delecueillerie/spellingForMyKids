@@ -13,9 +13,17 @@
 
 @interface SPAWordTVC : SPAnObject <UITextFieldDelegate, photoPickerDelegate, microphonePlayerDelegate>
 
-@property (nonatomic, strong) NSData * dataImageCaptured;
+//microphonePlayerDelegate
 @property (nonatomic, strong) NSData *dataSoundRecorded;
+- (void) microphonePlayerDidFinishRecording;
+- (void) deleteDataSoundRecorded;
+- (void) playOtherSound;
 
-- (void) microphoneDidFinishRecording;
+
+//photoPicker delegate
+@property (nonatomic, strong) NSData * dataImageCaptured;
+- (void) photoPickerDidFinishPickingImage;
+
+
 
 @end

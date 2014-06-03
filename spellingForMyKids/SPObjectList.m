@@ -152,7 +152,6 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return 1;
-
     }
     else {
         return [[self.fetchedResultsController sections] count];
@@ -287,6 +286,8 @@
         abort();
     }
     
+    NSLog(@"fetched Objects count %i",[[_fetchedResultsController fetchedObjects] count]);
+    
     return _fetchedResultsController;
 }
 
@@ -323,6 +324,7 @@
 
 - (void) detailVCToPushWithObject:(id)object {
     SPAnObject *detailVC = [self.storyboard instantiateViewControllerWithIdentifier:self.storyboardVCId];
+    detailVC.editing = NO;
     detailVC.objectSelected = self.objectSelected;
     [self.navigationController pushViewController:detailVC animated:YES];
 }

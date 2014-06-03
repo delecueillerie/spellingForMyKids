@@ -18,13 +18,18 @@
 
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
-// I - Lazy Instantiation
+//Accessor
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
 
 - (NSManagedObjectContext *) managedObjectContext {
     if (!_managedObjectContext) _managedObjectContext = self.objectSelected.managedObjectContext; //[DBCoreDataStack sharedInstance].managedObjectContext;
     return _managedObjectContext;
+}
+
+- (void) setEditing:(BOOL)editing {
+    [super setEditing:editing];
+    [self navigationItemUpdate];
 }
 
 //////////////////////////////////////////////////////////
@@ -36,8 +41,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self updateUI];
+    [self navigationItemUpdate];
 }
+
 
 
 
@@ -51,14 +57,14 @@
     //set up the undo manager
     [self setUpUndoManager];
     self.editing = YES;
-    [self updateUI];
+    //[self updateUI];
 }
-
+/*
 - (void) updateUI {
     [self navigationItemUpdate];
     //the goal of this method is to be overridden in subclasses
 }
-
+*/
 
 - (void) buttonCancelAction {
     //clean the undoManager∫
@@ -78,6 +84,8 @@
 - (void) buttonSaveAction {
 
     NSError *error;
+    NSLog(@"name %@", [self.objectSelected description]);
+    
     [self.managedObjectContext save:&error];
     if (self.newObject) {
         error = nil;

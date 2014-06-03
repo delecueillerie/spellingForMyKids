@@ -15,6 +15,7 @@
 //Controller
 #import "SPTestVC.h"
 #import "SPSpellingList.h"
+#import "SPKidList.h"
 #import "SPAKidTVC.h"
 //View
 #import "SPKeyboardButton.h"
@@ -89,18 +90,18 @@
   
 #warning if no spelling then error
     //array of kids cannot be nil. This can happen when no kid are saved yet. ( ex. First Launch, etc.)
-    if ([self.arrayOfKids count]==0)  {
+    /*if ([self.arrayOfKids count]==0)  {
         //Go to edition part directly to fill in data
         UIViewController *destinationViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"AKid"];
         destinationViewController.editing = YES;
         [self.navigationController pushViewController:destinationViewController animated:NO];
     } else {
-
+*/
         Kid *kidLastSelected = (Kid *)[[NSUserDefaults standardUserDefaults] objectForKey:@"kidSelected"];
         if (kidLastSelected) self.kidSelected = kidLastSelected;
         else self.kidSelected = (Kid *)[self.arrayOfKids firstObject];
         [self refreshUI];
-    }
+  //  }
 }
 
 
@@ -167,7 +168,10 @@
 
     if ([segue.identifier isEqualToString:@"openEditionPart"]) {
 
-
+        SPSpellingList *destinationVC = (SPSpellingList *)[[segue.destinationViewController childViewControllers] firstObject];
+        NSLog(@"class %@", NSStringFromClass([segue.destinationViewController class])  );
+        destinationVC.managedObjectContext = self.managedObjectContext;
+        
     }
     else if ([segue.identifier isEqualToString:@"test"]) {
         SPTestVC *destinationVC = (SPTestVC *)segue.destinationViewController;

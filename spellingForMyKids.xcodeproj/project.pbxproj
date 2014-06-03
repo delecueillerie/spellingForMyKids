@@ -27,10 +27,6 @@
 		090F238318A527480095F2E7 /* SPAWordTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F238218A527480095F2E7 /* SPAWordTVC.m */; };
 		090F239518A8DDB80095F2E7 /* SPMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F239218A8DDB80095F2E7 /* SPMenuVC.m */; };
 		090F239D18A984B50095F2E7 /* SPAKidTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F239C18A984B50095F2E7 /* SPAKidTVC.m */; };
-		090F23B618AA32650095F2E7 /* Kid.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F23B518AA32650095F2E7 /* Kid.m */; };
-		090F23B918AA32660095F2E7 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F23B818AA32660095F2E7 /* Test.m */; };
-		090F23BC18AA32660095F2E7 /* Spelling.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F23BB18AA32660095F2E7 /* Spelling.m */; };
-		090F23BF18AA32660095F2E7 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F23BE18AA32660095F2E7 /* Word.m */; };
 		091489BE192142E10040F7C5 /* roundGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 091489BD192142E10040F7C5 /* roundGreen.png */; };
 		091489C219216BEF0040F7C5 /* UIImage+resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 091489C119216BEF0040F7C5 /* UIImage+resize.m */; };
 		091489C5192176E90040F7C5 /* UIImageView+cornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 091489C4192176E90040F7C5 /* UIImageView+cornerRadius.m */; };
@@ -63,15 +59,28 @@
 		0916BE3718C64666007EF967 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 0916BE3618C64666007EF967 /* play.png */; };
 		0916BE3918C64926007EF967 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = 0916BE3818C64926007EF967 /* next.png */; };
 		0916BE3B18C65328007EF967 /* previous.png in Resources */ = {isa = PBXBuildFile; fileRef = 0916BE3A18C65328007EF967 /* previous.png */; };
+		09182F28193CAE7500E93371 /* Spelling.m in Sources */ = {isa = PBXBuildFile; fileRef = 09182F27193CAE7500E93371 /* Spelling.m */; };
+		09182F2A193CC2D400E93371 /* buttonBin.png in Resources */ = {isa = PBXBuildFile; fileRef = 09182F29193CC2D400E93371 /* buttonBin.png */; };
+		09182F2E193DBD1500E93371 /* SPUtterance.m in Sources */ = {isa = PBXBuildFile; fileRef = 09182F2D193DBD1500E93371 /* SPUtterance.m */; };
 		0925D16D1927C5CD0046D3A6 /* SKBoardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0925D16C1927C5CD0046D3A6 /* SKBoardController.m */; };
 		092A416618D1B2D800382793 /* tabBarIcon_spelling.png in Resources */ = {isa = PBXBuildFile; fileRef = 092A416518D1B2D800382793 /* tabBarIcon_spelling.png */; };
 		092A416818D1B58900382793 /* tabBarIcon_word.png in Resources */ = {isa = PBXBuildFile; fileRef = 092A416718D1B58900382793 /* tabBarIcon_word.png */; };
 		092A416A18D1B99900382793 /* SPAnObjectTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 092A416918D1B99900382793 /* SPAnObjectTVC.xib */; };
+		092C39E71933E87900A6E2B6 /* Grapheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 092C39E61933E87900A6E2B6 /* Grapheme.m */; };
+		092C39EA1933E87A00A6E2B6 /* Phoneme.m in Sources */ = {isa = PBXBuildFile; fileRef = 092C39E91933E87A00A6E2B6 /* Phoneme.m */; };
+		092C39ED1933E87A00A6E2B6 /* Lesson.m in Sources */ = {isa = PBXBuildFile; fileRef = 092C39EC1933E87A00A6E2B6 /* Lesson.m */; };
+		092C39F01933E87A00A6E2B6 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 092C39EF1933E87A00A6E2B6 /* Test.m */; };
+		092C39F31933E87A00A6E2B6 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = 092C39F21933E87A00A6E2B6 /* Word.m */; };
+		092C39F61933E87A00A6E2B6 /* Kid.m in Sources */ = {isa = PBXBuildFile; fileRef = 092C39F51933E87A00A6E2B6 /* Kid.m */; };
+		092C39FC1933E87A00A6E2B6 /* SpellingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 092C39FB1933E87A00A6E2B6 /* SpellingTest.m */; };
+		092C3A011933F13900A6E2B6 /* SPSchoolLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 092C3A001933F13900A6E2B6 /* SPSchoolLevel.m */; };
+		092C3A041934C7CD00A6E2B6 /* segueFromMenuToTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 092C3A031934C7CD00A6E2B6 /* segueFromMenuToTabBar.m */; };
+		092C3A0A1935372200A6E2B6 /* SPPhonemeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 092C3A091935372200A6E2B6 /* SPPhonemeList.m */; };
+		092C3A0D1935389F00A6E2B6 /* SPPhoneme.m in Sources */ = {isa = PBXBuildFile; fileRef = 092C3A0C1935389F00A6E2B6 /* SPPhoneme.m */; };
 		092EBBB218D903D3003BF22E /* SCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 092EBBAF18D903D3003BF22E /* SCViewController.m */; };
 		092EBBB318D903D3003BF22E /* SCWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = 092EBBB118D903D3003BF22E /* SCWaveformView.m */; };
 		093AAD8718D10069005B8EA1 /* SPAnObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 093AAD8618D10069005B8EA1 /* SPAnObject.m */; };
 		0947544018F420DE00FBBAFC /* buttonPlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 0947543518F420DE00FBBAFC /* buttonPlay.png */; };
-		0947544118F420DE00FBBAFC /* buttonRecord64.png in Resources */ = {isa = PBXBuildFile; fileRef = 0947543618F420DE00FBBAFC /* buttonRecord64.png */; };
 		0947544218F420DE00FBBAFC /* buttonStop64.png in Resources */ = {isa = PBXBuildFile; fileRef = 0947543718F420DE00FBBAFC /* buttonStop64.png */; };
 		0947544318F420DE00FBBAFC /* FDSoundActivatedRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0947543918F420DE00FBBAFC /* FDSoundActivatedRecorder.m */; };
 		0947544418F420DE00FBBAFC /* microphone64.png in Resources */ = {isa = PBXBuildFile; fileRef = 0947543A18F420DE00FBBAFC /* microphone64.png */; };
@@ -79,6 +88,12 @@
 		0947544618F420DE00FBBAFC /* MIMicrophoneUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0947543D18F420DE00FBBAFC /* MIMicrophoneUI.m */; };
 		0947544718F420DE00FBBAFC /* MIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0947543F18F420DE00FBBAFC /* MIViewController.m */; };
 		0947544B18F4210000FBBAFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0947544918F4210000FBBAFC /* Main.storyboard */; };
+		094ABF7B19387C300091283E /* SPPhonemeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 094ABF7A19387C300091283E /* SPPhonemeView.m */; };
+		094ABF83193884A00091283E /* SPPhonemeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 094ABF82193884A00091283E /* SPPhonemeView.xib */; };
+		094ABF8519388B3A0091283E /* phonemeShape.png in Resources */ = {isa = PBXBuildFile; fileRef = 094ABF8419388B3A0091283E /* phonemeShape.png */; };
+		094ABFA01938B5340091283E /* SPGraphemeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 094ABF9F1938B5340091283E /* SPGraphemeList.m */; };
+		094ABFA31938B6990091283E /* SPGrapheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 094ABFA21938B6990091283E /* SPGrapheme.m */; };
+		094ABFA91938DAA30091283E /* SPAnObjectWithList.m in Sources */ = {isa = PBXBuildFile; fileRef = 094ABFA81938DAA30091283E /* SPAnObjectWithList.m */; };
 		0955041C18B0953A00128B5B /* SPTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0955041B18B0953A00128B5B /* SPTestVC.m */; };
 		095691F819127DEF00A5386F /* SPSpelling.m in Sources */ = {isa = PBXBuildFile; fileRef = 095691F719127DEF00A5386F /* SPSpelling.m */; };
 		095691FE19139CEB00A5386F /* SPWordList.m in Sources */ = {isa = PBXBuildFile; fileRef = 095691FD19139CEB00A5386F /* SPWordList.m */; };
@@ -150,14 +165,6 @@
 		090F239418A8DDB80095F2E7 /* SPMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMenuVC.h; sourceTree = "<group>"; };
 		090F239B18A984B50095F2E7 /* SPAKidTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAKidTVC.h; sourceTree = "<group>"; };
 		090F239C18A984B50095F2E7 /* SPAKidTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAKidTVC.m; sourceTree = "<group>"; };
-		090F23B418AA32650095F2E7 /* Kid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Kid.h; path = addOn/coreDataStack/coreDataStack/Kid.h; sourceTree = "<group>"; };
-		090F23B518AA32650095F2E7 /* Kid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Kid.m; path = addOn/coreDataStack/coreDataStack/Kid.m; sourceTree = "<group>"; };
-		090F23B718AA32660095F2E7 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Test.h; path = addOn/coreDataStack/coreDataStack/Test.h; sourceTree = "<group>"; };
-		090F23B818AA32660095F2E7 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Test.m; path = addOn/coreDataStack/coreDataStack/Test.m; sourceTree = "<group>"; };
-		090F23BA18AA32660095F2E7 /* Spelling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spelling.h; path = addOn/coreDataStack/coreDataStack/Spelling.h; sourceTree = "<group>"; };
-		090F23BB18AA32660095F2E7 /* Spelling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Spelling.m; path = addOn/coreDataStack/coreDataStack/Spelling.m; sourceTree = "<group>"; };
-		090F23BD18AA32660095F2E7 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Word.h; path = addOn/coreDataStack/coreDataStack/Word.h; sourceTree = "<group>"; };
-		090F23BE18AA32660095F2E7 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Word.m; path = addOn/coreDataStack/coreDataStack/Word.m; sourceTree = "<group>"; };
 		091489BD192142E10040F7C5 /* roundGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = roundGreen.png; path = media/roundGreen.png; sourceTree = SOURCE_ROOT; };
 		091489C019216BEF0040F7C5 /* UIImage+resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+resize.h"; sourceTree = "<group>"; };
 		091489C119216BEF0040F7C5 /* UIImage+resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+resize.m"; sourceTree = "<group>"; };
@@ -207,11 +214,38 @@
 		0916BE3618C64666007EF967 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = media/play.png; sourceTree = SOURCE_ROOT; };
 		0916BE3818C64926007EF967 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = next.png; path = media/next.png; sourceTree = SOURCE_ROOT; };
 		0916BE3A18C65328007EF967 /* previous.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = previous.png; path = media/previous.png; sourceTree = SOURCE_ROOT; };
+		09182F26193CAE7500E93371 /* Spelling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spelling.h; path = spellingForMyKids/Spelling.h; sourceTree = "<group>"; };
+		09182F27193CAE7500E93371 /* Spelling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Spelling.m; path = spellingForMyKids/Spelling.m; sourceTree = "<group>"; };
+		09182F29193CC2D400E93371 /* buttonBin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttonBin.png; path = media/buttonBin.png; sourceTree = "<group>"; };
+		09182F2C193DBD1500E93371 /* SPUtterance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUtterance.h; sourceTree = "<group>"; };
+		09182F2D193DBD1500E93371 /* SPUtterance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUtterance.m; sourceTree = "<group>"; };
 		0925D16C1927C5CD0046D3A6 /* SKBoardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKBoardController.m; sourceTree = "<group>"; };
 		0925D16E1927C5DC0046D3A6 /* SKBoardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKBoardController.h; sourceTree = "<group>"; };
 		092A416518D1B2D800382793 /* tabBarIcon_spelling.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tabBarIcon_spelling.png; path = media/tabBarIcon_spelling.png; sourceTree = SOURCE_ROOT; };
 		092A416718D1B58900382793 /* tabBarIcon_word.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tabBarIcon_word.png; path = media/tabBarIcon_word.png; sourceTree = SOURCE_ROOT; };
 		092A416918D1B99900382793 /* SPAnObjectTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPAnObjectTVC.xib; sourceTree = "<group>"; };
+		092C39E51933E87900A6E2B6 /* Grapheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Grapheme.h; path = addOn/coreDataStack/coreDataStack/Grapheme.h; sourceTree = "<group>"; };
+		092C39E61933E87900A6E2B6 /* Grapheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Grapheme.m; path = addOn/coreDataStack/coreDataStack/Grapheme.m; sourceTree = "<group>"; };
+		092C39E81933E87A00A6E2B6 /* Phoneme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Phoneme.h; path = addOn/coreDataStack/coreDataStack/Phoneme.h; sourceTree = "<group>"; };
+		092C39E91933E87A00A6E2B6 /* Phoneme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Phoneme.m; path = addOn/coreDataStack/coreDataStack/Phoneme.m; sourceTree = "<group>"; };
+		092C39EB1933E87A00A6E2B6 /* Lesson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Lesson.h; path = addOn/coreDataStack/coreDataStack/Lesson.h; sourceTree = "<group>"; };
+		092C39EC1933E87A00A6E2B6 /* Lesson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Lesson.m; path = addOn/coreDataStack/coreDataStack/Lesson.m; sourceTree = "<group>"; };
+		092C39EE1933E87A00A6E2B6 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Test.h; path = addOn/coreDataStack/coreDataStack/Test.h; sourceTree = "<group>"; };
+		092C39EF1933E87A00A6E2B6 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Test.m; path = addOn/coreDataStack/coreDataStack/Test.m; sourceTree = "<group>"; };
+		092C39F11933E87A00A6E2B6 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Word.h; path = addOn/coreDataStack/coreDataStack/Word.h; sourceTree = "<group>"; };
+		092C39F21933E87A00A6E2B6 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Word.m; path = addOn/coreDataStack/coreDataStack/Word.m; sourceTree = "<group>"; };
+		092C39F41933E87A00A6E2B6 /* Kid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Kid.h; path = addOn/coreDataStack/coreDataStack/Kid.h; sourceTree = "<group>"; };
+		092C39F51933E87A00A6E2B6 /* Kid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Kid.m; path = addOn/coreDataStack/coreDataStack/Kid.m; sourceTree = "<group>"; };
+		092C39FA1933E87A00A6E2B6 /* SpellingTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpellingTest.h; path = addOn/coreDataStack/coreDataStack/SpellingTest.h; sourceTree = "<group>"; };
+		092C39FB1933E87A00A6E2B6 /* SpellingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpellingTest.m; path = addOn/coreDataStack/coreDataStack/SpellingTest.m; sourceTree = "<group>"; };
+		092C39FF1933F13900A6E2B6 /* SPSchoolLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSchoolLevel.h; sourceTree = "<group>"; };
+		092C3A001933F13900A6E2B6 /* SPSchoolLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSchoolLevel.m; sourceTree = "<group>"; };
+		092C3A021934C7CD00A6E2B6 /* segueFromMenuToTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = segueFromMenuToTabBar.h; sourceTree = "<group>"; };
+		092C3A031934C7CD00A6E2B6 /* segueFromMenuToTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = segueFromMenuToTabBar.m; sourceTree = "<group>"; };
+		092C3A081935372200A6E2B6 /* SPPhonemeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPhonemeList.h; sourceTree = "<group>"; };
+		092C3A091935372200A6E2B6 /* SPPhonemeList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPhonemeList.m; sourceTree = "<group>"; };
+		092C3A0B1935389F00A6E2B6 /* SPPhoneme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPhoneme.h; sourceTree = "<group>"; };
+		092C3A0C1935389F00A6E2B6 /* SPPhoneme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPhoneme.m; sourceTree = "<group>"; };
 		092EBBAE18D903D3003BF22E /* SCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCViewController.h; sourceTree = "<group>"; };
 		092EBBAF18D903D3003BF22E /* SCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCViewController.m; sourceTree = "<group>"; };
 		092EBBB018D903D3003BF22E /* SCWaveformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCWaveformView.h; sourceTree = "<group>"; };
@@ -219,7 +253,6 @@
 		093AAD8518D10069005B8EA1 /* SPAnObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAnObject.h; sourceTree = "<group>"; };
 		093AAD8618D10069005B8EA1 /* SPAnObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAnObject.m; sourceTree = "<group>"; };
 		0947543518F420DE00FBBAFC /* buttonPlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttonPlay.png; path = addOn/tinyMicrophone/microphone/buttonPlay.png; sourceTree = "<group>"; };
-		0947543618F420DE00FBBAFC /* buttonRecord64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttonRecord64.png; path = addOn/tinyMicrophone/microphone/buttonRecord64.png; sourceTree = "<group>"; };
 		0947543718F420DE00FBBAFC /* buttonStop64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttonStop64.png; path = addOn/tinyMicrophone/microphone/buttonStop64.png; sourceTree = "<group>"; };
 		0947543818F420DE00FBBAFC /* FDSoundActivatedRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDSoundActivatedRecorder.h; path = addOn/tinyMicrophone/microphone/FDSoundActivatedRecorder.h; sourceTree = "<group>"; };
 		0947543918F420DE00FBBAFC /* FDSoundActivatedRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDSoundActivatedRecorder.m; path = addOn/tinyMicrophone/microphone/FDSoundActivatedRecorder.m; sourceTree = "<group>"; };
@@ -230,6 +263,16 @@
 		0947543E18F420DE00FBBAFC /* MIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MIViewController.h; path = addOn/tinyMicrophone/microphone/MIViewController.h; sourceTree = "<group>"; };
 		0947543F18F420DE00FBBAFC /* MIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MIViewController.m; path = addOn/tinyMicrophone/microphone/MIViewController.m; sourceTree = "<group>"; };
 		0947544A18F4210000FBBAFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = addOn/tinyMicrophone/microphone/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		094ABF7919387C300091283E /* SPPhonemeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPhonemeView.h; sourceTree = "<group>"; };
+		094ABF7A19387C300091283E /* SPPhonemeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPhonemeView.m; sourceTree = "<group>"; };
+		094ABF82193884A00091283E /* SPPhonemeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPPhonemeView.xib; sourceTree = "<group>"; };
+		094ABF8419388B3A0091283E /* phonemeShape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = phonemeShape.png; path = media/phonemeShape.png; sourceTree = SOURCE_ROOT; };
+		094ABF9E1938B5340091283E /* SPGraphemeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGraphemeList.h; sourceTree = "<group>"; };
+		094ABF9F1938B5340091283E /* SPGraphemeList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPGraphemeList.m; sourceTree = "<group>"; };
+		094ABFA11938B6990091283E /* SPGrapheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGrapheme.h; sourceTree = "<group>"; };
+		094ABFA21938B6990091283E /* SPGrapheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPGrapheme.m; sourceTree = "<group>"; };
+		094ABFA71938DAA30091283E /* SPAnObjectWithList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAnObjectWithList.h; sourceTree = "<group>"; };
+		094ABFA81938DAA30091283E /* SPAnObjectWithList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAnObjectWithList.m; sourceTree = "<group>"; };
 		0955041A18B0953A00128B5B /* SPTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTestVC.h; sourceTree = "<group>"; };
 		0955041B18B0953A00128B5B /* SPTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPTestVC.m; sourceTree = "<group>"; };
 		095691F419127D4C00A5386F /* SPSpelling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSpelling.h; sourceTree = "<group>"; };
@@ -331,6 +374,7 @@
 		090BE6A418907F4000A1DE0C /* spellingForMyKids */ = {
 			isa = PBXGroup;
 			children = (
+				092C39FE1933F11300A6E2B6 /* Model */,
 				09148AC71925649A0040F7C5 /* menu */,
 				09148AD01925798E0040F7C5 /* test */,
 				09148AD3192579D70040F7C5 /* result */,
@@ -378,6 +422,7 @@
 		090BE6E31891386C00A1DE0C /* media */ = {
 			isa = PBXGroup;
 			children = (
+				094ABF8419388B3A0091283E /* phonemeShape.png */,
 				09F9F55F192F370900953982 /* icon */,
 				09569215191FB10500A5386F /* font */,
 				09569212191FA06900A5386F /* navBar */,
@@ -395,12 +440,16 @@
 				092A416918D1B99900382793 /* SPAnObjectTVC.xib */,
 				093AAD8518D10069005B8EA1 /* SPAnObject.h */,
 				093AAD8618D10069005B8EA1 /* SPAnObject.m */,
-				090F238118A527480095F2E7 /* SPAWordTVC.h */,
-				090F238218A527480095F2E7 /* SPAWordTVC.m */,
+				094ABFA71938DAA30091283E /* SPAnObjectWithList.h */,
+				094ABFA81938DAA30091283E /* SPAnObjectWithList.m */,
+				09182F2B193DBC2600E93371 /* word */,
 				090F239B18A984B50095F2E7 /* SPAKidTVC.h */,
 				090F239C18A984B50095F2E7 /* SPAKidTVC.m */,
 				095691F419127D4C00A5386F /* SPSpelling.h */,
 				095691F719127DEF00A5386F /* SPSpelling.m */,
+				094ABF7619387B360091283E /* phoneme */,
+				094ABFA11938B6990091283E /* SPGrapheme.h */,
+				094ABFA21938B6990091283E /* SPGrapheme.m */,
 				0954CAF218C9F9790085D890 /* views */,
 			);
 			name = objectTVC;
@@ -441,6 +490,8 @@
 			children = (
 				090F239418A8DDB80095F2E7 /* SPMenuVC.h */,
 				090F239218A8DDB80095F2E7 /* SPMenuVC.m */,
+				092C3A021934C7CD00A6E2B6 /* segueFromMenuToTabBar.h */,
+				092C3A031934C7CD00A6E2B6 /* segueFromMenuToTabBar.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -582,6 +633,26 @@
 			name = model;
 			sourceTree = "<group>";
 		};
+		09182F2B193DBC2600E93371 /* word */ = {
+			isa = PBXGroup;
+			children = (
+				090F238118A527480095F2E7 /* SPAWordTVC.h */,
+				090F238218A527480095F2E7 /* SPAWordTVC.m */,
+				09182F2C193DBD1500E93371 /* SPUtterance.h */,
+				09182F2D193DBD1500E93371 /* SPUtterance.m */,
+			);
+			name = word;
+			sourceTree = "<group>";
+		};
+		092C39FE1933F11300A6E2B6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				092C39FF1933F13900A6E2B6 /* SPSchoolLevel.h */,
+				092C3A001933F13900A6E2B6 /* SPSchoolLevel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		092EBBAD18D90397003BF22E /* SCWaveformView */ = {
 			isa = PBXGroup;
 			children = (
@@ -613,9 +684,9 @@
 		0947544818F420E500FBBAFC /* tinyMicrophone */ = {
 			isa = PBXGroup;
 			children = (
+				09182F29193CC2D400E93371 /* buttonBin.png */,
 				0947544918F4210000FBBAFC /* Main.storyboard */,
 				0947543518F420DE00FBBAFC /* buttonPlay.png */,
-				0947543618F420DE00FBBAFC /* buttonRecord64.png */,
 				0947543718F420DE00FBBAFC /* buttonStop64.png */,
 				0947543818F420DE00FBBAFC /* FDSoundActivatedRecorder.h */,
 				0947543918F420DE00FBBAFC /* FDSoundActivatedRecorder.m */,
@@ -642,6 +713,34 @@
 				09F054B518F8030F00C2FB42 /* directory.png */,
 			);
 			name = photoPicker;
+			sourceTree = "<group>";
+		};
+		094ABF7619387B360091283E /* phoneme */ = {
+			isa = PBXGroup;
+			children = (
+				094ABF7819387B5F0091283E /* controller */,
+				094ABF7719387B480091283E /* view */,
+			);
+			name = phoneme;
+			sourceTree = "<group>";
+		};
+		094ABF7719387B480091283E /* view */ = {
+			isa = PBXGroup;
+			children = (
+				094ABF7919387C300091283E /* SPPhonemeView.h */,
+				094ABF7A19387C300091283E /* SPPhonemeView.m */,
+				094ABF82193884A00091283E /* SPPhonemeView.xib */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		094ABF7819387B5F0091283E /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				092C3A0B1935389F00A6E2B6 /* SPPhoneme.h */,
+				092C3A0C1935389F00A6E2B6 /* SPPhoneme.m */,
+			);
+			name = controller;
 			sourceTree = "<group>";
 		};
 		0954CAF218C9F9790085D890 /* views */ = {
@@ -713,6 +812,10 @@
 				095692031913A54200A5386F /* SPKidList.m */,
 				095691FF1913A04300A5386F /* SPSpellingList.h */,
 				095692001913A05100A5386F /* SPSpellingList.m */,
+				092C3A081935372200A6E2B6 /* SPPhonemeList.h */,
+				092C3A091935372200A6E2B6 /* SPPhonemeList.m */,
+				094ABF9E1938B5340091283E /* SPGraphemeList.h */,
+				094ABF9F1938B5340091283E /* SPGraphemeList.m */,
 				090F23C318AA55C10095F2E7 /* views */,
 			);
 			name = objectsTVC;
@@ -730,14 +833,22 @@
 		09FBA343189EB9DF0029426A /* NS MabagedObject */ = {
 			isa = PBXGroup;
 			children = (
-				090F23BD18AA32660095F2E7 /* Word.h */,
-				090F23BE18AA32660095F2E7 /* Word.m */,
-				090F23BA18AA32660095F2E7 /* Spelling.h */,
-				090F23BB18AA32660095F2E7 /* Spelling.m */,
-				090F23B718AA32660095F2E7 /* Test.h */,
-				090F23B818AA32660095F2E7 /* Test.m */,
-				090F23B418AA32650095F2E7 /* Kid.h */,
-				090F23B518AA32650095F2E7 /* Kid.m */,
+				092C39FA1933E87A00A6E2B6 /* SpellingTest.h */,
+				092C39FB1933E87A00A6E2B6 /* SpellingTest.m */,
+				09182F26193CAE7500E93371 /* Spelling.h */,
+				09182F27193CAE7500E93371 /* Spelling.m */,
+				092C39F41933E87A00A6E2B6 /* Kid.h */,
+				092C39F51933E87A00A6E2B6 /* Kid.m */,
+				092C39F11933E87A00A6E2B6 /* Word.h */,
+				092C39F21933E87A00A6E2B6 /* Word.m */,
+				092C39EE1933E87A00A6E2B6 /* Test.h */,
+				092C39EF1933E87A00A6E2B6 /* Test.m */,
+				092C39EB1933E87A00A6E2B6 /* Lesson.h */,
+				092C39EC1933E87A00A6E2B6 /* Lesson.m */,
+				092C39E81933E87A00A6E2B6 /* Phoneme.h */,
+				092C39E91933E87A00A6E2B6 /* Phoneme.m */,
+				092C39E51933E87900A6E2B6 /* Grapheme.h */,
+				092C39E61933E87900A6E2B6 /* Grapheme.m */,
 			);
 			name = "NS MabagedObject";
 			sourceTree = "<group>";
@@ -828,11 +939,11 @@
 				09148AC619255AE80040F7C5 /* level3.png in Resources */,
 				09148B0119257AC50040F7C5 /* spelling1.plist in Resources */,
 				090BE6BA18907F4100A1DE0C /* Images.xcassets in Resources */,
-				0947544118F420DE00FBBAFC /* buttonRecord64.png in Resources */,
 				09148ABF19252FBE0040F7C5 /* keyboardScrabble.png in Resources */,
 				0947544518F420DE00FBBAFC /* microphone128.png in Resources */,
 				09F054B918F8030F00C2FB42 /* nothing.png in Resources */,
 				09569214191FA0B000A5386F /* navBarBackground.png in Resources */,
+				094ABF83193884A00091283E /* SPPhonemeView.xib in Resources */,
 				0916BE3718C64666007EF967 /* play.png in Resources */,
 				096428D21920DDED005DEB78 /* replay.png in Resources */,
 				09148B1219257AC50040F7C5 /* ding.wav in Resources */,
@@ -843,6 +954,7 @@
 				09148AC419255AE80040F7C5 /* level1.png in Resources */,
 				0947544B18F4210000FBBAFC /* Main.storyboard in Resources */,
 				0916BE3918C64926007EF967 /* next.png in Resources */,
+				09182F2A193CC2D400E93371 /* buttonBin.png in Resources */,
 				09F9F562192F371E00953982 /* iconsResultGood.png in Resources */,
 				09F054B818F8030F00C2FB42 /* camera.png in Resources */,
 				09148B1019257AC50040F7C5 /* win.wav in Resources */,
@@ -860,6 +972,7 @@
 				0947544218F420DE00FBBAFC /* buttonStop64.png in Resources */,
 				092A416618D1B2D800382793 /* tabBarIcon_spelling.png in Resources */,
 				09F9F56B192F827F00953982 /* slot@2x.png in Resources */,
+				094ABF8519388B3A0091283E /* phonemeShape.png in Resources */,
 				092A416A18D1B99900382793 /* SPAnObjectTVC.xib in Resources */,
 				09148B1119257AC50040F7C5 /* wrong.wav in Resources */,
 				0916BE3B18C65328007EF967 /* previous.png in Resources */,
@@ -883,18 +996,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				09F9F55E192F300900953982 /* SKDictWordResult.h in Sources */,
+				094ABFA31938B6990091283E /* SPGrapheme.m in Sources */,
 				09148B0719257AC50040F7C5 /* SKHUDView.m in Sources */,
-				090F23B618AA32650095F2E7 /* Kid.m in Sources */,
 				09148ACF19256B860040F7C5 /* SPLevelButton.m in Sources */,
 				095691F819127DEF00A5386F /* SPSpelling.m in Sources */,
+				092C3A0D1935389F00A6E2B6 /* SPPhoneme.m in Sources */,
 				095692041913A54200A5386F /* SPKidList.m in Sources */,
 				0925D16D1927C5CD0046D3A6 /* SKBoardController.m in Sources */,
 				09F9F559192B8B7300953982 /* SKKeyboardController.m in Sources */,
 				09569211191983F300A5386F /* SPTestResult.m in Sources */,
+				092C39F31933E87A00A6E2B6 /* Word.m in Sources */,
+				092C3A011933F13900A6E2B6 /* SPSchoolLevel.m in Sources */,
 				09148B0519257AC50040F7C5 /* SKTargetView.m in Sources */,
 				09148B0319257AC50040F7C5 /* SKGameData.m in Sources */,
-				090F23BF18AA32660095F2E7 /* Word.m in Sources */,
 				090C0E7A18A3CC5E00CE5E60 /* wordCell.m in Sources */,
+				092C39EA1933E87A00A6E2B6 /* Phoneme.m in Sources */,
 				0956920B19152A3A00A5386F /* SPObjectList.m in Sources */,
 				0947544318F420DE00FBBAFC /* FDSoundActivatedRecorder.m in Sources */,
 				09148B0919257AC50040F7C5 /* SKExplodeView.m in Sources */,
@@ -902,33 +1018,43 @@
 				091489C219216BEF0040F7C5 /* UIImage+resize.m in Sources */,
 				092EBBB318D903D3003BF22E /* SCWaveformView.m in Sources */,
 				09148B0B19257AC50040F7C5 /* SKViewController.m in Sources */,
-				090F23B918AA32660095F2E7 /* Test.m in Sources */,
-				090F23BC18AA32660095F2E7 /* Spelling.m in Sources */,
+				09182F28193CAE7500E93371 /* Spelling.m in Sources */,
 				092EBBB218D903D3003BF22E /* SCViewController.m in Sources */,
+				094ABFA01938B5340091283E /* SPGraphemeList.m in Sources */,
 				09CC998E18FA890E00BA4238 /* photoPickerViewController.m in Sources */,
 				090F239D18A984B50095F2E7 /* SPAKidTVC.m in Sources */,
+				092C3A041934C7CD00A6E2B6 /* segueFromMenuToTabBar.m in Sources */,
 				095691FE19139CEB00A5386F /* SPWordList.m in Sources */,
 				0947544618F420DE00FBBAFC /* MIMicrophoneUI.m in Sources */,
+				092C39F01933E87A00A6E2B6 /* Test.m in Sources */,
 				09148B0619257AC50040F7C5 /* SKStopwatchView.m in Sources */,
 				09F9F55C192E43EA00953982 /* SPTestResultTVCell.m in Sources */,
 				090C0E4418A129A000CE5E60 /* DBCoreDataStack.m in Sources */,
 				091489C5192176E90040F7C5 /* UIImageView+cornerRadius.m in Sources */,
 				090F238318A527480095F2E7 /* SPAWordTVC.m in Sources */,
+				094ABF7B19387C300091283E /* SPPhonemeView.m in Sources */,
 				09148B0819257AC50040F7C5 /* SKCounterLabelView.m in Sources */,
 				09F9F556192B8A9900953982 /* SKScrabbleBoardController.m in Sources */,
+				092C39E71933E87900A6E2B6 /* Grapheme.m in Sources */,
 				09148B0A19257AC50040F7C5 /* SKStarDustView.m in Sources */,
+				09182F2E193DBD1500E93371 /* SPUtterance.m in Sources */,
 				090C0E4518A129A000CE5E60 /* DBCoreDataStack+HumanReadingEntities.m in Sources */,
 				0955041C18B0953A00128B5B /* SPTestVC.m in Sources */,
+				092C39FC1933E87A00A6E2B6 /* SpellingTest.m in Sources */,
+				092C39ED1933E87A00A6E2B6 /* Lesson.m in Sources */,
 				09148B0419257AC50040F7C5 /* SKTileView.m in Sources */,
 				09148ACC192565320040F7C5 /* SPKeyboardButton.m in Sources */,
 				093AAD8718D10069005B8EA1 /* SPAnObject.m in Sources */,
+				092C39F61933E87A00A6E2B6 /* Kid.m in Sources */,
 				090F239518A8DDB80095F2E7 /* SPMenuVC.m in Sources */,
 				090BE6AB18907F4000A1DE0C /* main.m in Sources */,
 				0947544718F420DE00FBBAFC /* MIViewController.m in Sources */,
 				09148B0D19257AC50040F7C5 /* SKAudioController.m in Sources */,
 				09148B0219257AC50040F7C5 /* SKWordsData.m in Sources */,
+				094ABFA91938DAA30091283E /* SPAnObjectWithList.m in Sources */,
 				09148B0C19257AC50040F7C5 /* SKGameController.m in Sources */,
 				095692011913A05100A5386F /* SPSpellingList.m in Sources */,
+				092C3A0A1935372200A6E2B6 /* SPPhonemeList.m in Sources */,
 				09F054B718F8030F00C2FB42 /* photoPicker.m in Sources */,
 				090C0E4618A129A000CE5E60 /* menuCoreDataModel.xcdatamodeld in Sources */,
 			);

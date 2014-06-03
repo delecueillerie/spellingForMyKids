@@ -16,6 +16,9 @@
 //Category
 #import "UIImageView+cornerRadius.h"
 
+//Tools
+#import "SPUtterance.h"
+
 @interface SPAWordTVC ()
 
 
@@ -29,6 +32,15 @@
 @property (weak, nonatomic) IBOutlet UIView *viewContainer;
 @property (weak, nonatomic) IBOutlet UIView *viewContainerCamera;
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewImage;
+
+@property (weak, nonatomic) IBOutlet UISlider *sliderLevel;
+@property (weak, nonatomic) IBOutlet UILabel *labelLevel;
+
+@property (weak, nonatomic) IBOutlet UIPickerView *PVSchoolLevel;
+
+
+@property (weak, nonatomic) IBOutlet UITableView *tableViewSpelling;
+
 
 @property (strong, nonatomic) MIViewController *microphoneVC;
 //@property (nonatomic) BOOL editing;
@@ -47,12 +59,11 @@
     return _wordSelected;
 }
 
-/*
-- (void) setEditing:(BOOL)editingValue {
-    _editing = editingValue;
-    self.microphoneVC.editing = editingValue;
+- (void) setEditing:(BOOL)editing {
+    [super setEditing:editing];
+    [self updateHiddenViewWhenEditing:editing];
+    
 }
-*/
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
 // III - VC Life Cycle Management
@@ -62,64 +73,76 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     
-    //load Container VC
+    //Microphone
     self.microphoneVC = [MIViewController instantiateInitialViewControllerWithMicrophoneDelegate:self];
-    self.microphoneVC.editing = self.editing;
-
     [self addChildViewController:self.microphoneVC];
     [self.microphoneVC didMoveToParentViewController:self];
     self.microphoneVC.view.frame = self.viewContainer.bounds;
     [self.viewContainer addSubview:self.microphoneVC.view];
 
     
-    
+    //photoPicker
     photoPickerViewController *photoPickerVC = [photoPickerViewController instantiateInitialViewControllerWithPhotoPickerDelegate:self withCamera:YES];
     [self addChildViewController:photoPickerVC];
     [photoPickerVC didMoveToParentViewController:self];
     photoPickerVC.view.frame=self.viewContainerCamera.bounds;
     [self.viewContainerCamera addSubview:photoPickerVC.view];
     
+    
+    //delegates
+    self.textFieldWordName.delegate = self;
+
     self.dataSoundRecorded = self.wordSelected.audio;
-    [self updateUI];
+    
+    //////////////////////////////////////////////////////////
+    // slider
+    //////////////////////////////////////////////////////////
+    [self.sliderLevel addTarget:self
+                      action:@selector(sliderLevelAction)
+            forControlEvents:UIControlEventValueChanged];
 }
 
-/*
+
 - (void) viewWillAppear:(BOOL)animated {
+    [self updateFieldValue];
+    [self updateHiddenViewWhenEditing:self.editing];
+}
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//Trigerred action
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+- (void) sliderLevelAction {
+    self.labelLevel.text = [NSString stringWithFormat:@"%i",(int) [self.sliderLevel value]];
+}
+
+
+- (void) updateHiddenViewWhenEditing:(BOOL) editing {
+    self.textFieldWordName.hidden = !editing;
+    self.labelWordName.hidden=editing;
+    self.viewContainerCamera.hidden = !editing;
+
     self.microphoneVC.editing = self.editing;
 }
- */
-//////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////
-// II - Override method
-//////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////
 
 
-- (void) updateUI {
+
+- (void) updateFieldValue {
     
-    [super updateUI];
-
+    //[super updateUI];
+    
     self.labelWordName.text = self.wordSelected.name;
     self.textFieldWordName.text = self.wordSelected.name;
     [self.imageViewImage roundWithImage:[UIImage imageWithData:self.wordSelected.image]];
-
-    if (self.editing) {
-        self.textFieldWordName.hidden=NO;
-        self.textFieldWordName.delegate = self;
-        self.textFieldWordName.text = self.wordSelected.name;
-        self.labelWordName.hidden=YES;
-        self.viewContainerCamera.hidden = NO;
-        self.microphoneVC.editing = self.editing;
-        
-    } else {
-        self.textFieldWordName.hidden = YES;
-        self.labelWordName.hidden = NO;
-        self.labelWordName.text = self.wordSelected.name;
-        self.viewContainerCamera.hidden = YES;
-        self.microphoneVC.editing = self.editing;
-        
-    }
 }
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//Override method
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
 
 - (void) buttonSaveAction {
     //this method is called before the delegate method textFieldDidEndEditing
@@ -128,14 +151,13 @@
     [super buttonSaveAction];
 }
 
-//////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////
-// II - Text Field
-//////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////
+
+
 
 //////////////////////////////////////////////////////////
-// II - a - delegate
+//////////////////////////////////////////////////////////
+// Text Field delegate
+//////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
 
 - (void) textFieldDidEndEditing:(UITextField *)textField {
@@ -143,6 +165,7 @@
         case 0:
             NSLog(@"contenu du text field %@",textField.text);
             self.wordSelected.name = textField.text;
+            self.labelWordName.text = textField.text;
             break;
         default:
             break;
@@ -156,7 +179,8 @@
 //////////////////////////////////////////////////////////
 - (void) photoPickerDidFinishPickingImage {
     self.wordSelected.image = self.dataImageCaptured;
-    [self updateUI];
+    [self.imageViewImage roundWithImage:[UIImage imageWithData:self.wordSelected.image]];
+
 }
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
@@ -167,7 +191,14 @@
     self.wordSelected.audio = self.dataSoundRecorded;
 }
 
+- (void) deleteDataSoundRecorded {
+    self.wordSelected.audio = nil;
+}
 
+- (void) playOtherSound {
+    SPUtterance *utterance = [[SPUtterance alloc] init];
+    [utterance speechUterance:self.wordSelected.name];
+}
 
 
 @end
