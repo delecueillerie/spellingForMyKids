@@ -17,10 +17,22 @@
 ////////////////////////////////////////////////////////////////////////
 //CORE DATA STACK
 ////////////////////////////////////////////////////////////////////////
+
++ (DBCoreDataStack *)sharedInstance {
+    static dispatch_once_t once;
+    static DBCoreDataStack *sharedInstance;
+    dispatch_once(&once, ^{
+        sharedInstance = [[self alloc] init];
+    });
+
+    return sharedInstance;
+}
+
 /*
  Returns the managed object context for the application.
  If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
  */
+
 - (NSManagedObjectContext *) managedObjectContext
 {
     if (_managedObjectContext != nil) {
