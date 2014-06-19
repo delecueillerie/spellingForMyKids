@@ -21,7 +21,6 @@
 		090BE6CB18907F4100A1DE0C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 090BE6C918907F4100A1DE0C /* InfoPlist.strings */; };
 		090BE6CD18907F4100A1DE0C /* spellingForMyKidsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 090BE6CC18907F4100A1DE0C /* spellingForMyKidsTests.m */; };
 		090C0E4418A129A000CE5E60 /* DBCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 090C0E3F18A129A000CE5E60 /* DBCoreDataStack.m */; };
-		090C0E4518A129A000CE5E60 /* DBCoreDataStack+HumanReadingEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = 090C0E4118A129A000CE5E60 /* DBCoreDataStack+HumanReadingEntities.m */; };
 		090C0E4618A129A000CE5E60 /* menuCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 090C0E4218A129A000CE5E60 /* menuCoreDataModel.xcdatamodeld */; };
 		090C0E7A18A3CC5E00CE5E60 /* wordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 090C0E7918A3CC5E00CE5E60 /* wordCell.m */; };
 		090F238318A527480095F2E7 /* SPAWordTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F238218A527480095F2E7 /* SPAWordTVC.m */; };
@@ -132,6 +131,13 @@
 			remoteGlobalIDString = 090BE69A18907F4000A1DE0C;
 			remoteInfo = spellingForMyKids;
 		};
+		092D2CBE19539E62004661C2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 092D2CB919539E62004661C2 /* syncWithAFNetworking.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 097CFFAB183B5D1300F5FAFF;
+			remoteInfo = syncWithAFNetworking;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -154,8 +160,6 @@
 		090BE6CC18907F4100A1DE0C /* spellingForMyKidsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = spellingForMyKidsTests.m; sourceTree = "<group>"; };
 		090C0E3E18A129A000CE5E60 /* DBCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBCoreDataStack.h; path = addOn/coreDataStack/coreDataStack/DBCoreDataStack.h; sourceTree = "<group>"; };
 		090C0E3F18A129A000CE5E60 /* DBCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBCoreDataStack.m; path = addOn/coreDataStack/coreDataStack/DBCoreDataStack.m; sourceTree = "<group>"; };
-		090C0E4018A129A000CE5E60 /* DBCoreDataStack+HumanReadingEntities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBCoreDataStack+HumanReadingEntities.h"; path = "addOn/coreDataStack/coreDataStack/DBCoreDataStack+HumanReadingEntities.h"; sourceTree = "<group>"; };
-		090C0E4118A129A000CE5E60 /* DBCoreDataStack+HumanReadingEntities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBCoreDataStack+HumanReadingEntities.m"; path = "addOn/coreDataStack/coreDataStack/DBCoreDataStack+HumanReadingEntities.m"; sourceTree = "<group>"; };
 		090C0E4318A129A000CE5E60 /* menuCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = menuCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		090C0E7818A3CC5E00CE5E60 /* wordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wordCell.h; sourceTree = "<group>"; };
 		090C0E7918A3CC5E00CE5E60 /* wordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wordCell.m; sourceTree = "<group>"; };
@@ -246,6 +250,8 @@
 		092C3A091935372200A6E2B6 /* SPPhonemeList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPhonemeList.m; sourceTree = "<group>"; };
 		092C3A0B1935389F00A6E2B6 /* SPPhoneme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPhoneme.h; sourceTree = "<group>"; };
 		092C3A0C1935389F00A6E2B6 /* SPPhoneme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPhoneme.m; sourceTree = "<group>"; };
+		092D2CB919539E62004661C2 /* syncWithAFNetworking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = syncWithAFNetworking.xcodeproj; path = ../syncWithWebServices/iOS/syncWithAFNetworking/syncWithAFNetworking.xcodeproj; sourceTree = "<group>"; };
+		092D2CD719539FEC004661C2 /* APIKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APIKey.h; path = ../APIKey.h; sourceTree = "<group>"; };
 		092EBBAE18D903D3003BF22E /* SCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCViewController.h; sourceTree = "<group>"; };
 		092EBBAF18D903D3003BF22E /* SCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCViewController.m; sourceTree = "<group>"; };
 		092EBBB018D903D3003BF22E /* SCWaveformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCWaveformView.h; sourceTree = "<group>"; };
@@ -342,6 +348,7 @@
 		090BE69218907F4000A1DE0C = {
 			isa = PBXGroup;
 			children = (
+				092D2CD719539FEC004661C2 /* APIKey.h */,
 				0962E82F1896940D005A9A9F /* addOn */,
 				091489BF19216BBC0040F7C5 /* category */,
 				090BE6A418907F4000A1DE0C /* spellingForMyKids */,
@@ -653,6 +660,14 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		092D2CBA19539E62004661C2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				092D2CBF19539E62004661C2 /* syncWithAFNetworking.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		092EBBAD18D90397003BF22E /* SCWaveformView */ = {
 			isa = PBXGroup;
 			children = (
@@ -780,6 +795,7 @@
 		0962E82F1896940D005A9A9F /* addOn */ = {
 			isa = PBXGroup;
 			children = (
+				092D2CB919539E62004661C2 /* syncWithAFNetworking.xcodeproj */,
 				09148AFE19257AC50040F7C5 /* scrabbleKeyboard */,
 				0947545318F74B2200FBBAFC /* photoPicker */,
 				0947544818F420E500FBBAFC /* tinyMicrophone */,
@@ -793,8 +809,6 @@
 			children = (
 				090C0E3E18A129A000CE5E60 /* DBCoreDataStack.h */,
 				090C0E3F18A129A000CE5E60 /* DBCoreDataStack.m */,
-				090C0E4018A129A000CE5E60 /* DBCoreDataStack+HumanReadingEntities.h */,
-				090C0E4118A129A000CE5E60 /* DBCoreDataStack+HumanReadingEntities.m */,
 				090C0E4218A129A000CE5E60 /* menuCoreDataModel.xcdatamodeld */,
 				09FBA343189EB9DF0029426A /* NS MabagedObject */,
 			);
@@ -919,6 +933,12 @@
 			mainGroup = 090BE69218907F4000A1DE0C;
 			productRefGroup = 090BE69C18907F4000A1DE0C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 092D2CBA19539E62004661C2 /* Products */;
+					ProjectRef = 092D2CB919539E62004661C2 /* syncWithAFNetworking.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				090BE69A18907F4000A1DE0C /* spellingForMyKids */,
@@ -926,6 +946,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		092D2CBF19539E62004661C2 /* syncWithAFNetworking.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = syncWithAFNetworking.app;
+			remoteRef = 092D2CBE19539E62004661C2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		090BE69918907F4000A1DE0C /* Resources */ = {
@@ -1038,7 +1068,6 @@
 				092C39E71933E87900A6E2B6 /* Grapheme.m in Sources */,
 				09148B0A19257AC50040F7C5 /* SKStarDustView.m in Sources */,
 				09182F2E193DBD1500E93371 /* SPUtterance.m in Sources */,
-				090C0E4518A129A000CE5E60 /* DBCoreDataStack+HumanReadingEntities.m in Sources */,
 				0955041C18B0953A00128B5B /* SPTestVC.m in Sources */,
 				092C39FC1933E87A00A6E2B6 /* SpellingTest.m in Sources */,
 				092C39ED1933E87A00A6E2B6 /* Lesson.m in Sources */,
