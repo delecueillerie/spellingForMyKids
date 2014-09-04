@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="2X6-Ei-uBc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="2X6-Ei-uBc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -433,7 +433,6 @@
                         <segue destination="dm4-P7-E2k" kind="relationship" relationship="viewControllers" id="6oV-uR-jvW"/>
                         <segue destination="JMi-1s-tpF" kind="relationship" relationship="viewControllers" id="R9J-fj-Fu3"/>
                         <segue destination="4ce-za-vJd" kind="relationship" relationship="viewControllers" id="Jjs-Lr-Vld"/>
-                        <segue destination="CiQ-T9-eUu" kind="relationship" relationship="viewControllers" id="aIS-vj-Tqx"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iD8-Fw-ddE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -644,35 +643,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="glD-Ee-mYd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4103" y="1270"/>
-        </scene>
-        <!--Grapheme List - Item-->
-        <scene sceneID="0To-6f-Oc6">
-            <objects>
-                <tableViewController storyboardIdentifier="graphemeList" id="CiQ-T9-eUu" customClass="SPGraphemeList" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="qK7-5O-XPF">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="HbK-CH-4a4">
-                                <rect key="frame" x="0.0" y="22" width="768" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HbK-CH-4a4" id="yPJ-2r-lc6">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="CiQ-T9-eUu" id="MwU-dg-6PB"/>
-                            <outlet property="delegate" destination="CiQ-T9-eUu" id="H1p-ZS-GWc"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" image="iconsResultGood.png" id="KbP-g9-N1K"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ysk-fb-ZPa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5014" y="1270"/>
         </scene>
         <!--WordTVC-->
         <scene sceneID="ay3-ic-jQJ">
@@ -1039,48 +1009,21 @@
                                 <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HFU-cC-kje" userLabel="API">
-                                        <rect key="frame" x="234" y="170" width="300" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="Bld-g8-G9t"/>
-                                            <constraint firstAttribute="width" constant="300" id="MBx-0D-k3a"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roundGreen.png" translatesAutoresizingMaskIntoConstraints="NO" id="MGN-yV-qlK">
-                                        <rect key="frame" x="334" y="30" width="100" height="100"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cgm-OX-F0o" userLabel="viewForMicrophone">
-                                        <rect key="frame" x="334" y="30" width="100" height="100"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fzh-tj-8t4" customClass="SPPhonemeView">
-                                        <rect key="frame" x="182" y="600" width="400" height="400"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fzh-tj-8t4" customClass="SPPhonemeView">
+                                        <rect key="frame" x="100" y="100" width="400" height="400"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OVI-iI-aJE">
-                                        <rect key="frame" x="218" y="208" width="332" height="280"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="400" id="hfE-U5-cAt"/>
+                                            <constraint firstAttribute="height" constant="400" id="ztO-uY-m3W"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="HFU-cC-kje" firstAttribute="top" secondItem="MGN-yV-qlK" secondAttribute="bottom" constant="40" id="GJv-4E-2hF"/>
-                                    <constraint firstAttribute="bottom" secondItem="Cgm-OX-F0o" secondAttribute="bottom" constant="874" id="JMQ-fw-qwI"/>
-                                    <constraint firstAttribute="trailing" secondItem="Cgm-OX-F0o" secondAttribute="trailing" constant="334" id="MWr-C2-sVA"/>
-                                    <constraint firstAttribute="centerX" secondItem="HFU-cC-kje" secondAttribute="centerX" id="MqU-aM-OdZ"/>
-                                    <constraint firstItem="MGN-yV-qlK" firstAttribute="centerX" secondItem="Cgm-OX-F0o" secondAttribute="centerX" id="QnZ-yc-FB8"/>
-                                    <constraint firstItem="MGN-yV-qlK" firstAttribute="width" secondItem="Cgm-OX-F0o" secondAttribute="width" id="VI5-lo-vOm"/>
-                                    <constraint firstAttribute="centerX" secondItem="MGN-yV-qlK" secondAttribute="centerX" id="dce-6a-Wa2"/>
-                                    <constraint firstItem="MGN-yV-qlK" firstAttribute="height" secondItem="Cgm-OX-F0o" secondAttribute="height" id="gwr-rm-7SQ"/>
-                                    <constraint firstItem="Cgm-OX-F0o" firstAttribute="leading" secondItem="4IH-b2-4Mr" secondAttribute="leading" constant="334" id="huJ-0E-9X0"/>
-                                    <constraint firstItem="MGN-yV-qlK" firstAttribute="top" secondItem="4IH-b2-4Mr" secondAttribute="top" constant="30" id="s97-82-mmN"/>
-                                    <constraint firstItem="MGN-yV-qlK" firstAttribute="centerY" secondItem="Cgm-OX-F0o" secondAttribute="centerY" id="zRh-Jq-Agw"/>
+                                    <constraint firstAttribute="trailing" secondItem="Fzh-tj-8t4" secondAttribute="trailing" constant="268" id="Xnq-eu-2gx"/>
+                                    <constraint firstItem="Fzh-tj-8t4" firstAttribute="top" secondItem="4IH-b2-4Mr" secondAttribute="top" constant="100" id="lQu-Rz-BYg"/>
+                                    <constraint firstAttribute="bottom" secondItem="Fzh-tj-8t4" secondAttribute="bottom" constant="504" id="vhu-O2-Kcm"/>
+                                    <constraint firstItem="Fzh-tj-8t4" firstAttribute="leading" secondItem="4IH-b2-4Mr" secondAttribute="leading" constant="100" id="yfi-oj-FzW"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -1094,65 +1037,18 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
-                        <outlet property="imageViewMicrophone" destination="MGN-yV-qlK" id="2Vr-L7-Iob"/>
-                        <outlet property="textFieldAPI" destination="HFU-cC-kje" id="8LN-Pk-IDd"/>
-                        <outlet property="viewContainerGraphemeList" destination="OVI-iI-aJE" id="IMh-32-wNR"/>
                         <outlet property="viewContainerPhonemeView" destination="Fzh-tj-8t4" id="fXO-nu-SxX"/>
-                        <outlet property="viewMicrophone" destination="Cgm-OX-F0o" id="x4s-cS-lgs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qyo-lf-ejy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4006" y="2495"/>
         </scene>
-        <!--Grapheme-->
-        <scene sceneID="DKn-n0-S5V">
-            <objects>
-                <viewController storyboardIdentifier="AGrapheme" id="cnq-g8-7Ob" customClass="SPGrapheme" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="bUy-uA-ZHB"/>
-                        <viewControllerLayoutGuide type="bottom" id="61o-26-fZs"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="inp-Hn-dJh">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ckK-g5-1Tm">
-                                <rect key="frame" x="336" y="114" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="letters" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Qp-7J-2Uo">
-                                <rect key="frame" x="356" y="71" width="48" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8OZ-Oe-O8u">
-                                <rect key="frame" x="37" y="185" width="694" height="629"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="textFieldLetters" destination="ckK-g5-1Tm" id="qez-Cm-Imb"/>
-                        <outlet property="viewContainerWordList" destination="8OZ-Oe-O8u" id="7kT-Qo-h88"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="z5P-pk-49H" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4897" y="2502"/>
-        </scene>
     </scenes>
     <resources>
         <image name="bonhommeVide.png" width="500" height="500"/>
         <image name="buttonAddList.png" width="100" height="100"/>
         <image name="buttonPlay.png" width="64" height="64"/>
-        <image name="iconsResultGood.png" width="64" height="64"/>
         <image name="keyboardScrabble.png" width="100" height="100"/>
         <image name="level1.png" width="100" height="100"/>
         <image name="next.png" width="100" height="100"/>

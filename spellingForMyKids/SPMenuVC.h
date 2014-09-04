@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SPAnObjectWithList.h"
 
-@interface SPMenuVC : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface SPMenuVC : SPAnObjectWithList <UIScrollViewDelegate>
 
-
-@property (nonatomic, strong) NSString *inputWord;
-
+@property BOOL refreshData;
 @end

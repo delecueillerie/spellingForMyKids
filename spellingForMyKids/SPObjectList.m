@@ -23,7 +23,6 @@
 
 @property (strong, nonatomic) NSArray *objects;
 @property (strong, nonatomic) NSArray *searchResults;
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContextAdd;
 
 @property (strong, nonatomic) NSIndexPath *indexPathLastSelectedRow;
 
@@ -32,14 +31,14 @@
 @implementation SPObjectList
 
 
-//////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////
-// Lazy Instantiation & accessors
-//////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////
+/*/////////////////////////////////////////////////////////
+ //////////////////////////////////////////////////////////
+ Accessors
+ //////////////////////////////////////////////////////////
+ /////////////////////////////////////////////////////////*/
 
 - (NSManagedObjectContext *) managedObjectContext {
-    if (!_managedObjectContext) _managedObjectContext = [DBCoreDataStack sharedInstance].managedObjectContext;
+    if (!_managedObjectContext) _managedObjectContext = [DBCoreDataStack sharedInstanceFor:data].managedObjectContext;
     return _managedObjectContext;
 }
 
@@ -52,29 +51,26 @@
 }
 
 - (NSArray *) objects {
-    if (!_objects) _objects = [self.fetchedResultsController fetchedObjects];
+    
+    if (!_objects)  {
+        NSMutableArray *objectsExtended = [NSMutableArray arrayWithArray:[self.fetchedResultsController fetchedObjects]];
+        if (self.tableView.editing) {
+            [objectsExtended insertObject:@"Insert Word" atIndex:0];
+        }
+        _objects = objectsExtended;
+    }
     return _objects;
 }
 
-
-- (id) delegate {
-    if (!_delegate) {
-        _delegate = self;
-        //By default this TVC show detail view when a row is selected
-        self.allowsMultipleSelection = NO;
-    }
-    
-    return _delegate;
-}
 
 - (NSManagedObject *) objectSelected {
     _objectSelected = [self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForSelectedRow]];
     return _objectSelected;
 }
 
-- (void) setAllowsMultipleSelection:(BOOL)allowsMultipleSelection {
-    _allowsMultipleSelection = allowsMultipleSelection;
-    self.tableView.allowsMultipleSelection = allowsMultipleSelection;
+- (void) setEditing:(BOOL)editing {
+    [super setEditing:editing];
+    self.objects = nil;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -83,30 +79,49 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    //self.delegate =self; //default delegate
     
     //Configure view : selection enbled VS show detail
-    self.tableView.allowsMultipleSelection = self.delegate.allowsMultipleSelection;
     self.tableView.backgroundColor = nil;
     self.tableView.tintColor = [UIColor whiteColor];
 }
 
 
 - (void) viewWillAppear:(BOOL)animated {
-    // Set up the buttons in navigationBar
-    self.tabBarController.navigationItem.title=self.titleNavigationBar;
-    if (self.allowsMultipleSelection) {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonAction)];
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonAction)];
-    }
-    else {
-        //BECAREFULL this VC in not ont the top of navigation controller stack, it is the tab bar that is on the top!! thus customize navigation item of the tab bar
-        self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonAction)];
-    }
+    //set up the bar button items
+    [self setUpBarButtonItems];
 }
 
 - (void)viewDidUnload {
     // Release any properties that are loaded in viewDidLoad or can be recreated lazily.
     self.fetchedResultsController = nil;
+}
+
+
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+// UI
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+- (void) setUpBarButtonItems {
+    // Set up the buttons in navigationBar
+    UINavigationItem *currentNavigationItem;
+    if (self.tabBarController) {
+        currentNavigationItem = self.tabBarController.navigationItem;
+    } else {
+        currentNavigationItem = self.navigationItem;
+    }
+    
+    currentNavigationItem.title=self.titleNavigationBar;
+    if (self.delegate.allowsMultipleSelection) {
+        currentNavigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonAction)];
+        currentNavigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonAction)];
+    }
+    else {
+        //BECAREFULL this VC in not ont the top of navigation controller stack, it is the tab bar that is on the top!! thus customize navigation item of the tab bar
+        currentNavigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonAction)];
+    }
 }
 
 //////////////////////////////////////////////////////////
@@ -121,7 +136,7 @@
 //////////////////////////////////////////////////////////
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.delegate.allowsMultipleSelection) {
+    if (self.delegate.rowAction == selectionMultiple || self.delegate.rowAction == selectionOne) {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
@@ -134,11 +149,24 @@
 }
 
 - (void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.allowsMultipleSelection) {
+    if (self.delegate.allowsMultipleSelection) {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         cell.accessoryType = UITableViewCellAccessoryDetailButton;
     }
 }
+
+
+- (UITableViewCellEditingStyle) tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (tableView.editing == NO) {
+        return UITableViewCellEditingStyleNone;
+    } else if (indexPath.row == 0) {
+        return UITableViewCellEditingStyleInsert;
+    } else {
+        return UITableViewCellEditingStyleDelete;
+    }
+}
+
 /*
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -312,10 +340,11 @@
 - (void) addButtonAction {
 
     NSManagedObject *objectNew = [NSEntityDescription insertNewObjectForEntityForName:self.entityName inManagedObjectContext:self.managedObjectContextAdd];
-    SPAnObject *viewControllerAnObject = [self.storyboard instantiateViewControllerWithIdentifier:self.storyboardVCId];
+    SPAnObject *viewControllerAnObject = [self.storyboard instantiateViewControllerWithIdentifier:[self storyboardVCId]];
     viewControllerAnObject.objectSelected = objectNew;
     viewControllerAnObject.editing = YES;
     viewControllerAnObject.newObject = YES;
+    //UINavigationController *navController = self.navigationController;
     [self.navigationController pushViewController:viewControllerAnObject animated:NO];
 }
 - (void) cancelButtonAction {
@@ -329,6 +358,8 @@
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
+
+
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 //V - Search controller
@@ -340,7 +371,7 @@
     self.searchResults = [self.objects filteredArrayUsingPredicate:resultPredicate];
 }
 
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
     [self filterContentForSearchText:searchString
                                scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
                                       objectAtIndex:[self.searchDisplayController.searchBar
@@ -349,4 +380,19 @@
     return YES;
 }
 
+/*///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+//Object list delegate
+////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////*/
+
+/*
+- (NSPredicate *) predicate {
+    return [NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
+}
+
+- (BOOL) allowsMultipleSelection {
+    return NO;
+}
+ */
 @end

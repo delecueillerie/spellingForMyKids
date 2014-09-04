@@ -16,36 +16,49 @@
 
 @implementation SPAnObjectWithList
 
+
+/*/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+ObjectList delegate
+/////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////*/
+
 - (NSPredicate *) predicate {
-    if (self.editing) {
-        _predicate = [NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
-    } else {
+    NSPredicate *predicate;
+    /*if (self.editing) {
+        predicate = [NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
+    } else {*/
         NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
         for (NSManagedObject *object in self.objectList) {
             [mutableArray addObject:[object valueForKey:self.key]];
         }
-        _predicate = [NSPredicate predicateWithFormat: @"%@ IN %@",self.key, mutableArray];
-    }
-    return _predicate;
+        predicate = [NSPredicate predicateWithFormat: @"%@ IN %@",self.key, mutableArray];
+    //}
+    return predicate;
 }
 
 
-- (void) setAllowsMultipleSelection:(BOOL)flag {
-    _allowsMultipleSelection = flag;
-    self.objectListVC.allowsMultipleSelection = flag;
+- (BOOL) allowsMultipleSelection {
+    //return self.editing;
+    return NO;
 }
 
+/*/////////////////////////////////////////////////////////////////////////////////////
+ /////////////////////////////////////////////////////////////////////////////////////
+
+ /////////////////////////////////////////////////////////////////////////////////////
+ ////////////////////////////////////////////////////////////////////////////////////*/
 
 - (void) setEditing:(BOOL)editing {
     [super setEditing:editing];
-    self.allowsMultipleSelection = editing;
     //refresh FRC & TV
-    self.objectListVC.fetchedResultsController = nil;
+    self.objectListVC.tableView.editing = editing;
+    /*self.objectListVC.fetchedResultsController = nil;
     [self.objectListVC.tableView reloadData];
     
     if (editing) {
         [self updateAccessoryForTableView];
-    }
+    }*/
 }
 
 
@@ -61,6 +74,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     // Do any additional setup after loading the view.
 }
 
@@ -78,7 +92,7 @@
 //////////////////////////////////////////////////////////
 - (void) updateAccessoryForTableView {
     //We select rows that represent the objectsSelected
-    if (self.objectListVC.allowsMultipleSelection) {
+    if (self.objectListVC.delegate.allowsMultipleSelection) {
         for (id object in self.objectList) {
             NSIndexPath *indexPath = [self.objectListVC.fetchedResultsController indexPathForObject:object];
             if (indexPath) {

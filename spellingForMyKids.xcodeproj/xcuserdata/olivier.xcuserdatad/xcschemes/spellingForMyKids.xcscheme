@@ -20,6 +20,20 @@
                ReferencedContainer = "container:spellingForMyKids.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0951F82C19AA29E000FD651C"
+               BuildableName = "dataModel.bundle"
+               BlueprintName = "dataModel"
+               ReferencedContainer = "container:../coreDataStack/iOS/coreDataStack/coreDataStack.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

@@ -11,16 +11,12 @@
 
 @interface SPPhonemeView ()
 
-@property (weak, nonatomic) IBOutlet UITableView *TVWord;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UILabel *labelAPI;
+
 
 @end
 
 
 @implementation SPPhonemeView
-
-    
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -29,8 +25,6 @@
     }
     return self;
 }
-
-
 
 - (id) initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -41,6 +35,8 @@
     return self;
 }
 
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
 //TV datasource & delegate
@@ -49,10 +45,11 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return [[[[self.phonemeSelected.graphems allObjects]
+   /* return [[[[self.phonemeSelected.grapheme allObjects]
               objectAtIndex:section]
              words]
-            count];
+            count];*/
+    return 3;
 }
 
 
@@ -70,16 +67,18 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    Grapheme * grapheme = [[self.phonemeSelected.graphems allObjects] objectAtIndex:indexPath.section];
-    cell.textLabel.text = [[[grapheme.words allObjects] objectAtIndex:indexPath.row] valueForKey:@"name"];
+    //Grapheme * grapheme = [[self.phonemeSelected.grapheme allObjects] objectAtIndex:indexPath.section];
+    //cell.textLabel.text = [[[grapheme.words allObjects] objectAtIndex:indexPath.row] valueForKey:@"name"];
     return cell;
     
 }
-
+/*
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     //NSLog(@"objecAtIndex %@", [[[self.phonemeSelected.graphems allObjects] objectAtIndex:section] description]);
     return [[[self.phonemeSelected.graphems allObjects] objectAtIndex:section] letters];
 }
+ */
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

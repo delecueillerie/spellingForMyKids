@@ -11,12 +11,6 @@
 
 @interface SPAnObjectWithList : SPAnObject <objectListDelegate>
 
-
-
-//objectListDelegate propoerties
-@property (strong, nonatomic) NSPredicate *predicate;
-@property (nonatomic) BOOL allowsMultipleSelection;
-
 @property (strong, nonatomic) SPObjectList *objectListVC;
 @property (strong, nonatomic) NSSet *objectList;
 - (SPObjectList *) addObjectListIdentifier: (NSString *) identifier toView:(UIView *) view;

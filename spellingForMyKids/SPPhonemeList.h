@@ -7,7 +7,8 @@
 //
 
 #import "SPObjectList.h"
+#import "SYSyncEngine.h"
 
-@interface SPPhonemeList : SPObjectList
+@interface SPPhonemeList : SPObjectList <syncEngineDelegate>
 
 @end

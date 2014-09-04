@@ -51,6 +51,8 @@
     //displaying UI view depends on editing mode
     self.textFieldSpellingName.hidden=!self.editing;
     self.labelSpellingName.hidden=self.editing;
+    
+    
 }
 
 

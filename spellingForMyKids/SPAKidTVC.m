@@ -86,7 +86,8 @@
 
 - (UIImage *) kidImage {
     if (!self.kidSelected.image) {
-        _kidImage = [UIImage imageNamed:@"bonhommeVide.png"];
+        NSLog(@"NSMan&gedObjectContext %@", [self.kidSelected.managedObjectContext description]);
+        self.kidSelected.image = UIImagePNGRepresentation([UIImage imageNamed:@"bonhommeVide.png"]);
     } else {
         _kidImage = [UIImage imageWithData:self.kidSelected.image];
     }
@@ -172,7 +173,8 @@
     //self.kidSelected.image = self.dataImageCaptured;
     NSLog(@"kid age %i",[self.kidSelected.age intValue]);
     NSLog(@"kid level %i",[self.kidSelected.schoolLevel intValue]);
-    
+    [[NSUserDefaults standardUserDefaults] setObject:self.kidSelected.name  forKey:@"kidSelectedName"];
+
     [super buttonSaveAction];
 }
 

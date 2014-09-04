@@ -13,5 +13,7 @@
 @interface SPPhonemeView : UIView <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) Phoneme *phonemeSelected;
-
+@property (weak, nonatomic) IBOutlet UITableView *TVWord;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UILabel *labelAPI;
 @end

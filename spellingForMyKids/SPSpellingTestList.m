@@ -1,35 +1,38 @@
 //
-//  SPSpellingsList.m
+//  SPSpellingTestList.m
 //  spellingForMyKids
 //
-//  Created by Olivier Delecueillerie on 11/02/2014.
+//  Created by Olivier Delecueillerie on 03/09/2014.
 //  Copyright (c) 2014 Olivier Delecueillerie. All rights reserved.
 //
 
-#import "SPSpellingList.h"
+#import "SPSpellingTestList.h"
+#import "SpellingTest.h"
 #import "Spelling.h"
 
-@interface SPSpellingList ()
+@interface SPSpellingTestList ()
 
 @end
 
-@implementation SPSpellingList
+@implementation SPSpellingTestList
+
+
 
 
 - (NSString *) entityName {
-    return @"Spelling";
+    return @"SpellingTest";
 }
 
 - (NSString *) sortDescriptor {
-    return @"name";
+    return @"points";
 }
 
 - (NSString *) storyboardVCId {
-    return @"ASpelling";
+    return @"spellingTest";
 }
 
 - (NSString *) titleNavigationBar {
-    return @"Spelling list";
+    return @"Spelling test list";
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -42,13 +45,11 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)configureCell:(UITableViewCell *)tableViewCell withObject:(NSManagedObject *) object {
     [self configureCell:tableViewCell];
-    Spelling * spelling = (Spelling *) object;
-    tableViewCell.textLabel.text = spelling.name;
+    SpellingTest * spellingTest = (SpellingTest *) object;
+    tableViewCell.textLabel.text = spellingTest.spelling.name;
     return tableViewCell;
     
 }
-
-
 
 
 

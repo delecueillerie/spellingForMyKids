@@ -9,17 +9,13 @@
 #import "SPPhoneme.h"
 #import "Phoneme.h"
 #import "SPPhonemeView.h"
-#import "SPGraphemeList.h"
 //#import "Grapheme.h"
 
 @interface SPPhoneme ()
 
 
 //UI Outlet
-@property (weak, nonatomic) IBOutlet UITextField *textFieldAPI;
-@property (weak, nonatomic) IBOutlet UIImageView *imageViewMicrophone;
-@property (weak, nonatomic) IBOutlet UIView *viewMicrophone;
-@property (weak, nonatomic) IBOutlet UIView *viewContainerGraphemeList;
+
 @property (weak, nonatomic) IBOutlet SPPhonemeView *viewContainerPhonemeView;
 
 @property (strong, nonatomic)  SPPhonemeView *viewPhoneme;
@@ -34,17 +30,6 @@
 @implementation SPPhoneme
 
 @synthesize objectList = _objectList;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-
 
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
@@ -66,11 +51,11 @@
 - (NSString *) key {
     return @"letters";
 }
-
+/*
 - (NSSet *) objectList {
     return self.phonemeSelected.graphems;
 }
-
+*/
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
 //VC Lifecycle
@@ -79,24 +64,8 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    self.editing = NO;
     
-    //Microphone
-    self.microphoneVC = [MIViewController instantiateInitialViewControllerWithMicrophoneDelegate:self];
-    [self addChildViewController:self.microphoneVC];
-    [self.microphoneVC didMoveToParentViewController:self];
-    self.microphoneVC.view.frame = self.viewMicrophone.bounds;
-    [self.viewMicrophone addSubview:self.microphoneVC.view];
-    //[[self.imageViewMicrophone.subviews firstObject] becomeFirstResponder];
-    
-    self.textFieldAPI.delegate = self;
-
-    
-    
-    /////////////////////////////////////////////////////////
-    //load Grapheme List VC in container
-    /////////////////////////////////////////////////////////
-    self.objectListVC = [self addObjectListIdentifier:@"graphemeList" toView:self.viewContainerGraphemeList];
-
     /////////////////////////////////////////////////////////
     //load phoneme view
     /////////////////////////////////////////////////////////
@@ -109,8 +78,25 @@
     self.viewPhoneme.frame = self.viewContainerPhonemeView.bounds;
     [self.viewContainerPhonemeView addSubview:self.viewPhoneme];
     
-    self.textFieldAPI.text = self.phonemeSelected.api;
+    self.viewPhoneme.labelAPI.text = self.phonemeSelected.api;
     self.dataSoundRecorded = self.phonemeSelected.audio;
+    
+    
+    //Microphone
+    self.microphoneVC = [MIViewController instantiateInitialViewControllerWithMicrophoneDelegate:self];
+    [self addChildViewController:self.microphoneVC];
+    [self.microphoneVC didMoveToParentViewController:self];
+    self.microphoneVC.view.frame = self.viewPhoneme.labelAPI.bounds;
+    [self.viewPhoneme.labelAPI addSubview:self.microphoneVC.view];
+    //[[self.imageViewMicrophone.subviews firstObject] becomeFirstResponder];
+    
+    
+    
+    /////////////////////////////////////////////////////////
+    //load Grapheme List VC in container
+    /////////////////////////////////////////////////////////
+    //self.objectListVC = [self addObjectListIdentifier:@"graphemeList" toView:self.viewContainerGraphemeList];
+
     
     
 }
@@ -136,21 +122,9 @@
 // Microphone Delegate
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
-- (void) microphonePlayerDidFinishRecording {
+/*- (void) microphonePlayerDidFinishRecording {
     self.phonemeSelected.audio = self.dataSoundRecorded;
-}
-
-//////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////
-// Text Field delegate
-//////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////
-
-- (void) textFieldDidEndEditing:(UITextField *)textField {
-    if (textField == self.textFieldAPI) {
-        self.phonemeSelected.api = textField.text;
-    }
-}
+}*/
 
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
@@ -158,9 +132,5 @@
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
 
-- (void) buttonSaveAction {
-    self.phonemeSelected.api = self.textFieldAPI.text;
-    self.phonemeSelected.graphems = [self updatedRelationshipIn:self.objectListVC];
-    [super buttonSaveAction];
-}
+
 @end

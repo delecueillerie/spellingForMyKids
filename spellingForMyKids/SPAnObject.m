@@ -16,20 +16,29 @@
 
 @implementation SPAnObject
 
-//////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////
-//Accessor
-//////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////
+/*/////////////////////////////////////////////////////////
+ //////////////////////////////////////////////////////////
+ Accessor
+ //////////////////////////////////////////////////////////
+ /////////////////////////////////////////////////////////*/
 
 - (NSManagedObjectContext *) managedObjectContext {
-    if (!_managedObjectContext) _managedObjectContext = self.objectSelected.managedObjectContext; //[DBCoreDataStack sharedInstance].managedObjectContext;
+    if (!_managedObjectContext) {
+        if (self.objectSelected.managedObjectContext) {
+            _managedObjectContext = self.objectSelected.managedObjectContext;
+        } else {
+            _managedObjectContext = [DBCoreDataStack sharedInstanceFor:data].managedObjectContext;
+        }
+    }
     return _managedObjectContext;
 }
 
 - (void) setEditing:(BOOL)editing {
     [super setEditing:editing];
     [self navigationItemUpdate];
+    if (editing) {
+        [self setUpUndoManager];
+    }
 }
 
 //////////////////////////////////////////////////////////
@@ -55,7 +64,6 @@
 
 - (void) buttonEditAction {
     //set up the undo manager
-    [self setUpUndoManager];
     self.editing = YES;
     //[self updateUI];
 }
@@ -70,16 +78,13 @@
     //clean the undoManager∫
     [self.undoManager undo];
     if (self.newObject) {
-        [self deleteRelationshipObject];
         [self.managedObjectContext deleteObject:self.objectSelected];
     }
     [self.navigationController popViewControllerAnimated:NO];
 
 }
 
-- (void) deleteRelationshipObject {
 
-}
 // set up the table view in edit mode
 - (void) buttonSaveAction {
 

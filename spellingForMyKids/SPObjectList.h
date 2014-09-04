@@ -8,17 +8,27 @@
 
 @protocol objectListDelegate <NSObject>
 
+typedef enum selectRowAction selectRowAction;
+enum selectRowAction
+{
+    selectionMultiple = 0,
+    selectionOne = 1,
+    openVC = 2
+    
+};
+
 @required
-@property (nonatomic, strong) NSPredicate *predicate;
-@property (nonatomic) BOOL allowsMultipleSelection;
-@optional
-//@property (nonatomic, strong) NSArray *objectList;
+- (NSPredicate *) predicate;
+- (selectRowAction) rowAction;
+//- (BOOL) allowsMultipleSelection;
 @end
 
-@interface SPObjectList : UITableViewController <NSFetchedResultsControllerDelegate, UITableViewDelegate, objectListDelegate>
+@interface SPObjectList : UITableViewController <NSFetchedResultsControllerDelegate, UITableViewDelegate>
 
 @property (nonatomic, strong) NSManagedObject *objectSelected;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContextAdd;
+
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @property (nonatomic, strong) NSArray *objectsSelected;
@@ -29,9 +39,9 @@
 @property (nonatomic, strong) NSString *titleNavigationBar;
 
 - (void) configureCell:(UITableViewCell *) cell;
+- (void) addButtonAction;
+@property (nonatomic, weak) id <objectListDelegate> delegate;
 
-//objectListDelegate protocol
-@property (nonatomic, strong) id <objectListDelegate> delegate;
-@property (nonatomic, strong) NSPredicate *predicate;
-@property (nonatomic) BOOL allowsMultipleSelection;
+
+
 @end
