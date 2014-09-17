@@ -35,14 +35,9 @@
 @property (weak, nonatomic) IBOutlet SKHUDView *viewHud;
 @property (weak, nonatomic) IBOutlet SKCounterLabelView *viewCounter;
 
-
-
 @property (strong, nonatomic) Word *wordSelected;
 @property (strong, nonatomic) NSArray *arrayWords;
 @property (strong, nonatomic) AVAudioPlayer *player;
-
-
-
 
 //scrabbleKeyboard
 @property (strong, nonatomic) SKGameController* gameController;
@@ -52,8 +47,6 @@
 @end
 
 @implementation SPTestVC
-
-
 
 
 - (NSArray *) arrayWords {
@@ -78,8 +71,10 @@
 - (SKGameController *) gameController {
     if (!_gameController) {
         //create the game controller
-        _gameController = [[SKGameController alloc] initWithKeyboard:self.keyboardType inView:self.viewBoard];
+        
+        _gameController = [[SKGameController alloc] init];
         _gameController.delegate = self;
+        _gameController.datasource = self;
         _gameController.spelling = self.spelling;
         _gameController.hud = self.viewHud;
     }
@@ -96,24 +91,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
--(instancetype)initWithCoder:(NSCoder *)decoder
-{
-    self = [super initWithCoder:decoder];
-    if (self) {
-        //create the game controller
- //       self.controller = [[SKGameController alloc] initWithSuperviewsForTiles:self.viewKeyboard target:self.viewTarget hud:self.viewHud];
-    }
-    return self;
-}
-
-
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    //Navigation Item
-    self.navigationItem.hidesBackButton = YES;
+//    self.navigationItem.hidesBackButton = YES;
+    [self.gameController newQuestion];
 
 }
 
@@ -121,7 +104,6 @@
 
 - (void) viewDidAppear:(BOOL)animated {
     NSLog(@"viewDidAppear");
-    [self.gameController newQuestion];
     [self updatePage];
     [self.view layoutSubviews];
     
@@ -212,7 +194,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////
-//Game controller Delegate
+//Game controller Delegate and Datasource
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////
 - (void) scoreBoardWithGameResult:(NSArray *)gameResult {
@@ -229,5 +211,13 @@
         max = MAX(max, [word length]);
     }
     return max;
+}
+
+- (UIView *) gameViewContainer:(id)sender {
+    return self.viewBoard;
+}
+
+- (gameKeyboardType) gameKeyboardType:(id)sender {
+    return gameKeyboardTile;
 }
 @end

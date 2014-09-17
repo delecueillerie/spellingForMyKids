@@ -29,7 +29,7 @@
     return @"AWord";
 }
 
-- (NSString *) titleNavigationBar {
+- (NSString *) titleNavigationBar:(id) sender {
     return @"Words list";
 }
 

@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "SPAnObjectWithList.h"
 
-@interface SPMenuVC : SPAnObjectWithList <UIScrollViewDelegate>
+@interface SPMenuVC : SPAnObjectWithList <UIScrollViewDelegate, objectListDataSource, objectListDelegate, objectDelegate>
 
-@property BOOL refreshData;
 @end

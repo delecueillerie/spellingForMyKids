@@ -11,7 +11,7 @@
 #import "Spelling.h"
 #import "SPObjectList.h"
 
-@interface SPSpelling : SPAnObjectWithList <UITextFieldDelegate>
 
+@interface SPSpelling : SPAnObjectWithList <UITextFieldDelegate>
 
 @end

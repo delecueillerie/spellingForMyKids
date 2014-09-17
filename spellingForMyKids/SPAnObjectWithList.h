@@ -9,11 +9,10 @@
 #import "SPAnObject.h"
 #import "SPObjectList.h"
 
-@interface SPAnObjectWithList : SPAnObject <objectListDelegate>
+@interface SPAnObjectWithList : SPAnObject <objectListDelegate, objectListDataSource>
 
 @property (strong, nonatomic) SPObjectList *objectListVC;
 @property (strong, nonatomic) NSSet *objectList;
 - (SPObjectList *) addObjectListIdentifier: (NSString *) identifier toView:(UIView *) view;
-- (NSSet *) updatedRelationshipIn:(SPObjectList *)objectListVC;
 @property (weak, nonatomic) NSString *key;
 @end

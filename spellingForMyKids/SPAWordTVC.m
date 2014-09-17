@@ -61,8 +61,11 @@
 
 - (void) setEditing:(BOOL)editing {
     [super setEditing:editing];
-    [self updateHiddenViewWhenEditing:editing];
     
+    self.textFieldWordName.hidden = !editing;
+    self.labelWordName.hidden=editing;
+    self.viewContainerCamera.hidden = !editing;
+    self.microphoneVC.editing = self.editing;
 }
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
@@ -88,24 +91,15 @@
     photoPickerVC.view.frame=self.viewContainerCamera.bounds;
     [self.viewContainerCamera addSubview:photoPickerVC.view];
     
-    
     //delegates
     self.textFieldWordName.delegate = self;
-
     self.dataSoundRecorded = self.wordSelected.audio;
-    
-    //////////////////////////////////////////////////////////
-    // slider
-    //////////////////////////////////////////////////////////
-    [self.sliderLevel addTarget:self
-                      action:@selector(sliderLevelAction)
-            forControlEvents:UIControlEventValueChanged];
+
 }
 
 
 - (void) viewWillAppear:(BOOL)animated {
-    [self updateFieldValue];
-    [self updateHiddenViewWhenEditing:self.editing];
+    [self refresh];
 }
 
 //////////////////////////////////////////////////////////
@@ -114,45 +108,18 @@
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
 
-- (void) sliderLevelAction {
-    self.labelLevel.text = [NSString stringWithFormat:@"%i",(int) [self.sliderLevel value]];
-}
-
-
-- (void) updateHiddenViewWhenEditing:(BOOL) editing {
-    self.textFieldWordName.hidden = !editing;
-    self.labelWordName.hidden=editing;
-    self.viewContainerCamera.hidden = !editing;
-
-    self.microphoneVC.editing = self.editing;
-}
-
-
-
-- (void) updateFieldValue {
-    
-    //[super updateUI];
-    
+- (void) refresh {
     self.labelWordName.text = self.wordSelected.name;
     self.textFieldWordName.text = self.wordSelected.name;
     [self.imageViewImage roundWithImage:[UIImage imageWithData:self.wordSelected.image]];
-}
-
-//////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////
-//Override method
-//////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////
-
-- (void) buttonSaveAction {
+    [super refresh];
     //this method is called before the delegate method textFieldDidEndEditing
-    self.wordSelected.name = self.textFieldWordName.text;
-   // self.wordSelected.image = self.dataImageCaptured;
-    [super buttonSaveAction];
+
 }
 
-
-
+- (void) loadInput {
+    self.wordSelected.name = self.textFieldWordName.text;
+}
 
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////

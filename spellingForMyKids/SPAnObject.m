@@ -34,26 +34,46 @@
 }
 
 - (void) setEditing:(BOOL)editing {
-    [super setEditing:editing];
-    [self navigationItemUpdate];
-    if (editing) {
+    if (self.isReadOnly) {
+        [super setEditing:NO];
+        self.navigationItem.rightBarButtonItem = nil;
+        self.navigationItem.leftBarButtonItem = nil;
+    } else if (editing) {
+        [super setEditing:editing];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveAndPop)];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(buttonCancelAction)];
         [self setUpUndoManager];
+    } else {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(buttonEditAction)];
     }
 }
 
+- (void) setIsReadOnly:(BOOL)isReadOnly {
+    _isReadOnly = isReadOnly;
+    if (isReadOnly) {
+        self.editing = NO;
+    }
+}
+
+- (void) setObjectSelected:(NSManagedObject *)objectSelected {
+    _objectSelected = objectSelected;
+}
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
 // II - VC Life Cycle Management
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    [self navigationItemUpdate];
+    if (!self.delegate) {
+        self.delegate = self;
+    }
 }
 
-
+- (void) viewWillAppear:(BOOL)animated {
+    [self setEditing:self.editing]; //
+    [self refresh];
+}
 
 
 //////////////////////////////////////////////////////////
@@ -67,60 +87,58 @@
     self.editing = YES;
     //[self updateUI];
 }
-/*
-- (void) updateUI {
-    [self navigationItemUpdate];
-    //the goal of this method is to be overridden in subclasses
-}
-*/
 
 - (void) buttonCancelAction {
     //clean the undoManager∫
     [self.undoManager undo];
-    if (self.newObject) {
+    if (self.isNewObject) {
         [self.managedObjectContext deleteObject:self.objectSelected];
     }
     [self.navigationController popViewControllerAnimated:NO];
-
 }
 
 
 // set up the table view in edit mode
-- (void) buttonSaveAction {
+- (void) saveAndPop {
+    [self loadInput];
+    [self save];
+    [self.delegate setObjectSelected:self.objectSelected];
+    //[self.delegate refresh];
+    [self.navigationController popViewControllerAnimated:NO];
+}
 
+- (void) saveAndRefresh {
+    [self loadInput];
+    [self save];
+    self.editing = NO;
+    [self refresh];
+}
+
+- (void) save {
+    
+    [self loadInput];
     NSError *error;
     NSLog(@"name %@", [self.objectSelected description]);
     
     [self.managedObjectContext save:&error];
-    if (self.newObject) {
+    NSManagedObjectContext *parentContext = [self.managedObjectContext parentContext];
+    
+    if (parentContext) {
         error = nil;
-        NSManagedObjectContext *parentContext = [self.managedObjectContext parentContext];
         [parentContext save:&error];
     }
-
     //clean the undo manager
     [self cleanUpUndoManager];
-    //switch the save button to an edit button
-    [self.navigationController popViewControllerAnimated:NO];
 }
 
-
-- (void) navigationItemUpdate {
-
-    //self.navigationItem.title = ...
-    //set up the  Barbutton
-    if (self.editing) {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(buttonSaveAction)];
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(buttonCancelAction)];
-    }
-
-    else {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(buttonEditAction)];
-    }
-
+- (void) loadInput {
+    
 }
 
-
+- (void) refresh {
+    
+}
+/*
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
 // II - Table view
@@ -142,7 +160,7 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 }
-
+*/
 
 //////////////////////////////////////////////////////////
 // III - a - managedObjects
@@ -180,6 +198,14 @@
 
 - (void)undoManagerDidUndo:(NSNotification *)notification {
     // Redisplay the data.
+}
+
+/*/////////////////////////////////////////////////////////
+Object delegate
+/////////////////////////////////////////////////////////*/
+
+- (objectMode) objectMode:(id)sender {
+    return objectModeRead;
 }
 
 

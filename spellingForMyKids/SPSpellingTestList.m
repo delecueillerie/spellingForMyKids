@@ -31,7 +31,7 @@
     return @"spellingTest";
 }
 
-- (NSString *) titleNavigationBar {
+- (NSString *) titleNavigationBar :(id) sender {
     return @"Spelling test list";
 }
 

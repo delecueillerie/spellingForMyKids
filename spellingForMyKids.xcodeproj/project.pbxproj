@@ -29,24 +29,6 @@
 		09148AC619255AE80040F7C5 /* level3.png in Resources */ = {isa = PBXBuildFile; fileRef = 09148AC319255AE80040F7C5 /* level3.png */; };
 		09148ACC192565320040F7C5 /* SPKeyboardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 09148ACB192565320040F7C5 /* SPKeyboardButton.m */; };
 		09148ACF19256B860040F7C5 /* SPLevelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 09148ACE19256B860040F7C5 /* SPLevelButton.m */; };
-		09148B0119257AC50040F7C5 /* spelling1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09148AD819257AC50040F7C5 /* spelling1.plist */; };
-		09148B0219257AC50040F7C5 /* SKWordsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 09148ADA19257AC50040F7C5 /* SKWordsData.m */; };
-		09148B0319257AC50040F7C5 /* SKGameData.m in Sources */ = {isa = PBXBuildFile; fileRef = 09148ADC19257AC50040F7C5 /* SKGameData.m */; };
-		09148B0419257AC50040F7C5 /* SKTileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09148ADF19257AC50040F7C5 /* SKTileView.m */; };
-		09148B0519257AC50040F7C5 /* SKTargetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09148AE119257AC50040F7C5 /* SKTargetView.m */; };
-		09148B0619257AC50040F7C5 /* SKStopwatchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09148AE319257AC50040F7C5 /* SKStopwatchView.m */; };
-		09148B0719257AC50040F7C5 /* SKHUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09148AE519257AC50040F7C5 /* SKHUDView.m */; };
-		09148B0819257AC50040F7C5 /* SKCounterLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09148AE719257AC50040F7C5 /* SKCounterLabelView.m */; };
-		09148B0919257AC50040F7C5 /* SKExplodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09148AE919257AC50040F7C5 /* SKExplodeView.m */; };
-		09148B0A19257AC50040F7C5 /* SKStarDustView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09148AEB19257AC50040F7C5 /* SKStarDustView.m */; };
-		09148B0B19257AC50040F7C5 /* SKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09148AEE19257AC50040F7C5 /* SKViewController.m */; };
-		09148B0C19257AC50040F7C5 /* SKGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09148AF019257AC50040F7C5 /* SKGameController.m */; };
-		09148B0D19257AC50040F7C5 /* SKAudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09148AF219257AC50040F7C5 /* SKAudioController.m */; };
-		09148B0E19257AC50040F7C5 /* btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 09148AF419257AC50040F7C5 /* btn.png */; };
-		09148B0F19257AC50040F7C5 /* particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 09148AF519257AC50040F7C5 /* particle.png */; };
-		09148B1019257AC50040F7C5 /* win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 09148AF619257AC50040F7C5 /* win.wav */; };
-		09148B1119257AC50040F7C5 /* wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = 09148AF719257AC50040F7C5 /* wrong.wav */; };
-		09148B1219257AC50040F7C5 /* ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = 09148AF819257AC50040F7C5 /* ding.wav */; };
 		0916BE2F18C63116007EF967 /* buttonAddList.png in Resources */ = {isa = PBXBuildFile; fileRef = 0916BE2E18C63116007EF967 /* buttonAddList.png */; };
 		0916BE3718C64666007EF967 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 0916BE3618C64666007EF967 /* play.png */; };
 		0916BE3918C64926007EF967 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = 0916BE3818C64926007EF967 /* next.png */; };
@@ -54,7 +36,6 @@
 		09182F2A193CC2D400E93371 /* buttonBin.png in Resources */ = {isa = PBXBuildFile; fileRef = 09182F29193CC2D400E93371 /* buttonBin.png */; };
 		09182F2E193DBD1500E93371 /* SPUtterance.m in Sources */ = {isa = PBXBuildFile; fileRef = 09182F2D193DBD1500E93371 /* SPUtterance.m */; };
 		092250911999390C00D236AF /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 092250901999390C00D236AF /* Main_iPhone.storyboard */; };
-		0925D16D1927C5CD0046D3A6 /* SKBoardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0925D16C1927C5CD0046D3A6 /* SKBoardController.m */; };
 		092A416618D1B2D800382793 /* tabBarIcon_spelling.png in Resources */ = {isa = PBXBuildFile; fileRef = 092A416518D1B2D800382793 /* tabBarIcon_spelling.png */; };
 		092A416818D1B58900382793 /* tabBarIcon_word.png in Resources */ = {isa = PBXBuildFile; fileRef = 092A416718D1B58900382793 /* tabBarIcon_word.png */; };
 		092A416A18D1B99900382793 /* SPAnObjectTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 092A416918D1B99900382793 /* SPAnObjectTVC.xib */; };
@@ -62,7 +43,6 @@
 		092C3A041934C7CD00A6E2B6 /* segueFromMenuToTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 092C3A031934C7CD00A6E2B6 /* segueFromMenuToTabBar.m */; };
 		092C3A0A1935372200A6E2B6 /* SPPhonemeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 092C3A091935372200A6E2B6 /* SPPhonemeList.m */; };
 		092C3A0D1935389F00A6E2B6 /* SPPhoneme.m in Sources */ = {isa = PBXBuildFile; fileRef = 092C3A0C1935389F00A6E2B6 /* SPPhoneme.m */; };
-		092D2D3519546A56004661C2 /* libsyncWithAFNetworkingLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 092D2D3219546A19004661C2 /* libsyncWithAFNetworkingLibrary.a */; };
 		093AAD8718D10069005B8EA1 /* SPAnObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 093AAD8618D10069005B8EA1 /* SPAnObject.m */; };
 		0947544018F420DE00FBBAFC /* buttonPlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 0947543518F420DE00FBBAFC /* buttonPlay.png */; };
 		0947544218F420DE00FBBAFC /* buttonStop64.png in Resources */ = {isa = PBXBuildFile; fileRef = 0947543718F420DE00FBBAFC /* buttonStop64.png */; };
@@ -80,7 +60,7 @@
 		09514BED19B0AD0C00FD651C /* VersionInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09514BEB19B0AD0C00FD651C /* VersionInfo.plist */; };
 		09514BF819B745A900FD651C /* SPSpellingTestList.m in Sources */ = {isa = PBXBuildFile; fileRef = 09514BF719B745A900FD651C /* SPSpellingTestList.m */; };
 		09514C0119B7C0B300FD651C /* SPSpellingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 09514C0019B7C0B300FD651C /* SPSpellingTest.m */; };
-		0951F85919AAB1AF00FD651C /* libcoreDataStackLibrairy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0951F7A919A7F0F600FD651C /* libcoreDataStackLibrairy.a */; };
+		0951F85919AAB1AF00FD651C /* libS4MKCoreDataStack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0951F7A919A7F0F600FD651C /* libS4MKCoreDataStack.a */; };
 		0955041C18B0953A00128B5B /* SPTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0955041B18B0953A00128B5B /* SPTestVC.m */; };
 		095691F819127DEF00A5386F /* SPSpelling.m in Sources */ = {isa = PBXBuildFile; fileRef = 095691F719127DEF00A5386F /* SPSpelling.m */; };
 		095691FE19139CEB00A5386F /* SPWordList.m in Sources */ = {isa = PBXBuildFile; fileRef = 095691FD19139CEB00A5386F /* SPWordList.m */; };
@@ -95,20 +75,16 @@
 		096428D21920DDED005DEB78 /* replay.png in Resources */ = {isa = PBXBuildFile; fileRef = 096428D11920DDED005DEB78 /* replay.png */; };
 		09A86E7819A29AD90076212E /* buttonAddListToolBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 09A86E7719A29AD90076212E /* buttonAddListToolBar.png */; };
 		09CC998E18FA890E00BA4238 /* photoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CC998D18FA890E00BA4238 /* photoPickerViewController.m */; };
+		09D3F44119C2F6200026277A /* libS4MKKeyboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D3F3FD19C1ACF00026277A /* libS4MKKeyboard.a */; };
+		09D3F44219C2F6620026277A /* libsyncWithAFNetworkingLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 092D2D3219546A19004661C2 /* libsyncWithAFNetworkingLibrary.a */; };
 		09F054B618F8030F00C2FB42 /* photoPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09F054B018F8030F00C2FB42 /* photoPicker.storyboard */; };
 		09F054B718F8030F00C2FB42 /* photoPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F054B218F8030F00C2FB42 /* photoPicker.m */; };
 		09F054B818F8030F00C2FB42 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F054B318F8030F00C2FB42 /* camera.png */; };
 		09F054B918F8030F00C2FB42 /* nothing.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F054B418F8030F00C2FB42 /* nothing.png */; };
 		09F054BA18F8030F00C2FB42 /* directory.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F054B518F8030F00C2FB42 /* directory.png */; };
-		09F9F556192B8A9900953982 /* SKScrabbleBoardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F9F555192B8A9900953982 /* SKScrabbleBoardController.m */; };
-		09F9F559192B8B7300953982 /* SKKeyboardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F9F558192B8B7300953982 /* SKKeyboardController.m */; };
 		09F9F55C192E43EA00953982 /* SPTestResultTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F9F55B192E43EA00953982 /* SPTestResultTVCell.m */; };
 		09F9F562192F371E00953982 /* iconsResultGood.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F9F560192F371E00953982 /* iconsResultGood.png */; };
 		09F9F563192F371E00953982 /* iconsResultWrong.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F9F561192F371E00953982 /* iconsResultWrong.png */; };
-		09F9F566192F7F8000953982 /* tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F9F564192F7F8000953982 /* tile.png */; };
-		09F9F567192F7F8000953982 /* tile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F9F565192F7F8000953982 /* tile@2x.png */; };
-		09F9F56A192F827F00953982 /* slot.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F9F568192F827F00953982 /* slot.png */; };
-		09F9F56B192F827F00953982 /* slot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F9F569192F827F00953982 /* slot@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +122,34 @@
 			proxyType = 2;
 			remoteGlobalIDString = 094F9CAF19473B5D000215E8;
 			remoteInfo = coreDataStackLibrairy;
+		};
+		09D3F3CE19C1AB430026277A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09D3F3C919C1AB430026277A /* scrabbleKeyboard.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 091489D119220DF00040F7C5;
+			remoteInfo = scrabbleKeyboard;
+		};
+		09D3F3F819C1ACF00026277A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09D3F3C919C1AB430026277A /* scrabbleKeyboard.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 09D3F3D519C1AC9F0026277A;
+			remoteInfo = S4MKKeyboard;
+		};
+		09D3F3FC19C1ACF00026277A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09D3F3C919C1AB430026277A /* scrabbleKeyboard.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 09D3F3D619C1AC9F0026277A;
+			remoteInfo = S4MKKeyboard;
+		};
+		09D3F3FE19C1ACF00026277A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09D3F3C919C1AB430026277A /* scrabbleKeyboard.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 09D3F3E319C1AC9F0026277A;
+			remoteInfo = S4MKKeyboardTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -188,37 +192,6 @@
 		09148ACB192565320040F7C5 /* SPKeyboardButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPKeyboardButton.m; sourceTree = "<group>"; };
 		09148ACD19256B860040F7C5 /* SPLevelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLevelButton.h; sourceTree = "<group>"; };
 		09148ACE19256B860040F7C5 /* SPLevelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLevelButton.m; sourceTree = "<group>"; };
-		09148AD819257AC50040F7C5 /* spelling1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = spelling1.plist; sourceTree = "<group>"; };
-		09148AD919257AC50040F7C5 /* SKWordsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKWordsData.h; sourceTree = "<group>"; };
-		09148ADA19257AC50040F7C5 /* SKWordsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKWordsData.m; sourceTree = "<group>"; };
-		09148ADB19257AC50040F7C5 /* SKGameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKGameData.h; sourceTree = "<group>"; };
-		09148ADC19257AC50040F7C5 /* SKGameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKGameData.m; sourceTree = "<group>"; };
-		09148ADE19257AC50040F7C5 /* SKTileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTileView.h; sourceTree = "<group>"; };
-		09148ADF19257AC50040F7C5 /* SKTileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTileView.m; sourceTree = "<group>"; };
-		09148AE019257AC50040F7C5 /* SKTargetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTargetView.h; sourceTree = "<group>"; };
-		09148AE119257AC50040F7C5 /* SKTargetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTargetView.m; sourceTree = "<group>"; };
-		09148AE219257AC50040F7C5 /* SKStopwatchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKStopwatchView.h; sourceTree = "<group>"; };
-		09148AE319257AC50040F7C5 /* SKStopwatchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKStopwatchView.m; sourceTree = "<group>"; };
-		09148AE419257AC50040F7C5 /* SKHUDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKHUDView.h; sourceTree = "<group>"; };
-		09148AE519257AC50040F7C5 /* SKHUDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKHUDView.m; sourceTree = "<group>"; };
-		09148AE619257AC50040F7C5 /* SKCounterLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKCounterLabelView.h; sourceTree = "<group>"; };
-		09148AE719257AC50040F7C5 /* SKCounterLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKCounterLabelView.m; sourceTree = "<group>"; };
-		09148AE819257AC50040F7C5 /* SKExplodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKExplodeView.h; sourceTree = "<group>"; };
-		09148AE919257AC50040F7C5 /* SKExplodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKExplodeView.m; sourceTree = "<group>"; };
-		09148AEA19257AC50040F7C5 /* SKStarDustView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKStarDustView.h; sourceTree = "<group>"; };
-		09148AEB19257AC50040F7C5 /* SKStarDustView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKStarDustView.m; sourceTree = "<group>"; };
-		09148AED19257AC50040F7C5 /* SKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKViewController.h; sourceTree = "<group>"; };
-		09148AEE19257AC50040F7C5 /* SKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKViewController.m; sourceTree = "<group>"; };
-		09148AEF19257AC50040F7C5 /* SKGameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKGameController.h; sourceTree = "<group>"; };
-		09148AF019257AC50040F7C5 /* SKGameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKGameController.m; sourceTree = "<group>"; };
-		09148AF119257AC50040F7C5 /* SKAudioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKAudioController.h; sourceTree = "<group>"; };
-		09148AF219257AC50040F7C5 /* SKAudioController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKAudioController.m; sourceTree = "<group>"; };
-		09148AF419257AC50040F7C5 /* btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn.png; sourceTree = "<group>"; };
-		09148AF519257AC50040F7C5 /* particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particle.png; sourceTree = "<group>"; };
-		09148AF619257AC50040F7C5 /* win.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = win.wav; sourceTree = "<group>"; };
-		09148AF719257AC50040F7C5 /* wrong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wrong.wav; sourceTree = "<group>"; };
-		09148AF819257AC50040F7C5 /* ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ding.wav; sourceTree = "<group>"; };
-		09148B1719257AFC0040F7C5 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		0916BE2E18C63116007EF967 /* buttonAddList.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttonAddList.png; path = media/buttonAddList.png; sourceTree = SOURCE_ROOT; };
 		0916BE3618C64666007EF967 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = media/play.png; sourceTree = SOURCE_ROOT; };
 		0916BE3818C64926007EF967 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = next.png; path = media/next.png; sourceTree = SOURCE_ROOT; };
@@ -227,8 +200,6 @@
 		09182F2C193DBD1500E93371 /* SPUtterance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUtterance.h; sourceTree = "<group>"; };
 		09182F2D193DBD1500E93371 /* SPUtterance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUtterance.m; sourceTree = "<group>"; };
 		092250901999390C00D236AF /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
-		0925D16C1927C5CD0046D3A6 /* SKBoardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKBoardController.m; sourceTree = "<group>"; };
-		0925D16E1927C5DC0046D3A6 /* SKBoardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKBoardController.h; sourceTree = "<group>"; };
 		092A416518D1B2D800382793 /* tabBarIcon_spelling.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tabBarIcon_spelling.png; path = media/tabBarIcon_spelling.png; sourceTree = SOURCE_ROOT; };
 		092A416718D1B58900382793 /* tabBarIcon_word.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tabBarIcon_word.png; path = media/tabBarIcon_word.png; sourceTree = SOURCE_ROOT; };
 		092A416918D1B99900382793 /* SPAnObjectTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPAnObjectTVC.xib; sourceTree = "<group>"; };
@@ -292,25 +263,17 @@
 		09A86E7719A29AD90076212E /* buttonAddListToolBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttonAddListToolBar.png; path = media/buttonAddListToolBar.png; sourceTree = SOURCE_ROOT; };
 		09CC998C18FA890E00BA4238 /* photoPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = photoPickerViewController.h; path = addOn/photoPicker/writingTool/photoPicker/photoPickerViewController.h; sourceTree = "<group>"; };
 		09CC998D18FA890E00BA4238 /* photoPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = photoPickerViewController.m; path = addOn/photoPicker/writingTool/photoPicker/photoPickerViewController.m; sourceTree = "<group>"; };
+		09D3F3C919C1AB430026277A /* scrabbleKeyboard.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = scrabbleKeyboard.xcodeproj; path = ../scrabbleKeyboard/scrabbleKeyboard.xcodeproj; sourceTree = "<group>"; };
 		09F054B018F8030F00C2FB42 /* photoPicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = photoPicker.storyboard; path = addOn/photoPicker/writingTool/photoPicker/photoPicker.storyboard; sourceTree = "<group>"; };
 		09F054B118F8030F00C2FB42 /* photoPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = photoPicker.h; path = addOn/photoPicker/writingTool/photoPicker/photoPicker.h; sourceTree = "<group>"; };
 		09F054B218F8030F00C2FB42 /* photoPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = photoPicker.m; path = addOn/photoPicker/writingTool/photoPicker/photoPicker.m; sourceTree = "<group>"; };
 		09F054B318F8030F00C2FB42 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = camera.png; path = addOn/photoPicker/writingTool/photoPicker/camera.png; sourceTree = "<group>"; };
 		09F054B418F8030F00C2FB42 /* nothing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nothing.png; path = addOn/photoPicker/writingTool/photoPicker/nothing.png; sourceTree = "<group>"; };
 		09F054B518F8030F00C2FB42 /* directory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = directory.png; path = addOn/photoPicker/writingTool/photoPicker/directory.png; sourceTree = "<group>"; };
-		09F9F554192B8A8700953982 /* SKScrabbleBoardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKScrabbleBoardController.h; sourceTree = "<group>"; };
-		09F9F555192B8A9900953982 /* SKScrabbleBoardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKScrabbleBoardController.m; sourceTree = "<group>"; };
-		09F9F557192B8B5700953982 /* SKKeyboardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKKeyboardController.h; sourceTree = "<group>"; };
-		09F9F558192B8B7300953982 /* SKKeyboardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKKeyboardController.m; sourceTree = "<group>"; };
 		09F9F55A192E43EA00953982 /* SPTestResultTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTestResultTVCell.h; sourceTree = "<group>"; };
 		09F9F55B192E43EA00953982 /* SPTestResultTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPTestResultTVCell.m; sourceTree = "<group>"; };
-		09F9F55D192E8C7D00953982 /* SKDictWordResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKDictWordResult.h; sourceTree = "<group>"; };
 		09F9F560192F371E00953982 /* iconsResultGood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconsResultGood.png; path = media/iconsResultGood.png; sourceTree = SOURCE_ROOT; };
 		09F9F561192F371E00953982 /* iconsResultWrong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconsResultWrong.png; path = media/iconsResultWrong.png; sourceTree = SOURCE_ROOT; };
-		09F9F564192F7F8000953982 /* tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tile.png; path = media/tile.png; sourceTree = SOURCE_ROOT; };
-		09F9F565192F7F8000953982 /* tile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tile@2x.png"; path = "media/tile@2x.png"; sourceTree = SOURCE_ROOT; };
-		09F9F568192F827F00953982 /* slot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = slot.png; path = media/slot.png; sourceTree = SOURCE_ROOT; };
-		09F9F569192F827F00953982 /* slot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "slot@2x.png"; path = "media/slot@2x.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,8 +281,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0951F85919AAB1AF00FD651C /* libcoreDataStackLibrairy.a in Frameworks */,
-				092D2D3519546A56004661C2 /* libsyncWithAFNetworkingLibrary.a in Frameworks */,
+				09D3F44219C2F6620026277A /* libsyncWithAFNetworkingLibrary.a in Frameworks */,
+				09D3F44119C2F6200026277A /* libS4MKKeyboard.a in Frameworks */,
+				0951F85919AAB1AF00FD651C /* libS4MKCoreDataStack.a in Frameworks */,
 				090BE6A118907F4000A1DE0C /* CoreGraphics.framework in Frameworks */,
 				090BE6A318907F4000A1DE0C /* UIKit.framework in Frameworks */,
 				090BE69F18907F4000A1DE0C /* Foundation.framework in Frameworks */,
@@ -336,6 +300,7 @@
 				092D2CD719539FEC004661C2 /* APIKey.h */,
 				0951F7A119A7F0F600FD651C /* coreDataStack.xcodeproj */,
 				092D2D2919546A19004661C2 /* syncWithAFNetworking.xcodeproj */,
+				09D3F3C919C1AB430026277A /* scrabbleKeyboard.xcodeproj */,
 				0962E82F1896940D005A9A9F /* addOn */,
 				091489BF19216BBC0040F7C5 /* category */,
 				090BE6A418907F4000A1DE0C /* spellingForMyKids */,
@@ -372,6 +337,7 @@
 				092C39FE1933F11300A6E2B6 /* model */,
 				09148AD1192579B30040F7C5 /* controller */,
 				09148AC9192564DD0040F7C5 /* view */,
+				0932614119C049EA00C4DD53 /* segue */,
 				090BE6B318907F4100A1DE0C /* Main_iPad.storyboard */,
 				092250901999390C00D236AF /* Main_iPhone.storyboard */,
 				090BE6B918907F4100A1DE0C /* Images.xcassets */,
@@ -432,7 +398,10 @@
 			isa = PBXGroup;
 			children = (
 				092A416918D1B99900382793 /* SPAnObjectTVC.xib */,
-				09182F2B193DBC2600E93371 /* word */,
+				090F239418A8DDB80095F2E7 /* SPMenuVC.h */,
+				090F239218A8DDB80095F2E7 /* SPMenuVC.m */,
+				090F238118A527480095F2E7 /* SPAWordTVC.h */,
+				090F238218A527480095F2E7 /* SPAWordTVC.m */,
 				090F239B18A984B50095F2E7 /* SPAKidTVC.h */,
 				090F239C18A984B50095F2E7 /* SPAKidTVC.m */,
 				095691F419127D4C00A5386F /* SPSpelling.h */,
@@ -465,17 +434,6 @@
 			path = spellingForMyKids;
 			sourceTree = "<group>";
 		};
-		09148AC71925649A0040F7C5 /* menu */ = {
-			isa = PBXGroup;
-			children = (
-				090F239418A8DDB80095F2E7 /* SPMenuVC.h */,
-				090F239218A8DDB80095F2E7 /* SPMenuVC.m */,
-				092C3A021934C7CD00A6E2B6 /* segueFromMenuToTabBar.h */,
-				092C3A031934C7CD00A6E2B6 /* segueFromMenuToTabBar.m */,
-			);
-			name = menu;
-			sourceTree = "<group>";
-		};
 		09148AC9192564DD0040F7C5 /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -490,12 +448,8 @@
 		09148AD1192579B30040F7C5 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				09514BEE19B6FD3100FD651C /* Super VC */,
-				09148AC71925649A0040F7C5 /* menu */,
-				09514BEF19B6FED100FD651C /* test */,
-				09148AD3192579D70040F7C5 /* result */,
-				09C1F4DF18C92DB60038B5C5 /* objects List */,
-				090F239E18A984C00095F2E7 /* object */,
+				0932614319C04A3700C4DD53 /* viewController */,
+				0932614219C04A1E00C4DD53 /* speechUtterance */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -509,99 +463,6 @@
 				09F9F55B192E43EA00953982 /* SPTestResultTVCell.m */,
 			);
 			name = result;
-			sourceTree = "<group>";
-		};
-		09148ADD19257AC50040F7C5 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				09148AD819257AC50040F7C5 /* spelling1.plist */,
-				09148AD919257AC50040F7C5 /* SKWordsData.h */,
-				09148ADA19257AC50040F7C5 /* SKWordsData.m */,
-				09148ADB19257AC50040F7C5 /* SKGameData.h */,
-				09148ADC19257AC50040F7C5 /* SKGameData.m */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
-		09148AEC19257AC50040F7C5 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				09148ADE19257AC50040F7C5 /* SKTileView.h */,
-				09148ADF19257AC50040F7C5 /* SKTileView.m */,
-				09148AE019257AC50040F7C5 /* SKTargetView.h */,
-				09148AE119257AC50040F7C5 /* SKTargetView.m */,
-				09148AE219257AC50040F7C5 /* SKStopwatchView.h */,
-				09148AE319257AC50040F7C5 /* SKStopwatchView.m */,
-				09148AE419257AC50040F7C5 /* SKHUDView.h */,
-				09148AE519257AC50040F7C5 /* SKHUDView.m */,
-				09148AE619257AC50040F7C5 /* SKCounterLabelView.h */,
-				09148AE719257AC50040F7C5 /* SKCounterLabelView.m */,
-				09148AE819257AC50040F7C5 /* SKExplodeView.h */,
-				09148AE919257AC50040F7C5 /* SKExplodeView.m */,
-				09148AEA19257AC50040F7C5 /* SKStarDustView.h */,
-				09148AEB19257AC50040F7C5 /* SKStarDustView.m */,
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
-		09148AF319257AC50040F7C5 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				09148AED19257AC50040F7C5 /* SKViewController.h */,
-				09148AEE19257AC50040F7C5 /* SKViewController.m */,
-				09148AEF19257AC50040F7C5 /* SKGameController.h */,
-				09148AF019257AC50040F7C5 /* SKGameController.m */,
-				0925D16E1927C5DC0046D3A6 /* SKBoardController.h */,
-				0925D16C1927C5CD0046D3A6 /* SKBoardController.m */,
-				09F9F554192B8A8700953982 /* SKScrabbleBoardController.h */,
-				09F9F555192B8A9900953982 /* SKScrabbleBoardController.m */,
-				09F9F557192B8B5700953982 /* SKKeyboardController.h */,
-				09F9F558192B8B7300953982 /* SKKeyboardController.m */,
-				09148AF119257AC50040F7C5 /* SKAudioController.h */,
-				09148AF219257AC50040F7C5 /* SKAudioController.m */,
-				09F9F55D192E8C7D00953982 /* SKDictWordResult.h */,
-			);
-			name = Controller;
-			sourceTree = "<group>";
-		};
-		09148AFD19257AC50040F7C5 /* Asset */ = {
-			isa = PBXGroup;
-			children = (
-				09F9F568192F827F00953982 /* slot.png */,
-				09F9F569192F827F00953982 /* slot@2x.png */,
-				09F9F564192F7F8000953982 /* tile.png */,
-				09F9F565192F7F8000953982 /* tile@2x.png */,
-				09148AF419257AC50040F7C5 /* btn.png */,
-				09148AF519257AC50040F7C5 /* particle.png */,
-				09148AF619257AC50040F7C5 /* win.wav */,
-				09148AF719257AC50040F7C5 /* wrong.wav */,
-				09148AF819257AC50040F7C5 /* ding.wav */,
-			);
-			name = Asset;
-			sourceTree = "<group>";
-		};
-		09148AFE19257AC50040F7C5 /* scrabbleKeyboard */ = {
-			isa = PBXGroup;
-			children = (
-				09148B1719257AFC0040F7C5 /* config.h */,
-				09148ADD19257AC50040F7C5 /* Model */,
-				09148AEC19257AC50040F7C5 /* View */,
-				09148AF319257AC50040F7C5 /* Controller */,
-				09148AFD19257AC50040F7C5 /* Asset */,
-			);
-			name = scrabbleKeyboard;
-			path = addOn/scrabbleKeyboard/scrabbleKeyboard;
-			sourceTree = "<group>";
-		};
-		09182F2B193DBC2600E93371 /* word */ = {
-			isa = PBXGroup;
-			children = (
-				090F238118A527480095F2E7 /* SPAWordTVC.h */,
-				090F238218A527480095F2E7 /* SPAWordTVC.m */,
-				09182F2C193DBD1500E93371 /* SPUtterance.h */,
-				09182F2D193DBD1500E93371 /* SPUtterance.m */,
-			);
-			name = word;
 			sourceTree = "<group>";
 		};
 		092C39FE1933F11300A6E2B6 /* model */ = {
@@ -620,6 +481,36 @@
 				092D2D3219546A19004661C2 /* libsyncWithAFNetworkingLibrary.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		0932614119C049EA00C4DD53 /* segue */ = {
+			isa = PBXGroup;
+			children = (
+				092C3A021934C7CD00A6E2B6 /* segueFromMenuToTabBar.h */,
+				092C3A031934C7CD00A6E2B6 /* segueFromMenuToTabBar.m */,
+			);
+			name = segue;
+			sourceTree = "<group>";
+		};
+		0932614219C04A1E00C4DD53 /* speechUtterance */ = {
+			isa = PBXGroup;
+			children = (
+				09182F2C193DBD1500E93371 /* SPUtterance.h */,
+				09182F2D193DBD1500E93371 /* SPUtterance.m */,
+			);
+			name = speechUtterance;
+			sourceTree = "<group>";
+		};
+		0932614319C04A3700C4DD53 /* viewController */ = {
+			isa = PBXGroup;
+			children = (
+				09514BEE19B6FD3100FD651C /* Super VC */,
+				090F239E18A984C00095F2E7 /* object */,
+				09C1F4DF18C92DB60038B5C5 /* objects List */,
+				09514BEF19B6FED100FD651C /* test */,
+				09148AD3192579D70040F7C5 /* result */,
+			);
+			name = viewController;
 			sourceTree = "<group>";
 		};
 		093C131018DB21030087B17F /* button */ = {
@@ -720,7 +611,7 @@
 		0951F7A219A7F0F600FD651C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0951F7A919A7F0F600FD651C /* libcoreDataStackLibrairy.a */,
+				0951F7A919A7F0F600FD651C /* libS4MKCoreDataStack.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -754,7 +645,6 @@
 		0962E82F1896940D005A9A9F /* addOn */ = {
 			isa = PBXGroup;
 			children = (
-				09148AFE19257AC50040F7C5 /* scrabbleKeyboard */,
 				0947545318F74B2200FBBAFC /* photoPicker */,
 				0947544818F420E500FBBAFC /* tinyMicrophone */,
 			);
@@ -777,6 +667,16 @@
 				090F23C318AA55C10095F2E7 /* views */,
 			);
 			name = "objects List";
+			sourceTree = "<group>";
+		};
+		09D3F3CA19C1AB430026277A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				09D3F3CF19C1AB430026277A /* scrabbleKeyboard.app */,
+				09D3F3FD19C1ACF00026277A /* libS4MKKeyboard.a */,
+				09D3F3FF19C1ACF00026277A /* S4MKKeyboardTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		09F9F55F192F370900953982 /* icon */ = {
@@ -802,6 +702,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				09D3F3F919C1ACF00026277A /* PBXTargetDependency */,
 				09510C9619AAB90800FD651C /* PBXTargetDependency */,
 				09510C9419AAB90400FD651C /* PBXTargetDependency */,
 			);
@@ -843,6 +744,10 @@
 					ProjectRef = 0951F7A119A7F0F600FD651C /* coreDataStack.xcodeproj */;
 				},
 				{
+					ProductGroup = 09D3F3CA19C1AB430026277A /* Products */;
+					ProjectRef = 09D3F3C919C1AB430026277A /* scrabbleKeyboard.xcodeproj */;
+				},
+				{
 					ProductGroup = 092D2D2A19546A19004661C2 /* Products */;
 					ProjectRef = 092D2D2919546A19004661C2 /* syncWithAFNetworking.xcodeproj */;
 				},
@@ -869,11 +774,32 @@
 			remoteRef = 092D2D3119546A19004661C2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0951F7A919A7F0F600FD651C /* libcoreDataStackLibrairy.a */ = {
+		0951F7A919A7F0F600FD651C /* libS4MKCoreDataStack.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libcoreDataStackLibrairy.a;
+			path = libS4MKCoreDataStack.a;
 			remoteRef = 0951F7A819A7F0F600FD651C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		09D3F3CF19C1AB430026277A /* scrabbleKeyboard.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = scrabbleKeyboard.app;
+			remoteRef = 09D3F3CE19C1AB430026277A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		09D3F3FD19C1ACF00026277A /* libS4MKKeyboard.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libS4MKKeyboard.a;
+			remoteRef = 09D3F3FC19C1ACF00026277A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		09D3F3FF19C1ACF00026277A /* S4MKKeyboardTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = S4MKKeyboardTests.xctest;
+			remoteRef = 09D3F3FE19C1ACF00026277A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -888,7 +814,6 @@
 				090BE6B518907F4100A1DE0C /* Main_iPad.storyboard in Resources */,
 				09148AC519255AE80040F7C5 /* level2.png in Resources */,
 				09148AC619255AE80040F7C5 /* level3.png in Resources */,
-				09148B0119257AC50040F7C5 /* spelling1.plist in Resources */,
 				090BE6BA18907F4100A1DE0C /* Images.xcassets in Resources */,
 				09148ABF19252FBE0040F7C5 /* keyboardScrabble.png in Resources */,
 				0947544518F420DE00FBBAFC /* microphone128.png in Resources */,
@@ -897,11 +822,9 @@
 				094ABF83193884A00091283E /* SPPhonemeView.xib in Resources */,
 				0916BE3718C64666007EF967 /* play.png in Resources */,
 				096428D21920DDED005DEB78 /* replay.png in Resources */,
-				09148B1219257AC50040F7C5 /* ding.wav in Resources */,
 				09514BEC19B0AD0C00FD651C /* spellingForMyKidsCoreDataModel.mom in Resources */,
 				09569217191FB13800A5386F /* Cursive standard.ttf in Resources */,
 				096428CB19200786005DEB78 /* bonhommeVide.png in Resources */,
-				09F9F56A192F827F00953982 /* slot.png in Resources */,
 				09148AC019252FBE0040F7C5 /* keyboardStandard.png in Resources */,
 				09148AC419255AE80040F7C5 /* level1.png in Resources */,
 				0947544B18F4210000FBBAFC /* Main.storyboard in Resources */,
@@ -909,15 +832,10 @@
 				09182F2A193CC2D400E93371 /* buttonBin.png in Resources */,
 				09F9F562192F371E00953982 /* iconsResultGood.png in Resources */,
 				09F054B818F8030F00C2FB42 /* camera.png in Resources */,
-				09148B1019257AC50040F7C5 /* win.wav in Resources */,
 				092A416818D1B58900382793 /* tabBarIcon_word.png in Resources */,
-				09F9F566192F7F8000953982 /* tile.png in Resources */,
-				09148B0E19257AC50040F7C5 /* btn.png in Resources */,
 				09F054B618F8030F00C2FB42 /* photoPicker.storyboard in Resources */,
 				0916BE2F18C63116007EF967 /* buttonAddList.png in Resources */,
-				09148B0F19257AC50040F7C5 /* particle.png in Resources */,
 				095C882F1907BA3200E85581 /* tabBarIcon_kids.png in Resources */,
-				09F9F567192F7F8000953982 /* tile@2x.png in Resources */,
 				0947544018F420DE00FBBAFC /* buttonPlay.png in Resources */,
 				09A86E7819A29AD90076212E /* buttonAddListToolBar.png in Resources */,
 				090BE6A918907F4000A1DE0C /* InfoPlist.strings in Resources */,
@@ -925,10 +843,8 @@
 				0947544218F420DE00FBBAFC /* buttonStop64.png in Resources */,
 				092250911999390C00D236AF /* Main_iPhone.storyboard in Resources */,
 				092A416618D1B2D800382793 /* tabBarIcon_spelling.png in Resources */,
-				09F9F56B192F827F00953982 /* slot@2x.png in Resources */,
 				094ABF8519388B3A0091283E /* phonemeShape.png in Resources */,
 				092A416A18D1B99900382793 /* SPAnObjectTVC.xib in Resources */,
-				09148B1119257AC50040F7C5 /* wrong.wav in Resources */,
 				0916BE3B18C65328007EF967 /* previous.png in Resources */,
 				09F9F563192F371E00953982 /* iconsResultWrong.png in Resources */,
 				09514BED19B0AD0C00FD651C /* VersionInfo.plist in Resources */,
@@ -942,50 +858,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09148B0719257AC50040F7C5 /* SKHUDView.m in Sources */,
 				09148ACF19256B860040F7C5 /* SPLevelButton.m in Sources */,
 				095691F819127DEF00A5386F /* SPSpelling.m in Sources */,
 				092C3A0D1935389F00A6E2B6 /* SPPhoneme.m in Sources */,
 				095692041913A54200A5386F /* SPKidList.m in Sources */,
-				0925D16D1927C5CD0046D3A6 /* SKBoardController.m in Sources */,
-				09F9F559192B8B7300953982 /* SKKeyboardController.m in Sources */,
 				09569211191983F300A5386F /* SPTestResult.m in Sources */,
 				092C3A011933F13900A6E2B6 /* SPSchoolLevel.m in Sources */,
-				09148B0519257AC50040F7C5 /* SKTargetView.m in Sources */,
-				09148B0319257AC50040F7C5 /* SKGameData.m in Sources */,
 				090C0E7A18A3CC5E00CE5E60 /* wordCell.m in Sources */,
 				0956920B19152A3A00A5386F /* SPObjectList.m in Sources */,
 				0947544318F420DE00FBBAFC /* FDSoundActivatedRecorder.m in Sources */,
-				09148B0919257AC50040F7C5 /* SKExplodeView.m in Sources */,
 				090BE6AF18907F4000A1DE0C /* AppDelegate.m in Sources */,
 				091489C219216BEF0040F7C5 /* UIImage+resize.m in Sources */,
-				09148B0B19257AC50040F7C5 /* SKViewController.m in Sources */,
 				09CC998E18FA890E00BA4238 /* photoPickerViewController.m in Sources */,
 				090F239D18A984B50095F2E7 /* SPAKidTVC.m in Sources */,
 				092C3A041934C7CD00A6E2B6 /* segueFromMenuToTabBar.m in Sources */,
 				095691FE19139CEB00A5386F /* SPWordList.m in Sources */,
 				0947544618F420DE00FBBAFC /* MIMicrophoneUI.m in Sources */,
-				09148B0619257AC50040F7C5 /* SKStopwatchView.m in Sources */,
 				09F9F55C192E43EA00953982 /* SPTestResultTVCell.m in Sources */,
 				091489C5192176E90040F7C5 /* UIImageView+cornerRadius.m in Sources */,
 				090F238318A527480095F2E7 /* SPAWordTVC.m in Sources */,
 				094ABF7B19387C300091283E /* SPPhonemeView.m in Sources */,
-				09148B0819257AC50040F7C5 /* SKCounterLabelView.m in Sources */,
-				09F9F556192B8A9900953982 /* SKScrabbleBoardController.m in Sources */,
-				09148B0A19257AC50040F7C5 /* SKStarDustView.m in Sources */,
 				09514BF819B745A900FD651C /* SPSpellingTestList.m in Sources */,
 				09182F2E193DBD1500E93371 /* SPUtterance.m in Sources */,
 				0955041C18B0953A00128B5B /* SPTestVC.m in Sources */,
-				09148B0419257AC50040F7C5 /* SKTileView.m in Sources */,
 				09148ACC192565320040F7C5 /* SPKeyboardButton.m in Sources */,
 				093AAD8718D10069005B8EA1 /* SPAnObject.m in Sources */,
 				090F239518A8DDB80095F2E7 /* SPMenuVC.m in Sources */,
 				090BE6AB18907F4000A1DE0C /* main.m in Sources */,
 				0947544718F420DE00FBBAFC /* MIViewController.m in Sources */,
-				09148B0D19257AC50040F7C5 /* SKAudioController.m in Sources */,
-				09148B0219257AC50040F7C5 /* SKWordsData.m in Sources */,
 				094ABFA91938DAA30091283E /* SPAnObjectWithList.m in Sources */,
-				09148B0C19257AC50040F7C5 /* SKGameController.m in Sources */,
 				09514C0119B7C0B300FD651C /* SPSpellingTest.m in Sources */,
 				095692011913A05100A5386F /* SPSpellingList.m in Sources */,
 				092C3A0A1935372200A6E2B6 /* SPPhonemeList.m in Sources */,
@@ -1005,6 +906,11 @@
 			isa = PBXTargetDependency;
 			name = syncWithAFNetworkingLibrary;
 			targetProxy = 09510C9519AAB90800FD651C /* PBXContainerItemProxy */;
+		};
+		09D3F3F919C1ACF00026277A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = S4MKKeyboard;
+			targetProxy = 09D3F3F819C1ACF00026277A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1119,33 +1025,30 @@
 		090BE6D118907F4100A1DE0C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/olivier/Documents/Lagspoon/Projets/club1810/#Archive/20131100",
-					MenuV1/menu,
-					iOS,
-					/Users/olivier/Documents/Lagspoon/Projets/controlApp,
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "spellingForMyKids/spellingForMyKids-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					$SOURCE_ROOT/usr/local/include,
 					$SOURCE_ROOT/include,
 				);
 				INFOPLIST_FILE = "spellingForMyKids/spellingForMyKids-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/spellingForMyKids-cgxrxwyxcofxlwgaeeqjudkvzmyu/Build/Products/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/spellingForMyKids-cgxrxwyxcofxlwgaeeqjudkvzmyu/Build/Products/Debug-iphoneos/**",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1154,33 +1057,30 @@
 		090BE6D218907F4100A1DE0C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/olivier/Documents/Lagspoon/Projets/club1810/#Archive/20131100",
-					MenuV1/menu,
-					iOS,
-					/Users/olivier/Documents/Lagspoon/Projets/controlApp,
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "spellingForMyKids/spellingForMyKids-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					$SOURCE_ROOT/usr/local/include,
 					$SOURCE_ROOT/include,
 				);
 				INFOPLIST_FILE = "spellingForMyKids/spellingForMyKids-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/spellingForMyKids-cgxrxwyxcofxlwgaeeqjudkvzmyu/Build/Products/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/spellingForMyKids-cgxrxwyxcofxlwgaeeqjudkvzmyu/Build/Products/Debug-iphoneos/**",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

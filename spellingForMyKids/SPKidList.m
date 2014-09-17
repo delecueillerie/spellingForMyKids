@@ -32,7 +32,7 @@
     return @"AKid";
 }
 
-- (NSString *) titleNavigationBar {
+- (NSString *) titleNavigationBar:(id) sender {
     return @"Kids list";
 }
 

@@ -6,7 +6,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "spellingForMyKids/syncManager.m"
@@ -38,7 +38,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../syncWithWebServices/iOS/syncWithAFNetworking/syncWithAFNetworking/SYParseParser.m"
@@ -54,7 +54,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../coreDataStack/iOS/coreDataStack/coreDataStack/spellingForMyKids/Kid+newKid.m"
@@ -70,64 +70,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "spellingForMyKids/SPObjectList.m"
-            timestampString = "431481689.586317"
+            filePath = "spellingForMyKids/SPMenuVC.m"
+            timestampString = "431997645.53549"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
-            landmarkName = "-tableView:didDeselectRowAtIndexPath:"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "@implementation SPMenuVC"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "spellingForMyKids/SPMenuVC.m"
+            timestampString = "432217609.147189"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
+            landmarkName = "-nextKid"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "spellingForMyKids/SPObjectList.m"
-            timestampString = "431348445.3101"
+            filePath = "spellingForMyKids/SPMenuVC.m"
+            timestampString = "432219590.767415"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "-objects"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
+            landmarkName = "-previousKid"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "spellingForMyKids/SPAKidTVC.m"
-            timestampString = "431476363.991489"
+            filePath = "spellingForMyKids/SPMenuVC.m"
+            timestampString = "432218251.804599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "-kidImage"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
+            landmarkName = "-indexFromArrayOfKidsExtended"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "spellingForMyKids/SPObjectList.m"
-            timestampString = "431481689.586317"
+            filePath = "spellingForMyKids/SPMenuVC.m"
+            timestampString = "432219590.767415"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "351"
-            endingLineNumber = "351"
-            landmarkName = "-cancelButtonAction"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
+            landmarkName = "-previousKid"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

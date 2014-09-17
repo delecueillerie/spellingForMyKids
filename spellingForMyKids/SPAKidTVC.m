@@ -17,17 +17,10 @@
 @interface SPAKidTVC ()
 
 @property (weak, nonatomic) IBOutlet UILabel *labelKidName;
-@property (weak, nonatomic) IBOutlet UILabel *labelSchoolLevel;
-@property (weak, nonatomic) IBOutlet UILabel *labelAge;
 @property (weak, nonatomic) IBOutlet UITextField *textFielKidName;
-@property (weak, nonatomic) IBOutlet UITextField *textFieldAge;
-
-
 @property (weak, nonatomic) IBOutlet UILabel *labelConstName;
-@property (weak, nonatomic) IBOutlet UILabel *labelConstAge;
-@property (weak, nonatomic) IBOutlet UILabel *labelConstSchoolLevel;
 
-@property (weak, nonatomic) IBOutlet UIPickerView *PVSchoolLevel;
+//@property (weak, nonatomic) IBOutlet UIPickerView *PVSchoolLevel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewImage;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) UITextField *activeField;
@@ -37,16 +30,13 @@
 @property (strong,nonatomic) photoPicker *photoPicker;
 
 @property (strong, nonatomic) Kid *kidSelected;
-@property (strong, nonatomic) NSDictionary *kidSchoolLevel;
 @property (strong, nonatomic) UIImage *kidImage;
-@property (strong, nonatomic) NSArray *arraySchoolLevel;
 
 @end
 
 @implementation SPAKidTVC
 
-@synthesize kidSchoolLevel = _kidSchoolLevel;
-@synthesize kidImage = _kidImage;
+@synthesize kidImage = _kidImage, kidSelected = _kidSelected;
 
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
@@ -58,7 +48,6 @@
     return _dataImageCaptured;
 }
 
-
 - (Kid *) kidSelected {
     if (!_kidSelected) {
         _kidSelected = (Kid *) self.objectSelected;
@@ -66,22 +55,10 @@
     return _kidSelected;
 }
 
-- (NSDictionary *) kidSchoolLevel {
-    if (!_kidSchoolLevel) {
-        if ([self.kidSelected.schoolLevel intValue] > 0)
-        {
-            _kidSchoolLevel = [SPSchoolLevel schoolLevelForNumber:self.kidSelected.schoolLevel];
-        }
-        else {
-            _kidSchoolLevel = [self.arraySchoolLevel firstObject];
-        }
-    }
-    return _kidSchoolLevel;
-}
-
-- (void) setKidSchoolLevel:(NSDictionary *)kidSchoolLevel {
-    _kidSchoolLevel = kidSchoolLevel;
-    self.kidSelected.schoolLevel = [kidSchoolLevel valueForKey:@"level"];
+- (void) setKidSelected:(Kid *)kidSelected {
+    _kidSelected = kidSelected;
+    self.objectSelected = _kidSelected;
+    [[NSUserDefaults standardUserDefaults] setObject:_kidSelected.name  forKey:@"kidSelectedName"];
 }
 
 - (UIImage *) kidImage {
@@ -102,15 +79,11 @@
 
 - (void) setEditing:(BOOL)editing {
     [super setEditing:editing];
-    [self updateHiddenViewWhenEditing:editing];
+    self.textFielKidName.hidden = !editing;
+    self.viewContainerCamera.hidden = !editing;
+    self.labelKidName.hidden=editing;
 }
 
-- (NSArray *) arraySchoolLevel {
-    if (!_arraySchoolLevel) {
-        _arraySchoolLevel = [SPSchoolLevel arrayOfSchoolLevel];
-    }
-    return _arraySchoolLevel;
-}
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
 // II - overridding
@@ -129,60 +102,23 @@
 
     //delegates
     self.textFielKidName.delegate = self;
-    self.textFieldAge.delegate = self;
-    self.PVSchoolLevel.delegate = self;
-
+    //self.PVSchoolLevel.delegate = self;
 
     //font
-    self.labelConstAge.font = [UIFont fontWithName:@"Cursivestandard" size:17.0];
     self.labelConstName.font = [UIFont fontWithName:@"Cursivestandard" size:17.0];
-    self.labelConstSchoolLevel.font = [UIFont fontWithName:@"Cursivestandard" size:17.0];
-    
-}
-
-- (void) updateHiddenViewWhenEditing:(BOOL) editing {
-    self.textFielKidName.hidden = !editing;
-    self.textFieldAge.hidden = !editing;
-    self.PVSchoolLevel.hidden = !editing;
-    self.viewContainerCamera.hidden = !editing;
-    
-    self.labelKidName.hidden=editing;
-    self.labelAge.hidden=editing;
-    self.labelSchoolLevel.hidden =editing;
 }
 
 
-- (void) updateFieldValue {
-    //preload data in UI elements
+- (void) refresh {
     [self.imageViewImage roundWithImage:self.kidImage];
-
+    
     self.labelKidName.text = self.kidSelected.name;
     self.textFielKidName.text = self.kidSelected.name;
-
-    self.labelAge.text = [NSString stringWithFormat:@"%i",[self.kidSelected.age intValue]];
-    self.textFieldAge.text = self.labelAge.text;
-    
-    self.labelSchoolLevel.text = [self.kidSchoolLevel valueForKey:@"name"];
-    NSLog(@"kidSchoolLevel description %@", self.kidSchoolLevel.description);
-    
-    [self.PVSchoolLevel selectRow:[self.arraySchoolLevel indexOfObject:self.kidSchoolLevel] inComponent:0 animated:NO];
-
-}
-- (void) buttonSaveAction {
-    //self.kidSelected.name = self.textFielKidName.text;
-    //self.kidSelected.image = self.dataImageCaptured;
-    NSLog(@"kid age %i",[self.kidSelected.age intValue]);
-    NSLog(@"kid level %i",[self.kidSelected.schoolLevel intValue]);
-    [[NSUserDefaults standardUserDefaults] setObject:self.kidSelected.name  forKey:@"kidSelectedName"];
-
-    [super buttonSaveAction];
 }
 
-- (void) viewWillAppear:(BOOL)animated {
-    [self updateFieldValue];
-    [self updateHiddenViewWhenEditing:self.editing];
+- (void) loadInput {
+    self.kidSelected.name = self.textFielKidName.text;
 }
-
 
 
 //////////////////////////////////////////////////////////
@@ -222,7 +158,6 @@
 - (void) photoPickerDidFinishPickingImage {
     self.kidSelected.image = self.dataImageCaptured;
     self.kidImage = [UIImage imageWithData:self.dataImageCaptured];
-    //[self updateUI];
 }
 
 //////////////////////////////////////////////////////////
@@ -240,7 +175,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillBeHidden:)
                                                  name:UIKeyboardWillHideNotification object:nil];
-    
 }
 
 // Called when the UIKeyboardDidShowNotification is sent.
@@ -270,6 +204,7 @@
     self.scrollView.scrollIndicatorInsets = contentInsets;
 }
 
+/*
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
 // Pickerview delegate & datasource
@@ -293,14 +228,13 @@
     
     return attributedString;
 }
-/*
+
 - (NSString *) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     NSDictionary *dicLevel = [[SPSchoolLevel arrayOfSchoolLevel] objectAtIndex:row];
     return [dicLevel valueForKey:@"name"];
 }
-*/
 - (void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     self.kidSchoolLevel = [[SPSchoolLevel arrayOfSchoolLevel] objectAtIndex:row];
 }
-
+*/
 @end

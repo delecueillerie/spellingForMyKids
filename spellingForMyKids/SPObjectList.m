@@ -11,6 +11,7 @@
 
 //VC
 #import "SPAnObject.h"
+#import "SPAnObjectWithList.h"
 
 //Delegates
 #import "SPKidList.h"
@@ -20,8 +21,6 @@
 @interface SPObjectList ()
 
 @property (nonatomic, strong) UIBarButtonItem *rightBarButtonItem;
-
-@property (strong, nonatomic) NSArray *objects;
 @property (strong, nonatomic) NSArray *searchResults;
 
 @property (strong, nonatomic) NSIndexPath *indexPathLastSelectedRow;
@@ -38,7 +37,13 @@
  /////////////////////////////////////////////////////////*/
 
 - (NSManagedObjectContext *) managedObjectContext {
-    if (!_managedObjectContext) _managedObjectContext = [DBCoreDataStack sharedInstanceFor:data].managedObjectContext;
+    if (!_managedObjectContext) {
+        if ([self.dataSource managedObjectContext]) {
+            _managedObjectContext = [self.dataSource managedObjectContext];
+        } else {
+            _managedObjectContext = [DBCoreDataStack sharedInstanceFor:data].managedObjectContext;
+        }
+    }
     return _managedObjectContext;
 }
 
@@ -50,28 +55,20 @@
     return _managedObjectContextAdd;
 }
 
-- (NSArray *) objects {
-    
-    if (!_objects)  {
-        NSMutableArray *objectsExtended = [NSMutableArray arrayWithArray:[self.fetchedResultsController fetchedObjects]];
-        if (self.tableView.editing) {
-            [objectsExtended insertObject:@"Insert Word" atIndex:0];
-        }
-        _objects = objectsExtended;
-    }
-    return _objects;
-}
-
 
 - (NSManagedObject *) objectSelected {
-    _objectSelected = [self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForSelectedRow]];
+    if ([self.dataSource arrayData: self]) {
+        _objectSelected = [[self.dataSource arrayData:self] objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
+    } else {
+        _objectSelected = [self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForSelectedRow]];
+    }
     return _objectSelected;
 }
-
+/*
 - (void) setEditing:(BOOL)editing {
     [super setEditing:editing];
-    self.objects = nil;
-}
+    //self.objects = nil;
+}*/
 
 ////////////////////////////////////////////////////////////////////////
 //LIFE CYCLE
@@ -79,9 +76,8 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    //self.delegate =self; //default delegate
     
-    //Configure view : selection enbled VS show detail
+    //set up color
     self.tableView.backgroundColor = nil;
     self.tableView.tintColor = [UIColor whiteColor];
 }
@@ -90,6 +86,16 @@
 - (void) viewWillAppear:(BOOL)animated {
     //set up the bar button items
     [self setUpBarButtonItems];
+    
+    if ([self.dataSource datasource:self]==datasourceFetched) {
+        if ([[self.fetchedResultsController fetchedObjects] count]>6) {
+            self.searchDisplayController.searchBar.hidden = NO;
+        } else {
+            self.searchDisplayController.searchBar.hidden = YES;
+        }
+    } else {
+        self.searchDisplayController.searchBar.hidden = YES;
+    }
 }
 
 - (void)viewDidUnload {
@@ -106,6 +112,9 @@
 
 - (void) setUpBarButtonItems {
     // Set up the buttons in navigationBar
+    
+    //1st check to get the good navigation item
+    //don't forget that tab bar controller is front of the the VC
     UINavigationItem *currentNavigationItem;
     if (self.tabBarController) {
         currentNavigationItem = self.tabBarController.navigationItem;
@@ -113,13 +122,21 @@
         currentNavigationItem = self.navigationItem;
     }
     
-    currentNavigationItem.title=self.titleNavigationBar;
-    if (self.delegate.allowsMultipleSelection) {
+    if ([self.delegate respondsToSelector:@selector(titleNavigationBar:)]) {
+        currentNavigationItem.title=[self.delegate titleNavigationBar: self];
+    } else {
+        currentNavigationItem.title=@"title 2 complete";
+    }
+
+
+    if (!self.delegate) {
+        currentNavigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonAction)];
+        currentNavigationItem.leftBarButtonItem = nil;
+    } else if (([self.delegate rowSelected:self] == rowSelectedUnique) ||
+               ([self.delegate rowSelected:self] == rowSelectedMultiple)) {
         currentNavigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonAction)];
         currentNavigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonAction)];
-    }
-    else {
-        //BECAREFULL this VC in not ont the top of navigation controller stack, it is the tab bar that is on the top!! thus customize navigation item of the tab bar
+    } else if ([self.delegate rowSelected:self] == rowSelectedOpenVC) {
         currentNavigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonAction)];
     }
 }
@@ -136,28 +153,34 @@
 //////////////////////////////////////////////////////////
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.delegate.rowAction == selectionMultiple || self.delegate.rowAction == selectionOne) {
+    if (!_delegate) {
+        [self detailVCToPushWithObject:self.objectSelected];
+        
+    } else if ([self.delegate rowSelected:self] == rowSelectedMultiple ||
+               [self.delegate rowSelected:self] == rowSelectedUnique) {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-    else {
-        //we push a detail view controller. Check subclasses for overwritten method
-        //new setter used  self.objectSelected = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        
+    } else if ([self.delegate rowSelected:self] == rowSelectedOpenVC) {
         [self detailVCToPushWithObject:self.objectSelected];
+        
+    } else if ([self.delegate rowSelected:self] == rowSelectedUniqueAndPop) {
+        NSManagedObject *object;
+        object= [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [self.dataSource addObjectToList:object];
+        [self.navigationController popViewControllerAnimated:NO];
     }
-
 }
 
 - (void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.delegate.allowsMultipleSelection) {
+/*    if ([self.delegate rowSelected] == rowSelectedOpenVC) {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         cell.accessoryType = UITableViewCellAccessoryDetailButton;
-    }
+    }*/
 }
 
-
+/*
 - (UITableViewCellEditingStyle) tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     if (tableView.editing == NO) {
         return UITableViewCellEditingStyleNone;
     } else if (indexPath.row == 0) {
@@ -165,7 +188,7 @@
     } else {
         return UITableViewCellEditingStyleDelete;
     }
-}
+}*/
 
 /*
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -180,9 +203,13 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return 1;
-    }
-    else {
-        return [[self.fetchedResultsController sections] count];
+    } else {
+        datasource datasourceType = [self.dataSource datasource:self];
+        if (datasourceType==datasourceArray) {
+            return 1;
+        } else {
+            return [[self.fetchedResultsController sections] count];
+        }
     }
 }
 
@@ -193,10 +220,14 @@
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return [self.searchResults count];
 
-    }
-    else {
-        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-        return [sectionInfo numberOfObjects];
+    } else {
+        datasource datasourceType = [self.dataSource datasource:self];
+        if (datasourceType==datasourceArray) {
+            return [[self.dataSource arrayData:self] count];
+        } else {
+            id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+            return [sectionInfo numberOfObjects];
+        }
     }
 }
 
@@ -222,11 +253,29 @@
 
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         object = [self.searchResults objectAtIndex:indexPath.row];
-    }
-    else {
-       object= [self.fetchedResultsController objectAtIndexPath:indexPath];
-    }
+    } else {
+        datasource datasourceType = [self.dataSource datasource:self];
+        switch (datasourceType) {
+            case datasourceArray:
+            {
+                NSArray *arrayData = [self.dataSource arrayData:self];
+                if ([arrayData count] > 0) {
+                    object = [arrayData objectAtIndex:indexPath.row];
+                }
 
+            }
+                break;
+            case datasourceFetched:
+            {
+                object= [self.fetchedResultsController objectAtIndexPath:indexPath];
+
+            }
+                
+            default:
+                break;
+        }
+    }
+        
     // Configure the cell.
     //check which table view, the main one or the table view from the search bar controller
     if (tableView == self.tableView) {
@@ -251,19 +300,20 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
+    //if (editingStyle == UITableViewCellEditingStyleDelete) {
+    datasource datasourceType = [self.dataSource datasource:self];
+    if (datasourceType == datasourceArray) {
+        [self.dataSource removeObjectFromList:[[self.dataSource arrayData:self] objectAtIndex:indexPath.row]];
+
+    } else if (datasourceType == datasourceFetched) {
         // Delete the managed object.
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
         [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
         
         NSError *error;
         if (![context save:&error]) {
-
             // Replace this implementation with code to handle the error appropriately.
-             
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
@@ -297,7 +347,7 @@
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
     //predicate
-    fetchRequest.predicate = self.delegate.predicate;
+    fetchRequest.predicate = [self.dataSource predicate:self];
     
     // Create and initialize the fetch results controller.
     _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
@@ -314,18 +364,13 @@
         abort();
     }
     
-    NSLog(@"fetched Objects count %i",[[_fetchedResultsController fetchedObjects] count]);
+
+    NSLog(@"fetched Objects count %lu",(unsigned long)[[_fetchedResultsController fetchedObjects] count]);
     
     return _fetchedResultsController;
 }
 
-//////////////////////////////////////////////////////////
-// delegate
-//////////////////////////////////////////////////////////
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView reloadData];
-}
+
 
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -343,8 +388,7 @@
     SPAnObject *viewControllerAnObject = [self.storyboard instantiateViewControllerWithIdentifier:[self storyboardVCId]];
     viewControllerAnObject.objectSelected = objectNew;
     viewControllerAnObject.editing = YES;
-    viewControllerAnObject.newObject = YES;
-    //UINavigationController *navController = self.navigationController;
+    viewControllerAnObject.isNewObject = YES;
     [self.navigationController pushViewController:viewControllerAnObject animated:NO];
 }
 - (void) cancelButtonAction {
@@ -353,12 +397,11 @@
 
 - (void) detailVCToPushWithObject:(id)object {
     SPAnObject *detailVC = [self.storyboard instantiateViewControllerWithIdentifier:self.storyboardVCId];
+    detailVC.delegate = nil;
     detailVC.editing = NO;
     detailVC.objectSelected = self.objectSelected;
     [self.navigationController pushViewController:detailVC animated:YES];
 }
-
-
 
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -368,31 +411,55 @@
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@", searchText];
-    self.searchResults = [self.objects filteredArrayUsingPredicate:resultPredicate];
+    self.searchResults = [[self.fetchedResultsController fetchedObjects] filteredArrayUsingPredicate:resultPredicate];
 }
+
+
+/*///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+//Delegate
+////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////*/
+
+- (NSPredicate *) predicate:(id)sender {
+    return [NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
+}
+
+- (rowSelected) rowSelected:(id)sender {
+    return rowSelectedOpenVC;
+}
+
+- (datasource) datasource:(id)sender {
+    return datasourceFetched;
+}
+
+
+- (NSArray *) arrayData:(id)sender {
+    return nil;
+}
+
+- (void) addObjectToList:(NSManagedObject *)object {
+    
+}
+
+- (void) removeObjectFromList:(NSManagedObject *)object {
+    
+}
+/*/////////////////////////////////////////////////////////
+ Delegate search
+ /////////////////////////////////////////////////////////*/
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView reloadData];
+}
+
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
     [self filterContentForSearchText:searchString
                                scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
                                       objectAtIndex:[self.searchDisplayController.searchBar
                                                      selectedScopeButtonIndex]]];
-
     return YES;
 }
 
-/*///////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-//Object list delegate
-////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////*/
-
-/*
-- (NSPredicate *) predicate {
-    return [NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
-}
-
-- (BOOL) allowsMultipleSelection {
-    return NO;
-}
- */
 @end

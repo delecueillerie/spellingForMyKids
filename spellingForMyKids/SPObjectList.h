@@ -8,22 +8,44 @@
 
 @protocol objectListDelegate <NSObject>
 
-typedef enum selectRowAction selectRowAction;
-enum selectRowAction
+typedef enum rowSelected rowSelected;
+enum rowSelected
 {
-    selectionMultiple = 0,
-    selectionOne = 1,
-    openVC = 2
-    
+    rowSelectedMultiple = 0,
+    rowSelectedUnique = 1,
+    rowSelectedOpenVC = 2,
+    rowSelectedUniqueAndPop = 3
 };
 
-@required
-- (NSPredicate *) predicate;
-- (selectRowAction) rowAction;
-//- (BOOL) allowsMultipleSelection;
+- (rowSelected) rowSelected:(id) sender;
+
+@optional
+- (NSString *) titleNavigationBar:(id) sender;
+//- (void) objectAddedFromList:(NSManagedObject *)object;
 @end
 
-@interface SPObjectList : UITableViewController <NSFetchedResultsControllerDelegate, UITableViewDelegate>
+
+@protocol objectListDataSource <NSObject>
+
+typedef enum datasource datasource;
+enum datasource
+{
+    datasourceFetched=0,
+    datasourceArray = 1
+};
+
+- (datasource) datasource:(id) sender;
+- (NSArray *) arrayData:(id) sender;
+//- (void) updateArrayData:(NSArray *)arrayUpdatedData;
+- (void) addObjectToList:(NSManagedObject *) object;
+- (void) removeObjectFromList:(NSManagedObject *) object;
+- (NSPredicate *) predicate:(id) sender;
+- (NSManagedObjectContext *) managedObjectContext;
+//@property (strong, nonatomic) NSManagedObject *objectAddedFromList;
+@end
+
+
+@interface SPObjectList : UITableViewController <NSFetchedResultsControllerDelegate, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, objectListDelegate, objectListDataSource>
 
 @property (nonatomic, strong) NSManagedObject *objectSelected;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
@@ -36,11 +58,17 @@ enum selectRowAction
 @property (nonatomic, strong) NSString *entityName;
 @property (nonatomic, strong) NSString *sortDescriptor;
 @property (nonatomic, strong) NSString *storyboardVCId;
-@property (nonatomic, strong) NSString *titleNavigationBar;
+//@property (nonatomic, strong) NSString *titleNavigationBar;
 
 - (void) configureCell:(UITableViewCell *) cell;
+
+//method used in selector, thus these method must be public
 - (void) addButtonAction;
+- (void) doneButtonAction;
+- (void) cancelButtonAction;
+
 @property (nonatomic, weak) id <objectListDelegate> delegate;
+@property (nonatomic, weak) id <objectListDataSource> dataSource;
 
 
 

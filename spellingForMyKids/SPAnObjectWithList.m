@@ -17,51 +17,19 @@
 @implementation SPAnObjectWithList
 
 
-/*/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-ObjectList delegate
-/////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////*/
-
-- (NSPredicate *) predicate {
-    NSPredicate *predicate;
-    /*if (self.editing) {
-        predicate = [NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
-    } else {*/
-        NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
-        for (NSManagedObject *object in self.objectList) {
-            [mutableArray addObject:[object valueForKey:self.key]];
-        }
-        predicate = [NSPredicate predicateWithFormat: @"%@ IN %@",self.key, mutableArray];
-    //}
-    return predicate;
-}
 
 
-- (BOOL) allowsMultipleSelection {
-    //return self.editing;
-    return NO;
-}
-
-/*/////////////////////////////////////////////////////////////////////////////////////
- /////////////////////////////////////////////////////////////////////////////////////
-
- /////////////////////////////////////////////////////////////////////////////////////
- ////////////////////////////////////////////////////////////////////////////////////*/
-
+/*////////////////////////////////////////////////////////////////////
+ Accessors
+ ///////////////////////////////////////////////////////////////////*/
 - (void) setEditing:(BOOL)editing {
     [super setEditing:editing];
-    //refresh FRC & TV
     self.objectListVC.tableView.editing = editing;
-    /*self.objectListVC.fetchedResultsController = nil;
-    [self.objectListVC.tableView reloadData];
-    
-    if (editing) {
-        [self updateAccessoryForTableView];
-    }*/
 }
 
-
+/*////////////////////////////////////////////////////////////////////
+ Life cycle management
+ ///////////////////////////////////////////////////////////////////*/
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -71,10 +39,8 @@ ObjectList delegate
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-
     // Do any additional setup after loading the view.
 }
 
@@ -92,7 +58,7 @@ ObjectList delegate
 //////////////////////////////////////////////////////////
 - (void) updateAccessoryForTableView {
     //We select rows that represent the objectsSelected
-    if (self.objectListVC.delegate.allowsMultipleSelection) {
+    if (!([self.objectListVC.delegate rowSelected:self] == rowSelectedOpenVC)) {
         for (id object in self.objectList) {
             NSIndexPath *indexPath = [self.objectListVC.fetchedResultsController indexPathForObject:object];
             if (indexPath) {
@@ -103,11 +69,11 @@ ObjectList delegate
     }
 }
 
-
 - (SPObjectList *) addObjectListIdentifier: (NSString *) identifier toView:(UIView *) view {
     //load VC for container
     SPObjectList *objectListVC = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
     objectListVC.delegate = self;
+    objectListVC.dataSource = self;
     objectListVC.managedObjectContext=self.managedObjectContext;
     [self addChildViewController:objectListVC];
     [objectListVC didMoveToParentViewController:self];
@@ -116,24 +82,39 @@ ObjectList delegate
     return objectListVC;
 }
 
-- (NSSet *) updatedRelationshipIn:(SPObjectList *)objectListVC {
-    //retrieving the objects selected
-    NSMutableArray *arrayWordsSelected = [[NSMutableArray alloc]init];
-    for (NSIndexPath *indexPath in objectListVC.tableView.indexPathsForSelectedRows) {
-        NSManagedObject *object = [objectListVC.fetchedResultsController objectAtIndexPath:indexPath];
-        [arrayWordsSelected addObject:object];
-    }
-    return [NSSet setWithArray:arrayWordsSelected];
-}
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+/*/////////////////////////////////////////////////////////////////////////////////////
+ ObjectList delegate & datasource
+ ////////////////////////////////////////////////////////////////////////////////////*/
+
+- (datasource) datasource:(id)sender {
+    return datasourceArray;
 }
-*/
+
+- (NSPredicate *) predicate:(id)sender {
+    return [NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
+}
+
+- (NSString *) titleNavigationBar:(id) sender {
+    return @"default nav title";
+}
+//- (void) objectAddedFromList:(NSManagedObject *)object;
+
+- (NSArray *) arrayData:(id) sender {
+    return nil;
+}
+
+- (void) addObjectToList:(NSManagedObject * ) object {
+    
+}
+
+- (void) removeObjectFromList:(NSManagedObject *)object {
+    
+}
+
+- (rowSelected) rowSelected:(id)sender {
+    //default value
+    return rowSelectedUnique;
+}
 
 @end

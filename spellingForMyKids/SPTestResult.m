@@ -8,7 +8,7 @@
 
 #import "SPTestResult.h"
 #import "SPTestResultTVCell.h"
-#import "SKDictWordResult.h"
+//#import "SKDictWordResult.h"
 
 //#import "Word.h"
 
@@ -71,7 +71,7 @@
     SPTestResultTVCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     NSDictionary *dictionaryWordResult = [self.gameResult objectAtIndex:indexPath.row];
-    
+/*
     // Configure the cell...
     NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:[dictionaryWordResult valueForKey:stringInputKey]];
     cell.labelPoints.text = [[dictionaryWordResult valueForKey:pointsKey] stringValue];
@@ -90,7 +90,7 @@
     }
     
     cell.labelStringInput.attributedText = attributeString;
-    
+  */
     return cell;
 }
 

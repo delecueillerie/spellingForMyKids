@@ -14,7 +14,7 @@
 
 
 
-@interface SPTestVC : UIViewController <AVAudioPlayerDelegate, UIGestureRecognizerDelegate, gameProtocolDelegate>
+@interface SPTestVC : UIViewController <AVAudioPlayerDelegate, UIGestureRecognizerDelegate, gameDelegate, gameDatasource>
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) Kid *kidSelected;

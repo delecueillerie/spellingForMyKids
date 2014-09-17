@@ -7,13 +7,44 @@
 //
 
 #import <UIKit/UIKit.h>
-@interface SPAnObject : UIViewController
+
+@protocol objectDelegate <NSObject>
+
+- (void) saveAndRefresh;
+- (void) saveAndPop;
+- (void) loadInput;
+- (void) refresh;
+- (void) setObjectSelected:(NSManagedObject *) objectSelected;
+
+typedef enum objectMode objectMode;
+enum objectMode
+{
+    objectModeRead = 0,
+    objectModeTest = 1,
+};
+
+- (objectMode) objectMode:(id) sender;
+
+
+@optional
+
+@end
+
+@interface SPAnObject : UIViewController <objectDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property (strong, nonatomic) NSManagedObject *objectSelected;
-@property (nonatomic) BOOL newObject;
+@property (nonatomic, strong) NSManagedObject *objectSelected;
+//specific state of the object
+@property (nonatomic) BOOL isNewObject; //should be deleted if canceled action
+@property (nonatomic) BOOL isReadOnly; //no edit button displayed∫
 
-- (void) buttonSaveAction;
+@property (nonatomic, weak) id<objectDelegate> delegate;
 
+- (void) saveAndRefresh;
+- (void) saveAndPop;
+- (void) save;
+- (void) loadInput;
+- (void) refresh;
+- (NSManagedObject *) objectSelected;
 
 @end
