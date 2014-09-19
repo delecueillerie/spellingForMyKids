@@ -47,9 +47,9 @@
 }
 
 - (UITableViewCell *)configureCell:(UITableViewCell *)tableViewCell withObject:(NSManagedObject *) object {
+    [super configureCell:tableViewCell withObject:object];
     tableViewCell.textLabel.text = [object valueForKey:@"api"];
     NSLog(@"table view Cell %@", tableViewCell.textLabel.text);
-    [self configureCell:tableViewCell];
     return tableViewCell;
 }
 

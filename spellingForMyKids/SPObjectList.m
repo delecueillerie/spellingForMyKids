@@ -234,15 +234,15 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)configureCell:(UITableViewCell *)tableViewCell withObject:(NSManagedObject *) object {
-    tableViewCell.textLabel.text = [object valueForKey:@"name"];
-    [self configureCell:tableViewCell];
+    //tableViewCell.textLabel.text = [object valueForKey:@"name"];
+    [self configureCell:tableViewCell withFont:[UIFont fontWithName:@"Cursivestandard" size:20] withColor:[UIColor blackColor]];
     return tableViewCell;
 
 }
 
-- (void) configureCell:(UITableViewCell *) cell {
-    cell.textLabel.font = [UIFont fontWithName:@"Cursivestandard" size:20];
-    cell.textLabel.textColor = [UIColor blackColor];
+- (void) configureCell:(UITableViewCell *) cell withFont:(UIFont *) font withColor:(UIColor*) color {
+    cell.textLabel.font = font;
+    cell.textLabel.textColor = color ;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

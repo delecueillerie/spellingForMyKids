@@ -44,7 +44,7 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)configureCell:(UITableViewCell *)tableViewCell withObject:(NSManagedObject *) object {
-    [self configureCell:tableViewCell];
+    [super configureCell:tableViewCell withObject:object];
     SpellingTest * spellingTest = (SpellingTest *) object;
     tableViewCell.textLabel.text = spellingTest.spelling.name;
     return tableViewCell;

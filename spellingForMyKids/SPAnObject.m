@@ -11,7 +11,6 @@
 
 @interface SPAnObject ()
 
-
 @end
 
 @implementation SPAnObject
@@ -24,8 +23,10 @@
 
 - (NSManagedObjectContext *) managedObjectContext {
     if (!_managedObjectContext) {
-        if (self.objectSelected.managedObjectContext) {
-            _managedObjectContext = self.objectSelected.managedObjectContext;
+        if (self.objectSelected) {
+            if ([self.objectSelected isKindOfClass:[NSManagedObject class]]) {
+                _managedObjectContext = [self.objectSelected valueForKey:@"managedObjectContext"];
+            }
         } else {
             _managedObjectContext = [DBCoreDataStack sharedInstanceFor:data].managedObjectContext;
         }
@@ -55,7 +56,7 @@
     }
 }
 
-- (void) setObjectSelected:(NSManagedObject *)objectSelected {
+- (void) setObjectSelected:(id)objectSelected {
     _objectSelected = objectSelected;
 }
 //////////////////////////////////////////////////////////
@@ -92,7 +93,9 @@
     //clean the undoManager∫
     [self.undoManager undo];
     if (self.isNewObject) {
-        [self.managedObjectContext deleteObject:self.objectSelected];
+        if ([self.objectSelected isKindOfClass:[NSManagedObject class]]) {
+            [self.managedObjectContext deleteObject:self.objectSelected];
+        }
     }
     [self.navigationController popViewControllerAnimated:NO];
 }
@@ -138,6 +141,7 @@
 - (void) refresh {
     
 }
+
 /*
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////

@@ -41,11 +41,15 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)configureCell:(UITableViewCell *)tableViewCell withObject:(NSManagedObject *) object {
-    [self configureCell:tableViewCell];
+    [super configureCell:tableViewCell withObject:object];
     Spelling * spelling = (Spelling *) object;
     tableViewCell.textLabel.text = spelling.name;
-    return tableViewCell;
     
+    if ([self.delegate respondsToSelector:@selector(cellImageFor:)] && object) {
+        tableViewCell.imageView.image = [self.delegate cellImageFor:object];
+    }
+    
+    return tableViewCell;
 }
 
 

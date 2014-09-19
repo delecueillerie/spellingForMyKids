@@ -40,7 +40,7 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)configureCell:(UITableViewCell *)tableViewCell withObject:(NSManagedObject *) object {
-    [self configureCell:tableViewCell];
+    [super configureCell:tableViewCell withObject:object];
     Word * word = (Word *) object;
     tableViewCell.textLabel.text = word.name;
     [tableViewCell.imageView rounThumbnaildWithImage:[UIImage imageWithData:word.image]];

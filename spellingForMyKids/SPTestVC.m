@@ -14,7 +14,6 @@
 //ScrabbleKeyboard Module
 #import "config.h"
 #import "SKHUDView.h"
-#import "SKWordsData.h"
 
 //Category
 #import "UIImageView+cornerRadius.h"
@@ -42,7 +41,7 @@
 //scrabbleKeyboard
 @property (strong, nonatomic) SKGameController* gameController;
 //@property (strong, nonatomic) SKBoardController *boardController;
-@property (strong, nonatomic) SKWordsData *spelling;
+//@property (strong, nonatomic) SKWordsData *spelling;
 
 @end
 
@@ -53,7 +52,7 @@
     if (!_arrayWords) _arrayWords = [self.spellingSelected.words allObjects];
     return _arrayWords;
 }
-
+/*
 - (SKWordsData *) spelling {
     if (!_spelling) {
         _spelling = [[SKWordsData alloc] init];
@@ -65,8 +64,9 @@
         }
         _spelling.words = arrayOfWordName;
     }
-    return _spelling;
+   // return _spelling;
 }
+*/
 
 - (SKGameController *) gameController {
     if (!_gameController) {
@@ -75,7 +75,7 @@
         _gameController = [[SKGameController alloc] init];
         _gameController.delegate = self;
         _gameController.datasource = self;
-        _gameController.spelling = self.spelling;
+        //_gameController.spelling = self.spelling;
         _gameController.hud = self.viewHud;
     }
     return _gameController;
@@ -180,7 +180,7 @@
     [self.view addSubview:stars];
     [self.view sendSubviewToBack:stars];
     
-    [UIView animateWithDuration:self.spelling.timeToSolve
+    [UIView animateWithDuration:[self timeToSolve]
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
@@ -202,13 +202,14 @@
 }
 
 - (NSUInteger) timeToSolve {
-    return self.spelling.timeToSolve;
+    return 10;
+    //return self.spelling.timeToSolve;
 }
 
 - (NSUInteger) maxWordLength {
     NSUInteger max = 0;
-    for (NSString *word in self.spelling.words) {
-        max = MAX(max, [word length]);
+    for (Word *word in self.arrayWords) {
+        max = MAX(max, [word.name length]);
     }
     return max;
 }

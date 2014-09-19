@@ -42,7 +42,7 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)configureCell:(UITableViewCell *)tableViewCell withObject:(NSManagedObject *) object {
-    [self configureCell:tableViewCell];
+    [super configureCell:tableViewCell withObject:object];
     Kid * kid = (Kid *) object;
     tableViewCell.textLabel.text = kid.name;
     [tableViewCell.imageView rounThumbnaildWithImage:[UIImage imageWithData:kid.image]];

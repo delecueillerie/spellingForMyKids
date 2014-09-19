@@ -14,7 +14,7 @@
 - (void) saveAndPop;
 - (void) loadInput;
 - (void) refresh;
-- (void) setObjectSelected:(NSManagedObject *) objectSelected;
+- (void) setObjectSelected:(id) objectSelected;
 
 typedef enum objectMode objectMode;
 enum objectMode
@@ -33,7 +33,7 @@ enum objectMode
 @interface SPAnObject : UIViewController <objectDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong) NSManagedObject *objectSelected;
+@property (nonatomic, strong) id objectSelected;
 //specific state of the object
 @property (nonatomic) BOOL isNewObject; //should be deleted if canceled action
 @property (nonatomic) BOOL isReadOnly; //no edit button displayed∫
@@ -45,6 +45,5 @@ enum objectMode
 - (void) save;
 - (void) loadInput;
 - (void) refresh;
-- (NSManagedObject *) objectSelected;
 
 @end

@@ -21,7 +21,7 @@ enum rowSelected
 
 @optional
 - (NSString *) titleNavigationBar:(id) sender;
-//- (void) objectAddedFromList:(NSManagedObject *)object;
+- (UIImage *) cellImageFor:(NSManagedObject *) object;
 @end
 
 
@@ -36,12 +36,12 @@ enum datasource
 
 - (datasource) datasource:(id) sender;
 - (NSArray *) arrayData:(id) sender;
-//- (void) updateArrayData:(NSArray *)arrayUpdatedData;
 - (void) addObjectToList:(NSManagedObject *) object;
 - (void) removeObjectFromList:(NSManagedObject *) object;
 - (NSPredicate *) predicate:(id) sender;
+
+@optional
 - (NSManagedObjectContext *) managedObjectContext;
-//@property (strong, nonatomic) NSManagedObject *objectAddedFromList;
 @end
 
 
@@ -58,9 +58,9 @@ enum datasource
 @property (nonatomic, strong) NSString *entityName;
 @property (nonatomic, strong) NSString *sortDescriptor;
 @property (nonatomic, strong) NSString *storyboardVCId;
-//@property (nonatomic, strong) NSString *titleNavigationBar;
 
-- (void) configureCell:(UITableViewCell *) cell;
+- (UITableViewCell *)configureCell:(UITableViewCell *)tableViewCell withObject:(NSManagedObject *) object;
+- (void) configureCell:(UITableViewCell *) cell withFont:(UIFont *)font withColor:(UIColor *)color;
 
 //method used in selector, thus these method must be public
 - (void) addButtonAction;
