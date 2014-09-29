@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "SPAnObjectWithList.h"
 
-@interface SPMenuVC : SPAnObjectWithList <UIScrollViewDelegate, objectListDataSource, objectListDelegate, objectDelegate>
+@interface SPMenuVC : SPAnObjectWithList <objectListDataSource, objectListDelegate, objectDelegate>
 
 @end

@@ -6,13 +6,17 @@
 //  Copyright (c) 2014 Olivier Delecueillerie. All rights reserved.
 //
 
-#import "SPTestVC.h"
+
 #import "Word.h"
+#import "WordTest+enhanced.h"
+
+
+#import "SPTestVC.h"
 #import "SPTestResult.h"
-#import "config.h"
+//#import "config.h"
 
 //ScrabbleKeyboard Module
-#import "config.h"
+//#import "config.h"
 #import "SKHUDView.h"
 
 //Category
@@ -28,15 +32,24 @@
 
 @interface SPTestVC ()
 
+//@property (strong, nonatomic) Kid *kidSelected;
+//@property (strong, nonatomic) Spelling *spellingSelected;
+
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIView *viewBoard;
 @property (weak, nonatomic) IBOutlet UIView *viewStopwatch;
 @property (weak, nonatomic) IBOutlet SKHUDView *viewHud;
 @property (weak, nonatomic) IBOutlet SKCounterLabelView *viewCounter;
 
-@property (strong, nonatomic) Word *wordSelected;
-@property (strong, nonatomic) NSArray *arrayWords;
+
+@property (strong, nonatomic) WordTest *wordTestSelected;
+//@property (strong, nonatomic) Word *wordSelected;
+//@property (strong, nonatomic) NSArray *arrayWords;
+@property (strong, nonatomic) NSArray *arrayWordTests;
+@property (nonatomic) NSUInteger maxWordLength; //use for define the size of the tiles
 @property (strong, nonatomic) AVAudioPlayer *player;
+
+
 
 //scrabbleKeyboard
 @property (strong, nonatomic) SKGameController* gameController;
@@ -47,26 +60,25 @@
 
 @implementation SPTestVC
 
+- (NSArray *) arrayWordTests {
+    if (!_arrayWordTests) {
+        self.maxWordLength = 0;
+        NSMutableArray *mArrayWordTests = [[NSMutableArray alloc] initWithCapacity:[self.spellingTestSelected.spelling.words count]];
+        for (Word *word in self.spellingTestSelected.spelling.words) {
+            WordTest *wordTest = [NSEntityDescription insertNewObjectForEntityForName:@"WordTest" inManagedObjectContext:self.managedObjectContext];
+            wordTest.word = word;
+            wordTest.spellingTest = self.spellingTestSelected;
+            wordTest.kid = self.spellingTestSelected.kid;
+            wordTest.spelling = self.spellingTestSelected.spelling;
+            [mArrayWordTests addObject:wordTest];
+            
+            self.maxWordLength = MAX([word.name length], self.maxWordLength); //define the maxWordLength
 
-- (NSArray *) arrayWords {
-    if (!_arrayWords) _arrayWords = [self.spellingSelected.words allObjects];
-    return _arrayWords;
-}
-/*
-- (SKWordsData *) spelling {
-    if (!_spelling) {
-        _spelling = [[SKWordsData alloc] init];
-        _spelling.pointsPerTile = 20;
-        _spelling.timeToSolve = 10;
-        NSMutableArray *arrayOfWordName = [[NSMutableArray alloc] init];
-        for (Word *word in self.arrayWords) {
-            [arrayOfWordName addObject:word.name];
         }
-        _spelling.words = arrayOfWordName;
+        _arrayWordTests = mArrayWordTests;
     }
-   // return _spelling;
+    return _arrayWordTests;
 }
-*/
 
 - (SKGameController *) gameController {
     if (!_gameController) {
@@ -75,81 +87,31 @@
         _gameController = [[SKGameController alloc] init];
         _gameController.delegate = self;
         _gameController.datasource = self;
-        //_gameController.spelling = self.spelling;
         _gameController.hud = self.viewHud;
     }
     return _gameController;
 }
 
-- (NSUInteger) level {
-    if (!_level) _level = 1;
-    return _level;
-}
-///////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////
-//VC LIFECYCLE
-///////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////
+/*//////////////////////////////////////////////////////////////////////////////////////////////
+ VC LIFECYCLE
+//////////////////////////////////////////////////////////////////////////////////////////////*/
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    self.navigationItem.hidesBackButton = YES;
+    
     [self.gameController newQuestion];
-
 }
-
-
 
 - (void) viewDidAppear:(BOOL)animated {
     NSLog(@"viewDidAppear");
-    [self updatePage];
     [self.view layoutSubviews];
-    
 }
 
-
-/*
-- (void) keyboardWillShow:(NSNotification *) notification {
-    NSDictionary* userInfo = [notification userInfo];
-    CGRect keyboardFrameInWindowsCoordinates;
-    [[userInfo objectForKey:UIKeyboardDidShowNotification] getValue:&keyboardFrameInWindowsCoordinates];
-    CGRect keyboardFrameInViewCoordinates = [self.view convertRect:keyboardFrameInWindowsCoordinates fromView:nil];
-    self.viewBoard.frame = keyboardFrameInViewCoordinates;
-}
-*/
-
-- (void) updatePage {
-    NSUInteger currentIndex = [self.arrayWords indexOfObject:self.wordSelected];
-    NSString * title = [NSString stringWithFormat:@"Word no %lu / %lu",(unsigned long)(currentIndex+1),(unsigned long)[self.arrayWords count]];
-    self.navigationItem.title = title;
-    [self.imageView roundWithImage:[UIImage imageWithData:self.wordSelected.image]];
-    [self tapImageView:nil];
-   }
-
-
-- (NSString *) nextWord {
-    
-    NSString *nextWord = nil;
-    
-    if (!self.wordSelected) {
-        self.wordSelected = [self.arrayWords firstObject];
-        return self.wordSelected.name;
-    }
-
-    NSUInteger index = [self.arrayWords indexOfObject:self.wordSelected];
-    index ++;
-    
-    if ([self.arrayWords count] > index) {
-        self.wordSelected = [self.arrayWords objectAtIndex:index];
-        nextWord = self.wordSelected.name;
-        [self updatePage];
-    }
-    return nextWord;
-}
-
-
+/*//////////////////////////////////////////////////////////////////////////////////////////////
+ Triggered Action
+ //////////////////////////////////////////////////////////////////////////////////////////////*/
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"testResult"]) {
@@ -159,17 +121,35 @@
 }
 
 - (IBAction)tapImageView:(id)sender {
-    NSData *audio = self.wordSelected.audio;
-    NSError *error;
-    self.player = [[AVAudioPlayer alloc] initWithData:audio error:&error];
-    [self.player setDelegate:self];
-    [self.player play];
+    NSData *audio = self.wordTestSelected.word.audio;
+    if (audio) {
+        NSError *error;
+        self.player = [[AVAudioPlayer alloc] initWithData:audio error:&error];
+        [self.player setDelegate:self];
+        [self.player play];
+    }
 }
+
 - (IBAction)swipeGestureImageView:(id)sender {
     [self.gameController newQuestion];
 }
 
+- (void) save {
+    NSError *error;
+    [self.managedObjectContext save:&error];
+    NSManagedObjectContext *parentContext = [self.managedObjectContext parentContext];
+    
+    if (parentContext) {
+        error = nil;
+        [parentContext save:&error];
+    }
+}
 
+/*//////////////////////////////////////////////////////////////////////////////////////////////
+ Triggered Action
+ //////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*
 - (void) starDust {
     
     int startX = self.viewStopwatch.center.x;
@@ -191,34 +171,86 @@
                          [stars removeFromSuperview];
                      }];
 }
+*/
 
-///////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////
-//Game controller Delegate and Datasource
-///////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////
+/*//////////////////////////////////////////////////////////////////////////////////////////////
+ gameController datasource
+ //////////////////////////////////////////////////////////////////////////////////////////////*/
+
+- (NSString *) nextWord {
+    
+    NSString *nextWord = nil;
+    NSUInteger index = 0;
+    //check if first word call
+    if (!self.wordTestSelected) {
+        self.wordTestSelected = [self.arrayWordTests firstObject];
+        nextWord =  self.wordTestSelected.word.name;
+    } else {
+    
+        index = [self.arrayWordTests indexOfObject:self.wordTestSelected];
+        index ++;
+    
+        if ([self.arrayWordTests count] > index) {
+            self.wordTestSelected = [self.arrayWordTests objectAtIndex:index];
+            nextWord = self.wordTestSelected.word.name;
+            //[self updatePage];
+        }
+    }
+
+    NSString * title = [NSString stringWithFormat:@"Word no %lu / %lu",(unsigned long)(index+1),(unsigned long)[self.arrayWordTests count]];
+    self.navigationItem.title = title;
+    [self.imageView roundWithImage:[UIImage imageWithData:self.wordTestSelected.word.image]];
+    [self tapImageView:nil];
+
+    [self save];
+    return nextWord;
+}
+
+/*//////////////////////////////////////////////////////////////////////////////////////////////
+ gameController delegate
+ //////////////////////////////////////////////////////////////////////////////////////////////*/
+
+-(gameType) gameType:(id)sender {
+    return gameTypeSpelling;
+}
+
+- (gameKeyboardType) gameKeyboardType:(id)sender {
+    return gameKeyboardTile;
+}
+
+- (gameLevel) gameLevel:(id)sender {
+    return [self.spellingTestSelected.level intValue];
+}
+
 - (void) scoreBoardWithGameResult:(NSArray *)gameResult {
     [self performSegueWithIdentifier:@"testResult" sender:self];
 }
 
 - (NSUInteger) timeToSolve {
-    return 10;
-    //return self.spelling.timeToSolve;
+    float coef;
+    switch ([self.spellingTestSelected.level intValue]) {
+        case spellingTestLevelEasy:
+            coef = 10.0;
+            break;
+        case spellingTestLevelMedium:
+            coef = 5;
+            break;
+        case spellingTestLevelHard:
+            coef = 2;
+        default:
+            coef = 1;
+            break;
+    }
+    return coef*[self.wordTestSelected.word.name length];
 }
 
 - (NSUInteger) maxWordLength {
-    NSUInteger max = 0;
-    for (Word *word in self.arrayWords) {
-        max = MAX(max, [word.name length]);
-    }
-    return max;
+    return _maxWordLength;
 }
 
 - (UIView *) gameViewContainer:(id)sender {
     return self.viewBoard;
 }
 
-- (gameKeyboardType) gameKeyboardType:(id)sender {
-    return gameKeyboardTile;
-}
+
 @end

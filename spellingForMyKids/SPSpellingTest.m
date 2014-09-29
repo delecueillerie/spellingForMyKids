@@ -12,12 +12,13 @@
 #import "SPSpellingList.h"
 #import "SPWordList.h"
 #import "SPSpellingTestList.h"
+#import "SPTestVC.h"
 
 @interface SPSpellingTest ()
 
 @property (weak, nonatomic) IBOutlet UILabel *spellingName;
 @property (weak, nonatomic) IBOutlet UIView *containerWordList;
-@property (weak, nonatomic) IBOutlet UIView *containerResult;
+
 
 @property (strong, nonatomic) SPWordList *wordListVC;
 @property (strong, nonatomic) SPSpellingTestList *spellingTestListVC;
@@ -52,33 +53,21 @@
  /*////////////////////////////////////////////////////////////////////////////////////////*/
 
 - (void) viewDidLoad {
-    if (!self.spellingTestSelected.spelling) {
-        SPSpellingList *objectList = [self.storyboard instantiateViewControllerWithIdentifier:@"spellingList"];
-        objectList.delegate = self;
-        objectList.dataSource = self;
-        [self.navigationController pushViewController:objectList animated:NO];
-    }
+    self.spellingName.text = self.spellingTestSelected.spelling.name;
     self.wordListVC = (SPWordList *)[self addObjectListIdentifier:@"wordList" toView:self.containerWordList];
-    self.spellingTestListVC = (SPSpellingTestList *)[self addObjectListIdentifier:@"spellingTestList" toView:self.containerResult];
-
-}
-
-- (void) viewWillAppear:(BOOL)animated {
-    [self updateUIWithObjectValues];
 }
 
 /*/////////////////////////////////////////////////////////////////////////////////////////
  Trigerred Actions
  /*////////////////////////////////////////////////////////////////////////////////////////*/
 
-- (void) updateUIWithObjectValues {
-    if (self.spellingTestSelected.spelling) {
-        self.spellingName.text = self.spellingTestSelected.spelling.name;
-    } else {
-        self.spellingName.text = @"no spelling selected";
-    }
+-( void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"playTest"]) {
+        SPTestVC *testVC = (SPTestVC *)segue.destinationViewController;
+        testVC.spellingTestSelected = self.objectSelected;
+        testVC.managedObjectContext = self.managedObjectContext;
+    } 
 }
-
 /*/////////////////////////////////////////////////////////////////////////////////////
  ObjectList delegate & datasource
  ////////////////////////////////////////////////////////////////////////////////////*/
@@ -89,7 +78,6 @@
     }
     else return nil;
 }
-//- (void) objectAddedFromList:(NSManagedObject *)object;
 
 - (NSArray *) arrayData:(id) sender {
     if ([sender isKindOfClass:[SPWordList class]]) {
@@ -99,24 +87,22 @@
     }
 }
 
-- (void) updateArrayData:(NSArray *)arrayUpdatedData {
-    
-}
-
-- (void) addObjectToList:(NSManagedObject * ) object {
-    if ([object isKindOfClass:[Spelling class]]) {
-        self.spellingTestSelected.spelling = (Spelling *) object;
-        [self updateUIWithObjectValues];
-    }
-}
-
 - (rowSelected) rowSelected:(id)sender {
-    return rowSelectedUniqueAndPop;
+    if ([sender isKindOfClass:[SPWordList class]]) {
+        SPWordList *wordListVC = (SPWordList *)sender;
+        if (wordListVC.parentViewController == self) {
+            return rowSelectedOpenVC;
+        } else {
+            return rowSelectedUniqueAndPop;
+        }
+    } else {
+        return rowSelectedUniqueAndPop;
+    }
 }
 
 - (NSPredicate *) predicate:(id) sender {
     /*if ([sender isKindOfClass:[SPSpellingTestList class]]) {
-        return [NSPredicate predicateWithFormat:<#(NSString *), ...#>]
+        return [NSPredicate predicateWithFormat:]
     }*/
     return [NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
 }

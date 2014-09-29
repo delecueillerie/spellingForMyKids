@@ -29,6 +29,7 @@
 
 @implementation SPObjectList
 
+@synthesize objectSelected=_objectSelected;
 
 /*/////////////////////////////////////////////////////////
  //////////////////////////////////////////////////////////
@@ -64,11 +65,6 @@
     }
     return _objectSelected;
 }
-/*
-- (void) setEditing:(BOOL)editing {
-    [super setEditing:editing];
-    //self.objects = nil;
-}*/
 
 ////////////////////////////////////////////////////////////////////////
 //LIFE CYCLE
@@ -76,7 +72,9 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
+    if (!self.delegate) {
+        self.delegate = self;
+    }
     //set up color
     self.tableView.backgroundColor = nil;
     self.tableView.tintColor = [UIColor whiteColor];
@@ -124,9 +122,9 @@
     
     if ([self.delegate respondsToSelector:@selector(titleNavigationBar:)]) {
         currentNavigationItem.title=[self.delegate titleNavigationBar: self];
-    } else {
+    } /*else {
         currentNavigationItem.title=@"title 2 complete";
-    }
+    }*/
 
 
     if (!self.delegate) {
@@ -153,6 +151,8 @@
 //////////////////////////////////////////////////////////
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
     if (!_delegate) {
         [self detailVCToPushWithObject:self.objectSelected];
         
@@ -162,7 +162,16 @@
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         
     } else if ([self.delegate rowSelected:self] == rowSelectedOpenVC) {
-        [self detailVCToPushWithObject:self.objectSelected];
+        if ([self.delegate respondsToSelector:@selector(viewControllerForObject:)]) {
+            if ([self.delegate viewControllerForObject:self.objectSelected]) {
+                [self.navigationController pushViewController:[self.delegate viewControllerForObject:self.objectSelected] animated:NO];
+            } else {
+                [self detailVCToPushWithObject:self.objectSelected];
+            }
+        } else {
+            [self detailVCToPushWithObject:self.objectSelected];
+        }
+        
         
     } else if ([self.delegate rowSelected:self] == rowSelectedUniqueAndPop) {
         NSManagedObject *object;
@@ -179,23 +188,6 @@
     }*/
 }
 
-/*
-- (UITableViewCellEditingStyle) tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (tableView.editing == NO) {
-        return UITableViewCellEditingStyleNone;
-    } else if (indexPath.row == 0) {
-        return UITableViewCellEditingStyleInsert;
-    } else {
-        return UITableViewCellEditingStyleDelete;
-    }
-}*/
-
-/*
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //cell.backgroundColor = [UIColor clearColor];
-}
- */
 ////////////////////////////////////////////////////////////////////////
 // II - b - datasource
 ////////////////////////////////////////////////////////////////////////
@@ -387,8 +379,7 @@
     NSManagedObject *objectNew = [NSEntityDescription insertNewObjectForEntityForName:self.entityName inManagedObjectContext:self.managedObjectContextAdd];
     SPAnObject *viewControllerAnObject = [self.storyboard instantiateViewControllerWithIdentifier:[self storyboardVCId]];
     viewControllerAnObject.objectSelected = objectNew;
-    viewControllerAnObject.editing = YES;
-    viewControllerAnObject.isNewObject = YES;
+    viewControllerAnObject.delegate = self;
     [self.navigationController pushViewController:viewControllerAnObject animated:NO];
 }
 - (void) cancelButtonAction {
@@ -397,8 +388,7 @@
 
 - (void) detailVCToPushWithObject:(id)object {
     SPAnObject *detailVC = [self.storyboard instantiateViewControllerWithIdentifier:self.storyboardVCId];
-    detailVC.delegate = nil;
-    detailVC.editing = NO;
+    detailVC.delegate = self;
     detailVC.objectSelected = self.objectSelected;
     [self.navigationController pushViewController:detailVC animated:YES];
 }
@@ -416,10 +406,8 @@
 
 
 /*///////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-//Delegate
-////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////*/
+ ObjectList delegate & datasource
+ ///////////////////////////////////////////////////////////////////////*/
 
 - (NSPredicate *) predicate:(id)sender {
     return [NSPredicate predicateWithFormat:@"TRUEPREDICATE"];
@@ -445,6 +433,51 @@
 - (void) removeObjectFromList:(NSManagedObject *)object {
     
 }
+
+/*/////////////////////////////////////////////////////////
+ object Delegate
+ /////////////////////////////////////////////////////////*/
+
+- (void) saveAndRefresh {
+    
+}
+- (void) saveAndPop {
+    
+}
+- (void) loadInput {
+    
+}
+- (void) refresh {
+    
+}
+- (void) setObjectSelected:(id) objectSelected {
+    
+}
+
+- (objectState) objectState:(id)sender {
+    SPAnObject *objectVC = (SPAnObject *)sender;
+    if ([objectVC.objectSelected isKindOfClass:[NSManagedObject class]]) {
+        NSManagedObject *MO = (NSManagedObject *)objectVC.objectSelected;
+        if (MO.managedObjectContext == self.managedObjectContext) {
+            return objectStateRead;
+        } else {
+            return objectStateEdit;
+        }
+
+
+    /*    } else if (!self.tabBarController) {
+        return objectStateRead;
+    } else {
+        return objectStateReadOnly;*/
+    } else {
+        return objectStateReadOnly;
+    }
+    
+}
+
+
+
+
 /*/////////////////////////////////////////////////////////
  Delegate search
  /////////////////////////////////////////////////////////*/

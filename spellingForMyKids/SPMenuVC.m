@@ -8,8 +8,9 @@
 #import "SPMenuVC.h"
 
 //Model
-#import "Kid.h"
-#import "SPellingTest+mode.h"
+#import "Kid+enhanced.h"
+#import "SPellingTest+enhanced.h"
+#import "Spelling+enhanced.h"
 //Category
 #import "UIImageView+cornerRadius.h"
 #import "Kid+newKid.h"
@@ -20,6 +21,7 @@
 #import "SPSpellingTestList.h"
 #import "SPKidList.h"
 #import "SPAKidTVC.h"
+#import "SPSpellingTest.h"
 //View
 #import "SPKeyboardButton.h"
 #import "SPLevelButton.h"
@@ -36,13 +38,9 @@
 @property (nonatomic, strong) NSArray *arrayOfKidsExtended; //give the user the ability to create a new kid if needed (first launch, etc...) with a Add action at the end of the array
 @property (nonatomic, strong) NSArray *arrayOfSpellings;
 
-@property (nonatomic,strong) Spelling *spellingSelected;
-
 @end
 
 @implementation SPMenuVC
-
-
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////
  /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -72,47 +70,62 @@
         NSFetchRequest *fetchRequestForKids = [NSFetchRequest fetchRequestWithEntityName:@"Kid"];
         NSError *error;
         _arrayOfKids = [self.managedObjectContext executeFetchRequest:fetchRequestForKids error:&error];
+        self.arrayOfKidsExtended = nil; //reinitialize the array when arrayOfKids change
     }
     return _arrayOfKids;
 }
 
 - (NSArray *) arrayOfKidsExtended {
-    NSMutableArray *mArray = [NSMutableArray arrayWithArray:self.arrayOfKids];
-    [mArray addObject:self.addKidObject];
-    self.pageControl.numberOfPages = [mArray count];
-    _arrayOfKidsExtended = mArray;
+    if (!_arrayOfKidsExtended) {
+        NSMutableArray *mArray = [NSMutableArray arrayWithArray:self.arrayOfKids];
+        [mArray addObject:self.addKidObject];
+        self.pageControl.numberOfPages = [mArray count];
+        _arrayOfKidsExtended = mArray;
+    }
     return _arrayOfKidsExtended;
 }
 
 
 - (void) setObjectSelected:(id)objectSelected {
-    [super setObjectSelected:objectSelected];
-
-    [self.objectListVC.tableView reloadData];
+    
+    /*objectSelected attribute can be an Managed Object from a different Context.
+     it is important to move the attribute to the right context */
+    
     if ([objectSelected isKindOfClass:[Kid class]]) {
+        Kid *kid = (Kid *)objectSelected;
+        if (kid.managedObjectContext == self.managedObjectContext) {
+            _objectSelected = kid;
+        } else {
+        _objectSelected = [kid kidInManagedObjectContext:self.managedObjectContext];
+        }
+        
         //reload the list of test
-        //self.objectListVC = nil;
-        Kid *kidSelected = (Kid *)objectSelected;
-        [self.imageViewForPicture roundWithImage:[UIImage imageWithData:kidSelected.image]];
-        self.navigationItem.title = kidSelected.name;
+        [self.imageViewForPicture roundWithImage:[UIImage imageWithData:[[self kidSelected] image]]];
+        self.navigationItem.title = [[self kidSelected] name];
         
         //UI design update
         self.viewContainer.hidden = NO;
         self.toolbar.hidden = NO;
         
-        if ([self.arrayOfKids indexOfObject:objectSelected] == NSNotFound) {
+        if ([self.arrayOfKids indexOfObject:_objectSelected] == NSNotFound) {
             //reload arrayOfKids if object is not present in it. A new user should be registered
             self.arrayOfKids = nil;
+            self.arrayOfKidsExtended = nil;
         }
-        self.pageControl.currentPage = [self.arrayOfKidsExtended indexOfObject:objectSelected];
+
         
     } else {
+        _objectSelected = objectSelected;
+        
         [self.imageViewForPicture roundWithImage:[UIImage imageNamed:@"newUser"]];
         self.navigationItem.title = @"create a new kid";
         self.viewContainer.hidden = YES;
         self.toolbar.hidden = YES;
         self.pageControl.currentPage = [self.arrayOfKidsExtended indexOfObject:self.addKidObject];
     }
+    
+    self.pageControl.currentPage = [self.arrayOfKidsExtended indexOfObject:_objectSelected];
+    [self.objectListVC.tableView reloadData];
 }
 
 
@@ -146,6 +159,22 @@
     return _objectListVC;
 }
 
+
+- (Kid *) kidSelected {
+    if ([self.objectSelected isKindOfClass:[Kid class]]) {
+        return (Kid *)self.objectSelected;
+    } else {
+        return nil;
+    }
+}
+
+- (Spelling *) spellingSelected {
+    if ([self.objectListVC.objectSelected isKindOfClass:[Spelling class]]) {
+        return (Spelling *)self.objectListVC.objectSelected;
+    } else {
+        return nil;
+    }
+}
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 //LIFE CYCLE
@@ -155,7 +184,6 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    self.isReadOnly = YES;
     //UI design of the navigation controller
     self.navigationItem.title = @"Spelling";
     [self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
@@ -176,11 +204,8 @@
 
 
 - (void) viewWillDisappear:(BOOL)animated {
-    if ([self.objectSelected isKindOfClass:[Kid class]]) {
-        Kid *kid = (Kid *) self.objectSelected;
-        [[NSUserDefaults standardUserDefaults] setObject:kid.name  forKey:@"kidSelectedName"];
+        [[NSUserDefaults standardUserDefaults] setObject:[[self kidSelected] name]  forKey:@"kidSelectedName"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-    }
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -210,38 +235,30 @@
 - (IBAction)swipeLeftOnPicture:(UISwipeGestureRecognizer *)sender {
     [self nextKid];
 }
+
 - (IBAction)tapOnPicture:(UITapGestureRecognizer *)sender {
     
-    if ([self.objectSelected isKindOfClass:[Kid class]]) {
+    if ([self kidSelected]) {
         SPAKidTVC *VC = (SPAKidTVC *)[self.storyboard instantiateViewControllerWithIdentifier:@"AKid"];
-        VC.isReadOnly = NO;
-        VC.objectSelected = (Kid *) self.objectSelected;
+        VC.objectSelected = [self kidSelected];
+        VC.delegate = self;
         
         [self.navigationController pushViewController:VC animated:YES];
     } else {
-        NSManagedObjectContext * managedObjectContextAdd = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-        [managedObjectContextAdd setParentContext:self.managedObjectContext];
-        
-        NSManagedObject *objectNew = [NSEntityDescription insertNewObjectForEntityForName:@"Kid" inManagedObjectContext:managedObjectContextAdd];
+/*        NSManagedObjectContext * managedObjectContextAdd = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+        [managedObjectContextAdd setParentContext:self.managedObjectContext];*/
+ 
+        NSManagedObject *objectNew = [NSEntityDescription insertNewObjectForEntityForName:@"Kid" inManagedObjectContext:self.managedObjectContextAdd];
         SPAKidTVC *viewControllerAnObject = [self.storyboard instantiateViewControllerWithIdentifier:@"AKid"];
+        NSLog(@"object new MOC%@",[objectNew.managedObjectContext description]);
         viewControllerAnObject.objectSelected = objectNew;
+        viewControllerAnObject.managedObjectContext = [objectNew managedObjectContext];
+        NSLog(@"objectSelected MOC %@", [[viewControllerAnObject.objectSelected valueForKey:@"managedObjectContext"] description]);
         //viewControllerAnObject.managedObjectContext = managedObjectContextAdd;
-        viewControllerAnObject.editing = YES;
-        viewControllerAnObject.isReadOnly = NO;
-        viewControllerAnObject.isNewObject = YES;
         viewControllerAnObject.delegate = self;
         [self.navigationController pushViewController:viewControllerAnObject animated:NO];
     }
 }
-
-- (IBAction)buttonNext:(id)sender {
-    [self nextKid];
-}
-
-- (IBAction)buttonPrevious:(id)sender {
-    [self previousKid];
-}
-
 
 - (NSUInteger) indexFromArrayOfKidsExtended {
     NSUInteger index = [self.arrayOfKidsExtended indexOfObject:self.objectSelected];
@@ -251,6 +268,7 @@
             index = 0;
         }
     }
+    NSLog(@"index de l'objet%lu", index);
     return index;
 }
 
@@ -263,7 +281,7 @@
 
 - (void) previousKid {
     NSInteger nextIndex = [self indexFromArrayOfKidsExtended] -1;
-    if (nextIndex<0) nextIndex = self.arrayOfKidsExtended.count;
+    if (nextIndex<0) nextIndex = (self.arrayOfKidsExtended.count-1);
     self.objectSelected= [self.arrayOfKidsExtended objectAtIndex:nextIndex];
 }
 
@@ -277,8 +295,20 @@
  object Delegtae
  ///////////////////////////////////////////////*/
 
-- (objectMode) objectMode:(id)sender {
-    return objectModeTest;
+- (objectState) objectState:(id)sender {
+    objectState state;
+    if ([sender isKindOfClass:[SPAKidTVC class]]) {
+        if ([sender valueForKey:@"managedObjectContext"]==self.managedObjectContext) {
+            state = objectStateRead;
+        } else {
+            state = objectStateEdit;
+        }
+    } else if (sender == self) {
+        state = objectStateReadOnly;
+    } else {
+        state = objectStateRead;
+    }
+    return state;
 }
 
 /*////////////////////////////////////////////////
@@ -292,17 +322,20 @@
     if ([object isKindOfClass:[Spelling class]]) {
         
         NSSet *setSpellingTest = (NSSet *)[self.objectSelected valueForKey:@"spellingTests"];
-        [setSpellingTest filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"points == 0"]];
+        [setSpellingTest filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"result == 0"]];
         NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"endedAt" ascending:YES]];
 
         NSArray *arraySorted = [[setSpellingTest allObjects] sortedArrayUsingDescriptors:sortDescriptors];
         SpellingTest *lastTest = [arraySorted lastObject];
         
-        if ([lastTest.mode intValue] == easy) {
+        //first we test if the last test exist, else all spelling will have a bronze medal
+        if (!lastTest) {
+            medal = nil;
+        } else if ([lastTest.level intValue] == spellingTestLevelEasy) {
             medal = [UIImage imageNamed:@"medal_bronze"];
-        } else if ([lastTest.mode intValue] == medium) {
+        } else if ([lastTest.level intValue] == spellingTestLevelMedium) {
             medal = [UIImage imageNamed:@"medal_silver"];
-        } else if ([lastTest.mode intValue]== hard) {
+        } else if ([lastTest.level intValue]== spellingTestLevelHard) {
             medal = [UIImage imageNamed:@"medal_gold"];
         }
     }
@@ -317,12 +350,32 @@
     }
 }
 
-- (NSString *) titleNavigationBar:(id) sender {
-    return @"title AAAA";
+- (UIViewController *) viewControllerForObject:(id) object {
+    if ([object isKindOfClass:[Spelling class]]) {
+        
+        Spelling *spellingSelected = (Spelling *) object;
+        
+        //create a new spellingTest object and display the VC associated to it
+        
+        
+        SpellingTest *newSpellingTest = [SpellingTest spellingTestFor:[[self kidSelected] kidInManagedObjectContext:self.managedObjectContextAdd]
+                                                             spelling:[spellingSelected spellingInManagedObjectContext:self.managedObjectContextAdd]];
+        
+        SPSpellingTest *spellingTestVC = [[self storyboard] instantiateViewControllerWithIdentifier:@"spellingTest"];
+        spellingTestVC.objectSelected = newSpellingTest;
+        spellingTestVC.delegate = self;
+        
+        return spellingTestVC;
+    } else {
+        return nil;
+    }
 }
+
 
 -(datasource) datasource:(id)sender {
     if (sender == self.objectListVC) {
+        return datasourceArray;
+    } else if ([sender isKindOfClass:[SPSpellingTest class]]) {
         return datasourceArray;
     } else {
         return datasourceFetched;
@@ -330,10 +383,19 @@
 }
 
 - (NSArray *) arrayData:(id) sender {
-    if ([self.objectSelected isKindOfClass:[Kid class]]) {
-        return [[self.objectSelected valueForKey:@"spellings"] allObjects];
+    if ([self kidSelected]) {
+        if (sender == self) {
+            return nil;
+        } else if ([sender isKindOfClass:[SPSpellingList class]]) {
+            return [[[self kidSelected] spellings] allObjects];
+        } else if ([sender isKindOfClass:[SPSpellingTest class]]) {
+            return [[[self spellingSelected] words] allObjects];
+        } else {
+            return nil;
+        }
+    } else {
+        return nil;
     }
-    else return nil;
 }
 
 - (void) addObjectToList:(NSManagedObject * ) object {
@@ -352,7 +414,7 @@
     }
 }
 - (NSPredicate *) predicate:(id) sender {
-    if ([self.objectSelected isKindOfClass:[Kid class]]) {
+    if ([self kidSelected] && sender == self) {
         NSMutableArray *mArray = [[NSMutableArray alloc] initWithCapacity:10];
         for (Spelling *spelling in [self.objectSelected valueForKey:@"spellings"]) {
             [mArray addObject:spelling.name];
@@ -364,11 +426,4 @@
     }
 }
 
-/*////////////////////////////////////////////////
- scrollView Delegate
- ///////////////////////////////////////////////*/
-- (void) scrollViewDidScroll:(UIScrollView *)scrollView {
-    
-    
-}
 @end

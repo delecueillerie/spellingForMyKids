@@ -16,27 +16,24 @@
 - (void) refresh;
 - (void) setObjectSelected:(id) objectSelected;
 
-typedef enum objectMode objectMode;
-enum objectMode
-{
-    objectModeRead = 0,
-    objectModeTest = 1,
-};
-
-- (objectMode) objectMode:(id) sender;
-
-
 @optional
 
+typedef enum objectState
+{
+    objectStateRead = 0,
+    objectStateTest = 1,
+    objectStateEdit = 2,
+    objectStateReadOnly = 3,
+} objectState;
+
+- (objectState) objectState:(id)sender;
 @end
 
 @interface SPAnObject : UIViewController <objectDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContextAdd;
 @property (nonatomic, strong) id objectSelected;
-//specific state of the object
-@property (nonatomic) BOOL isNewObject; //should be deleted if canceled action
-@property (nonatomic) BOOL isReadOnly; //no edit button displayed∫
 
 @property (nonatomic, weak) id<objectDelegate> delegate;
 

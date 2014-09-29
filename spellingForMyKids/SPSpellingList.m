@@ -35,9 +35,6 @@
     return @"ASpelling";
 }
 
-- (NSString *) titleNavigationBar:(id) sender {
-    return @"Spelling list";
-}
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)configureCell:(UITableViewCell *)tableViewCell withObject:(NSManagedObject *) object {
@@ -59,7 +56,21 @@
  ////////////////////////////////////////////////////////////////////////
  //////////////////////////////////////////////////////////////////////*/
 
+/*//////////////////////////////////////////////////////////////////////
+ Object delegate
+ //////////////////////////////////////////////////////////////////////*/
+/*- (objectState) objectState:(id)sender {
+    if (self.tabBarController) {
+        return objectStateRead;
+    } else {
+        return objectStateTest;
+    }
+}
+*/
 
+- (NSString *) titleNavigationBar:(id) sender {
+    return @"Spelling List";
+}
 /*//////////////////////////////////////////////////////////////////////
  Objectlist delegate & datasource
  //////////////////////////////////////////////////////////////////////*/

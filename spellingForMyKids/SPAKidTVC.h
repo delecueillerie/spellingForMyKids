@@ -10,6 +10,5 @@
 #import "photoPicker.h"
 
 @interface SPAKidTVC : SPAnObject <UITextFieldDelegate, photoPickerDelegate>
-
 @property (nonatomic, strong) NSData * dataImageCaptured;
 @end

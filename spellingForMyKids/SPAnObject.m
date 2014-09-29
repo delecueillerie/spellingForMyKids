@@ -21,6 +21,15 @@
  //////////////////////////////////////////////////////////
  /////////////////////////////////////////////////////////*/
 
+- (NSManagedObjectContext *) managedObjectContextAdd {
+    if (!_managedObjectContextAdd) {
+        _managedObjectContextAdd = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+        [_managedObjectContextAdd setParentContext:self.managedObjectContext];
+    }
+    return _managedObjectContextAdd;
+}
+
+
 - (NSManagedObjectContext *) managedObjectContext {
     if (!_managedObjectContext) {
         if (self.objectSelected) {
@@ -35,30 +44,26 @@
 }
 
 - (void) setEditing:(BOOL)editing {
-    if (self.isReadOnly) {
-        [super setEditing:NO];
-        self.navigationItem.rightBarButtonItem = nil;
-        self.navigationItem.leftBarButtonItem = nil;
-    } else if (editing) {
-        [super setEditing:editing];
+    [super setEditing:editing];
+    if (editing) {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveAndPop)];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(buttonCancelAction)];
         [self setUpUndoManager];
-    } else {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(buttonEditAction)];
     }
 }
 
-- (void) setIsReadOnly:(BOOL)isReadOnly {
-    _isReadOnly = isReadOnly;
-    if (isReadOnly) {
-        self.editing = NO;
-    }
-}
 
 - (void) setObjectSelected:(id)objectSelected {
     _objectSelected = objectSelected;
 }
+
+- (id) delegate {
+    if (!_delegate) {
+        _delegate = self;
+    }
+    return _delegate;
+}
+
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
 // II - VC Life Cycle Management
@@ -66,8 +71,44 @@
 //////////////////////////////////////////////////////////
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (!self.delegate) {
-        self.delegate = self;
+
+    switch ([self.delegate objectState:self]) {
+        case objectStateRead:
+        {
+            self.editing = NO;
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(buttonEditAction)];
+
+            //self.navigationItem.rightBarButtonItem = nil;
+            //self.navigationItem.leftBarButtonItem = nil;
+            break;
+        }
+        
+        case objectStateEdit:
+        {
+            self.editing = YES;
+            break;
+        }
+            
+        case objectStateTest:
+        {
+            self.editing = NO;
+            self.navigationItem.rightBarButtonItem = nil;
+            //self.navigationItem.leftBarButtonItem = nil;
+            break;
+        }
+        
+        case objectStateReadOnly:
+        {
+            self.editing = NO;
+            self.navigationItem.rightBarButtonItem = nil;
+            self.navigationItem.leftBarButtonItem = nil;
+            break;
+        }
+            
+        default:
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(buttonEditAction)];
+
+            break;
     }
 }
 
@@ -92,7 +133,7 @@
 - (void) buttonCancelAction {
     //clean the undoManager∫
     [self.undoManager undo];
-    if (self.isNewObject) {
+    if ([self.delegate objectState:self] == objectStateEdit) {
         if ([self.objectSelected isKindOfClass:[NSManagedObject class]]) {
             [self.managedObjectContext deleteObject:self.objectSelected];
         }
@@ -208,8 +249,8 @@
 Object delegate
 /////////////////////////////////////////////////////////*/
 
-- (objectMode) objectMode:(id)sender {
-    return objectModeRead;
+- (objectState) objectState:(id)sender {
+    return objectStateRead;
 }
 
 

@@ -38,8 +38,6 @@
 		092250911999390C00D236AF /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 092250901999390C00D236AF /* Main_iPhone.storyboard */; };
 		092A416618D1B2D800382793 /* tabBarIcon_spelling.png in Resources */ = {isa = PBXBuildFile; fileRef = 092A416518D1B2D800382793 /* tabBarIcon_spelling.png */; };
 		092A416818D1B58900382793 /* tabBarIcon_word.png in Resources */ = {isa = PBXBuildFile; fileRef = 092A416718D1B58900382793 /* tabBarIcon_word.png */; };
-		092A416A18D1B99900382793 /* SPAnObjectTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 092A416918D1B99900382793 /* SPAnObjectTVC.xib */; };
-		092C3A011933F13900A6E2B6 /* SPSchoolLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 092C3A001933F13900A6E2B6 /* SPSchoolLevel.m */; };
 		092C3A041934C7CD00A6E2B6 /* segueFromMenuToTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 092C3A031934C7CD00A6E2B6 /* segueFromMenuToTabBar.m */; };
 		092C3A0A1935372200A6E2B6 /* SPPhonemeList.m in Sources */ = {isa = PBXBuildFile; fileRef = 092C3A091935372200A6E2B6 /* SPPhonemeList.m */; };
 		092C3A0D1935389F00A6E2B6 /* SPPhoneme.m in Sources */ = {isa = PBXBuildFile; fileRef = 092C3A0C1935389F00A6E2B6 /* SPPhoneme.m */; };
@@ -74,6 +72,7 @@
 		096428CB19200786005DEB78 /* bonhommeVide.png in Resources */ = {isa = PBXBuildFile; fileRef = 096428CA19200786005DEB78 /* bonhommeVide.png */; };
 		096428D21920DDED005DEB78 /* replay.png in Resources */ = {isa = PBXBuildFile; fileRef = 096428D11920DDED005DEB78 /* replay.png */; };
 		09A86E7819A29AD90076212E /* buttonAddListToolBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 09A86E7719A29AD90076212E /* buttonAddListToolBar.png */; };
+		09ACA51519D34FAA00C22FA2 /* scrabbleKeyboard.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09ACA51419D34FAA00C22FA2 /* scrabbleKeyboard.xcassets */; };
 		09CC998E18FA890E00BA4238 /* photoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CC998D18FA890E00BA4238 /* photoPickerViewController.m */; };
 		09D3F44119C2F6200026277A /* libS4MKKeyboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D3F3FD19C1ACF00026277A /* libS4MKKeyboard.a */; };
 		09D3F44219C2F6620026277A /* libsyncWithAFNetworkingLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 092D2D3219546A19004661C2 /* libsyncWithAFNetworkingLibrary.a */; };
@@ -144,13 +143,6 @@
 			remoteGlobalIDString = 09D3F3D619C1AC9F0026277A;
 			remoteInfo = S4MKKeyboard;
 		};
-		09D3F3FE19C1ACF00026277A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 09D3F3C919C1AB430026277A /* scrabbleKeyboard.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 09D3F3E319C1AC9F0026277A;
-			remoteInfo = S4MKKeyboardTests;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -202,9 +194,6 @@
 		092250901999390C00D236AF /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
 		092A416518D1B2D800382793 /* tabBarIcon_spelling.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tabBarIcon_spelling.png; path = media/tabBarIcon_spelling.png; sourceTree = SOURCE_ROOT; };
 		092A416718D1B58900382793 /* tabBarIcon_word.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tabBarIcon_word.png; path = media/tabBarIcon_word.png; sourceTree = SOURCE_ROOT; };
-		092A416918D1B99900382793 /* SPAnObjectTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPAnObjectTVC.xib; sourceTree = "<group>"; };
-		092C39FF1933F13900A6E2B6 /* SPSchoolLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSchoolLevel.h; sourceTree = "<group>"; };
-		092C3A001933F13900A6E2B6 /* SPSchoolLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSchoolLevel.m; sourceTree = "<group>"; };
 		092C3A021934C7CD00A6E2B6 /* segueFromMenuToTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = segueFromMenuToTabBar.h; sourceTree = "<group>"; };
 		092C3A031934C7CD00A6E2B6 /* segueFromMenuToTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = segueFromMenuToTabBar.m; sourceTree = "<group>"; };
 		092C3A081935372200A6E2B6 /* SPPhonemeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPhonemeList.h; sourceTree = "<group>"; };
@@ -212,7 +201,6 @@
 		092C3A0B1935389F00A6E2B6 /* SPPhoneme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPhoneme.h; sourceTree = "<group>"; };
 		092C3A0C1935389F00A6E2B6 /* SPPhoneme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPhoneme.m; sourceTree = "<group>"; };
 		092D2CD719539FEC004661C2 /* APIKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APIKey.h; path = ../APIKey.h; sourceTree = "<group>"; };
-		092D2D2719546753004661C2 /* libcoreDataStackLibrairy.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcoreDataStackLibrairy.a; path = "../../../../Library/Developer/Xcode/DerivedData/spellingForMyKids-cgxrxwyxcofxlwgaeeqjudkvzmyu/Build/Products/Debug-iphoneos/libcoreDataStackLibrairy.a"; sourceTree = "<group>"; };
 		092D2D2919546A19004661C2 /* syncWithAFNetworking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = syncWithAFNetworking.xcodeproj; path = ../syncWithWebServices/iOS/syncWithAFNetworking/syncWithAFNetworking.xcodeproj; sourceTree = "<group>"; };
 		093AAD8518D10069005B8EA1 /* SPAnObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAnObject.h; sourceTree = "<group>"; };
 		093AAD8618D10069005B8EA1 /* SPAnObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAnObject.m; sourceTree = "<group>"; };
@@ -261,6 +249,7 @@
 		096428CA19200786005DEB78 /* bonhommeVide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bonhommeVide.png; path = media/bonhommeVide.png; sourceTree = SOURCE_ROOT; };
 		096428D11920DDED005DEB78 /* replay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = replay.png; path = media/replay.png; sourceTree = SOURCE_ROOT; };
 		09A86E7719A29AD90076212E /* buttonAddListToolBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttonAddListToolBar.png; path = media/buttonAddListToolBar.png; sourceTree = SOURCE_ROOT; };
+		09ACA51419D34FAA00C22FA2 /* scrabbleKeyboard.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = scrabbleKeyboard.xcassets; path = ../../scrabbleKeyboard/scrabbleKeyboard/scrabbleKeyboard.xcassets; sourceTree = "<group>"; };
 		09CC998C18FA890E00BA4238 /* photoPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = photoPickerViewController.h; path = addOn/photoPicker/writingTool/photoPicker/photoPickerViewController.h; sourceTree = "<group>"; };
 		09CC998D18FA890E00BA4238 /* photoPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = photoPickerViewController.m; path = addOn/photoPicker/writingTool/photoPicker/photoPickerViewController.m; sourceTree = "<group>"; };
 		09D3F3C919C1AB430026277A /* scrabbleKeyboard.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = scrabbleKeyboard.xcodeproj; path = ../scrabbleKeyboard/scrabbleKeyboard.xcodeproj; sourceTree = "<group>"; };
@@ -322,7 +311,6 @@
 			isa = PBXGroup;
 			children = (
 				09510C8519AAB7B100FD651C /* CoreData.framework */,
-				092D2D2719546753004661C2 /* libcoreDataStackLibrairy.a */,
 				090BE69E18907F4000A1DE0C /* Foundation.framework */,
 				090BE6A018907F4000A1DE0C /* CoreGraphics.framework */,
 				090BE6A218907F4000A1DE0C /* UIKit.framework */,
@@ -334,13 +322,13 @@
 		090BE6A418907F4000A1DE0C /* spellingForMyKids */ = {
 			isa = PBXGroup;
 			children = (
-				092C39FE1933F11300A6E2B6 /* model */,
 				09148AD1192579B30040F7C5 /* controller */,
 				09148AC9192564DD0040F7C5 /* view */,
 				0932614119C049EA00C4DD53 /* segue */,
 				090BE6B318907F4100A1DE0C /* Main_iPad.storyboard */,
 				092250901999390C00D236AF /* Main_iPhone.storyboard */,
 				090BE6B918907F4100A1DE0C /* Images.xcassets */,
+				09ACA51419D34FAA00C22FA2 /* scrabbleKeyboard.xcassets */,
 				090BE6AD18907F4000A1DE0C /* AppDelegate.h */,
 				090BE6AE18907F4000A1DE0C /* AppDelegate.m */,
 				090BE6E31891386C00A1DE0C /* media */,
@@ -394,25 +382,6 @@
 			name = media;
 			sourceTree = "<group>";
 		};
-		090F239E18A984C00095F2E7 /* object */ = {
-			isa = PBXGroup;
-			children = (
-				092A416918D1B99900382793 /* SPAnObjectTVC.xib */,
-				090F239418A8DDB80095F2E7 /* SPMenuVC.h */,
-				090F239218A8DDB80095F2E7 /* SPMenuVC.m */,
-				090F238118A527480095F2E7 /* SPAWordTVC.h */,
-				090F238218A527480095F2E7 /* SPAWordTVC.m */,
-				090F239B18A984B50095F2E7 /* SPAKidTVC.h */,
-				090F239C18A984B50095F2E7 /* SPAKidTVC.m */,
-				095691F419127D4C00A5386F /* SPSpelling.h */,
-				095691F719127DEF00A5386F /* SPSpelling.m */,
-				09514BFF19B7C0B300FD651C /* SPSpellingTest.h */,
-				09514C0019B7C0B300FD651C /* SPSpellingTest.m */,
-				094ABF7619387B360091283E /* phoneme */,
-			);
-			name = object;
-			sourceTree = "<group>";
-		};
 		090F23C318AA55C10095F2E7 /* views */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,6 +406,7 @@
 		09148AC9192564DD0040F7C5 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				09A5B21A19D0600800EA02BD /* phonemView */,
 				09148ACA192565320040F7C5 /* SPKeyboardButton.h */,
 				09148ACB192565320040F7C5 /* SPKeyboardButton.m */,
 				09148ACD19256B860040F7C5 /* SPLevelButton.h */,
@@ -463,15 +433,6 @@
 				09F9F55B192E43EA00953982 /* SPTestResultTVCell.m */,
 			);
 			name = result;
-			sourceTree = "<group>";
-		};
-		092C39FE1933F11300A6E2B6 /* model */ = {
-			isa = PBXGroup;
-			children = (
-				092C39FF1933F13900A6E2B6 /* SPSchoolLevel.h */,
-				092C3A001933F13900A6E2B6 /* SPSchoolLevel.m */,
-			);
-			name = model;
 			sourceTree = "<group>";
 		};
 		092D2D2A19546A19004661C2 /* Products */ = {
@@ -504,8 +465,7 @@
 		0932614319C04A3700C4DD53 /* viewController */ = {
 			isa = PBXGroup;
 			children = (
-				09514BEE19B6FD3100FD651C /* Super VC */,
-				090F239E18A984C00095F2E7 /* object */,
+				09A5B21619D05F2200EA02BD /* objectVC */,
 				09C1F4DF18C92DB60038B5C5 /* objects List */,
 				09514BEF19B6FED100FD651C /* test */,
 				09148AD3192579D70040F7C5 /* result */,
@@ -564,18 +524,6 @@
 			name = photoPicker;
 			sourceTree = "<group>";
 		};
-		094ABF7619387B360091283E /* phoneme */ = {
-			isa = PBXGroup;
-			children = (
-				092C3A0B1935389F00A6E2B6 /* SPPhoneme.h */,
-				092C3A0C1935389F00A6E2B6 /* SPPhoneme.m */,
-				094ABF7919387C300091283E /* SPPhonemeView.h */,
-				094ABF7A19387C300091283E /* SPPhonemeView.m */,
-				094ABF82193884A00091283E /* SPPhonemeView.xib */,
-			);
-			name = phoneme;
-			sourceTree = "<group>";
-		};
 		09514BE919B0AD0C00FD651C /* spellingForMyKidsCoreDataModel.momd */ = {
 			isa = PBXGroup;
 			children = (
@@ -584,19 +532,6 @@
 			);
 			name = spellingForMyKidsCoreDataModel.momd;
 			path = "../../../../Library/Developer/Xcode/DerivedData/spellingForMyKids-cgxrxwyxcofxlwgaeeqjudkvzmyu/Build/Products/Debug-iphoneos/spellingForMyKidsCoreDataModel.momd";
-			sourceTree = "<group>";
-		};
-		09514BEE19B6FD3100FD651C /* Super VC */ = {
-			isa = PBXGroup;
-			children = (
-				093AAD8518D10069005B8EA1 /* SPAnObject.h */,
-				093AAD8618D10069005B8EA1 /* SPAnObject.m */,
-				0956920919152A2100A5386F /* SPObjectList.h */,
-				0956920A19152A3A00A5386F /* SPObjectList.m */,
-				094ABFA71938DAA30091283E /* SPAnObjectWithList.h */,
-				094ABFA81938DAA30091283E /* SPAnObjectWithList.m */,
-			);
-			name = "Super VC";
 			sourceTree = "<group>";
 		};
 		09514BEF19B6FED100FD651C /* test */ = {
@@ -651,7 +586,7 @@
 			name = addOn;
 			sourceTree = "<group>";
 		};
-		09C1F4DF18C92DB60038B5C5 /* objects List */ = {
+		09A5B21519D05F0300EA02BD /* subclasses */ = {
 			isa = PBXGroup;
 			children = (
 				095691FC19139CE200A5386F /* SPWordList.h */,
@@ -664,6 +599,73 @@
 				092C3A091935372200A6E2B6 /* SPPhonemeList.m */,
 				09514BF619B745A900FD651C /* SPSpellingTestList.h */,
 				09514BF719B745A900FD651C /* SPSpellingTestList.m */,
+			);
+			name = subclasses;
+			sourceTree = "<group>";
+		};
+		09A5B21619D05F2200EA02BD /* objectVC */ = {
+			isa = PBXGroup;
+			children = (
+				093AAD8518D10069005B8EA1 /* SPAnObject.h */,
+				093AAD8618D10069005B8EA1 /* SPAnObject.m */,
+				09A5B21719D05F5B00EA02BD /* subclasses */,
+			);
+			name = objectVC;
+			sourceTree = "<group>";
+		};
+		09A5B21719D05F5B00EA02BD /* subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				090F238118A527480095F2E7 /* SPAWordTVC.h */,
+				090F238218A527480095F2E7 /* SPAWordTVC.m */,
+				090F239B18A984B50095F2E7 /* SPAKidTVC.h */,
+				090F239C18A984B50095F2E7 /* SPAKidTVC.m */,
+				09A5B21819D05F7700EA02BD /* objectWithList */,
+			);
+			name = subclasses;
+			sourceTree = "<group>";
+		};
+		09A5B21819D05F7700EA02BD /* objectWithList */ = {
+			isa = PBXGroup;
+			children = (
+				094ABFA71938DAA30091283E /* SPAnObjectWithList.h */,
+				094ABFA81938DAA30091283E /* SPAnObjectWithList.m */,
+				09A5B21919D05FAE00EA02BD /* subclasses */,
+			);
+			name = objectWithList;
+			sourceTree = "<group>";
+		};
+		09A5B21919D05FAE00EA02BD /* subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				090F239418A8DDB80095F2E7 /* SPMenuVC.h */,
+				090F239218A8DDB80095F2E7 /* SPMenuVC.m */,
+				095691F419127D4C00A5386F /* SPSpelling.h */,
+				095691F719127DEF00A5386F /* SPSpelling.m */,
+				09514BFF19B7C0B300FD651C /* SPSpellingTest.h */,
+				09514C0019B7C0B300FD651C /* SPSpellingTest.m */,
+				092C3A0B1935389F00A6E2B6 /* SPPhoneme.h */,
+				092C3A0C1935389F00A6E2B6 /* SPPhoneme.m */,
+			);
+			name = subclasses;
+			sourceTree = "<group>";
+		};
+		09A5B21A19D0600800EA02BD /* phonemView */ = {
+			isa = PBXGroup;
+			children = (
+				094ABF7919387C300091283E /* SPPhonemeView.h */,
+				094ABF7A19387C300091283E /* SPPhonemeView.m */,
+				094ABF82193884A00091283E /* SPPhonemeView.xib */,
+			);
+			name = phonemView;
+			sourceTree = "<group>";
+		};
+		09C1F4DF18C92DB60038B5C5 /* objects List */ = {
+			isa = PBXGroup;
+			children = (
+				0956920919152A2100A5386F /* SPObjectList.h */,
+				0956920A19152A3A00A5386F /* SPObjectList.m */,
+				09A5B21519D05F0300EA02BD /* subclasses */,
 				090F23C318AA55C10095F2E7 /* views */,
 			);
 			name = "objects List";
@@ -674,7 +676,6 @@
 			children = (
 				09D3F3CF19C1AB430026277A /* scrabbleKeyboard.app */,
 				09D3F3FD19C1ACF00026277A /* libS4MKKeyboard.a */,
-				09D3F3FF19C1ACF00026277A /* S4MKKeyboardTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -690,6 +691,16 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		090B5B1819D69883000A7493 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		090BE69A18907F4000A1DE0C /* spellingForMyKids */ = {
 			isa = PBXNativeTarget;
@@ -698,6 +709,7 @@
 				090BE69718907F4000A1DE0C /* Sources */,
 				090BE69818907F4000A1DE0C /* Frameworks */,
 				090BE69918907F4000A1DE0C /* Resources */,
+				090B5B1819D69883000A7493 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -795,13 +807,6 @@
 			remoteRef = 09D3F3FC19C1ACF00026277A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		09D3F3FF19C1ACF00026277A /* S4MKKeyboardTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = S4MKKeyboardTests.xctest;
-			remoteRef = 09D3F3FE19C1ACF00026277A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -841,10 +846,10 @@
 				090BE6A918907F4000A1DE0C /* InfoPlist.strings in Resources */,
 				091489BE192142E10040F7C5 /* roundGreen.png in Resources */,
 				0947544218F420DE00FBBAFC /* buttonStop64.png in Resources */,
+				09ACA51519D34FAA00C22FA2 /* scrabbleKeyboard.xcassets in Resources */,
 				092250911999390C00D236AF /* Main_iPhone.storyboard in Resources */,
 				092A416618D1B2D800382793 /* tabBarIcon_spelling.png in Resources */,
 				094ABF8519388B3A0091283E /* phonemeShape.png in Resources */,
-				092A416A18D1B99900382793 /* SPAnObjectTVC.xib in Resources */,
 				0916BE3B18C65328007EF967 /* previous.png in Resources */,
 				09F9F563192F371E00953982 /* iconsResultWrong.png in Resources */,
 				09514BED19B0AD0C00FD651C /* VersionInfo.plist in Resources */,
@@ -863,7 +868,6 @@
 				092C3A0D1935389F00A6E2B6 /* SPPhoneme.m in Sources */,
 				095692041913A54200A5386F /* SPKidList.m in Sources */,
 				09569211191983F300A5386F /* SPTestResult.m in Sources */,
-				092C3A011933F13900A6E2B6 /* SPSchoolLevel.m in Sources */,
 				090C0E7A18A3CC5E00CE5E60 /* wordCell.m in Sources */,
 				0956920B19152A3A00A5386F /* SPObjectList.m in Sources */,
 				0947544318F420DE00FBBAFC /* FDSoundActivatedRecorder.m in Sources */,

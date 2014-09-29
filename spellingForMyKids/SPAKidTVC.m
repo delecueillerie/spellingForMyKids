@@ -7,10 +7,10 @@
 //
 
 #import "SPAKidTVC.h"
-#import "SPSchoolLevel.h"
 
 //ManagedObject
 #import "Kid.h"
+
 #import "photoPickerViewController.h"
 //Category
 #import "UIImageView+cornerRadius.h"
@@ -18,19 +18,14 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *labelKidName;
 @property (weak, nonatomic) IBOutlet UITextField *textFielKidName;
-@property (weak, nonatomic) IBOutlet UILabel *labelConstName;
 
 //@property (weak, nonatomic) IBOutlet UIPickerView *PVSchoolLevel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewImage;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) UITextField *activeField;
-
-
 @property (weak, nonatomic) IBOutlet UIView *viewContainerCamera;
 @property (strong,nonatomic) photoPicker *photoPicker;
 
-@property (strong, nonatomic) Kid *kidSelected;
 @property (strong, nonatomic) UIImage *kidImage;
+@property (strong, nonatomic) Kid *kidSelected;
 
 @end
 
@@ -92,6 +87,7 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"Kid object MOC%@", [[self.objectSelected valueForKey:@"managedObjectContext"] description]);
     
     //load VC for container
     photoPickerViewController *photoPickerVC = [photoPickerViewController instantiateInitialViewControllerWithPhotoPickerDelegate:self withCamera:YES];
@@ -105,7 +101,7 @@
     //self.PVSchoolLevel.delegate = self;
 
     //font
-    self.labelConstName.font = [UIFont fontWithName:@"Cursivestandard" size:17.0];
+    //self.labelConstName.font = [UIFont fontWithName:@"Cursivestandard" size:17.0];
 }
 
 
@@ -120,7 +116,6 @@
     self.kidSelected.name = self.textFielKidName.text;
 }
 
-
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
 // Text Field Delegate
@@ -132,7 +127,6 @@
 //////////////////////////////////////////////////////////
 
 - (void) textFieldDidEndEditing:(UITextField *)textField {
-    self.activeField = nil;
     switch (textField.tag) {
         case 0:
             self.kidSelected.name = textField.text;
@@ -147,7 +141,7 @@
 }
 
 - (void) textFieldDidBeginEditing:(UITextField *)textField {
-    self.activeField = textField ;
+
 }
 
 //////////////////////////////////////////////////////////
@@ -180,6 +174,7 @@
 // Called when the UIKeyboardDidShowNotification is sent.
 - (void)keyboardWasShown:(NSNotification*)aNotification
 {
+    /*
     NSDictionary* info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
@@ -194,47 +189,17 @@
     if (!CGRectContainsPoint(aRect, self.activeField.frame.origin) ) {
         [self.scrollView scrollRectToVisible:self.activeField.frame animated:YES];
     }
+     */
 }
 
 // Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
 {
+    /*
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
+     */
 }
 
-/*
-//////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////
-// Pickerview delegate & datasource
-//////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////
-
-- (NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return  1;
-}
-
-- (NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return [[SPSchoolLevel arrayOfSchoolLevel] count];
-}
-
-- (NSAttributedString *) pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    NSDictionary *dicLevel = [[SPSchoolLevel arrayOfSchoolLevel] objectAtIndex:row];
-    
-    NSDictionary *dicAttributes = [NSDictionary dictionaryWithObjectsAndKeys: [UIColor blackColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"Cursivestandard" size:20.0], NSFontAttributeName, nil];
-    
-    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:[dicLevel valueForKey:@"name"] attributes:dicAttributes];
-    
-    return attributedString;
-}
-
-- (NSString *) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    NSDictionary *dicLevel = [[SPSchoolLevel arrayOfSchoolLevel] objectAtIndex:row];
-    return [dicLevel valueForKey:@"name"];
-}
-- (void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    self.kidSchoolLevel = [[SPSchoolLevel arrayOfSchoolLevel] objectAtIndex:row];
-}
-*/
 @end

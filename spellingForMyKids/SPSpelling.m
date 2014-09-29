@@ -10,10 +10,11 @@
 //Managed Objects
 #import "Word.h"
 #import "Spelling.h"
+#import "SpellingTest.h"
 
 //VC
 #import "SPWordList.h"
-#import "SPTestVC.h"
+#import "SPSpellingTest.h"
 
 //UI Views
 
@@ -30,10 +31,7 @@
 
 
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
-//strong reference needed because if we remove barButton from toolbar for a specific state of the VC we will loose his reference
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *barButtonItemKeyboard;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *barButtonItemPlay;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *barButtonItemAdd;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonItemAdd;
 
 @end
 
@@ -54,17 +52,12 @@ Accessors
 
 
 - (void) setEditing:(BOOL)editing {
-    if (!(super.editing == editing)) {
-        //displaying UI view depends on editing mode
-        self.textFieldSpellingName.hidden=!editing;
-        self.labelSpellingName.hidden=editing;
-        [self updateToolbarButtons];
-    }
-    
-
-    
     [super setEditing:editing];
-
+    
+    //displaying UI view depends on editing mode
+    self.textFieldSpellingName.hidden=!editing;
+    self.labelSpellingName.hidden=editing;
+    self.toolbar.hidden = !editing;
 }
 
 - (NSSet *) objectList {
@@ -82,7 +75,6 @@ Accessors
     [super viewDidLoad];
     self.objectListVC = [self addObjectListIdentifier:@"wordList" toView:self.viewContainerWordList];
     self.objectListVC.dataSource = self;
-    self.objectListVC.delegate = self;
     
     //displaying UI view depends on editing mode
     self.textFieldSpellingName.hidden=!self.editing;
@@ -91,11 +83,34 @@ Accessors
     //update UI content
     self.labelSpellingName.text = self.spellingSelected.name;
     self.textFieldSpellingName.text = self.spellingSelected.name;
-    self.textFieldSpellingName.delegate = self;}
+    self.textFieldSpellingName.delegate = self;
+
+    switch ([self.delegate objectState:self]) {
+        case objectStateRead:
+        {
+            self.toolbar.hidden = YES;
+            break;
+        }
+        case objectStateTest:
+        {
+            break;
+        }
+        case objectStateReadOnly:
+        {
+            break;
+        }
+        
+        case objectStateEdit:
+        {
+            
+            break;
+        }
+    }
+}
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self setEditing:self.editing];
+    //[self setEditing:self.editing];
     
     
 }
@@ -105,48 +120,6 @@ Accessors
  Triggered actions
  //////////////////////////////////////////////////////////
  /////////////////////////////////////////////////////////*/
-
-- (void) updateToolbarButtons {
-    NSMutableArray *toolbarItems = [self.toolbar.items mutableCopy];
-    
-    if (!self.editing) {
-        switch ([self.delegate objectMode:self]) {
-            case objectModeRead:
-            {
-                self.toolbar.hidden = YES;
-                [toolbarItems removeObject:self.barButtonItemKeyboard];
-                [toolbarItems removeObject:self.barButtonItemPlay];
-                [toolbarItems removeObject:self.barButtonItemAdd];
-            }
-                break;
-                
-            case objectModeTest:
-            {
-                self.toolbar.hidden = NO;
-                [toolbarItems removeObject:self.barButtonItemAdd];
-                if (![toolbarItems containsObject:self.barButtonItemKeyboard]) {
-                    [toolbarItems insertObject:self.barButtonItemKeyboard atIndex:0];
-                }
-                if (![toolbarItems containsObject:self.barButtonItemPlay]) {
-                    [toolbarItems insertObject:self.barButtonItemPlay atIndex:2];
-                }
-            }
-                break;
-            default:
-                break;
-        }
-    } else {
-        self.toolbar.hidden = NO;
-        [toolbarItems removeObject:self.barButtonItemKeyboard];
-        [toolbarItems removeObject:self.barButtonItemPlay];
-        if (![toolbarItems containsObject:self.barButtonItemAdd] && self.barButtonItemAdd) {
-            [toolbarItems insertObject:self.barButtonItemAdd atIndex:2];
-        }
-    }
-    
-    self.toolbar.items = toolbarItems;
-}
-
 
 - (IBAction)addWords:(id)sender {
     SPWordList *wordList = [self.storyboard instantiateViewControllerWithIdentifier:@"wordList"];
@@ -166,13 +139,7 @@ Accessors
     [super saveAndRefresh];
 }
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"playTest"]) {
-        SPTestVC *testVC = (SPTestVC *)segue.destinationViewController;
-        testVC.spellingSelected = self.spellingSelected;
-        //testVC.kidSelected = self.de
-    }
-}
+
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
 // Text Field Delegate

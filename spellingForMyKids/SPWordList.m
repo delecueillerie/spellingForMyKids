@@ -7,6 +7,7 @@
 
 #import "SPWordList.h"
 #import "Word.h"
+#import "SPSpellingTest.h"
 
 //Categroy
 #import "UIImageView+cornerRadius.h"
@@ -48,4 +49,11 @@
     
 }
 
+- (objectState) objectState:(id)sender {
+    if ([self.parentViewController isKindOfClass:[SPSpellingTest class]]) {
+        return objectStateReadOnly;
+    } else {
+        return [super objectState:sender];
+    }
+}
 @end

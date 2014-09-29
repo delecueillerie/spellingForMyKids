@@ -24,7 +24,7 @@
 }
 
 - (NSString *) sortDescriptor {
-    return @"points";
+    return @"startedAt";
 }
 
 - (NSString *) storyboardVCId {

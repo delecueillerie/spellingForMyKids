@@ -70,7 +70,7 @@
 {
     SPTestResultTVCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    NSDictionary *dictionaryWordResult = [self.gameResult objectAtIndex:indexPath.row];
+    //NSDictionary *dictionaryWordResult = [self.gameResult objectAtIndex:indexPath.row];
 /*
     // Configure the cell...
     NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:[dictionaryWordResult valueForKey:stringInputKey]];

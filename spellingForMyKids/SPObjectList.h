@@ -5,6 +5,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "SPAnObject.h"
 
 @protocol objectListDelegate <NSObject>
 
@@ -15,13 +16,18 @@ enum rowSelected
     rowSelectedUnique = 1,
     rowSelectedOpenVC = 2,
     rowSelectedUniqueAndPop = 3
+    
 };
+
+
 
 - (rowSelected) rowSelected:(id) sender;
 
 @optional
 - (NSString *) titleNavigationBar:(id) sender;
 - (UIImage *) cellImageFor:(NSManagedObject *) object;
+- (id) objectDidSelected;
+- (UIViewController *) viewControllerForObject:(id)object;
 @end
 
 
@@ -45,9 +51,9 @@ enum datasource
 @end
 
 
-@interface SPObjectList : UITableViewController <NSFetchedResultsControllerDelegate, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, objectListDelegate, objectListDataSource>
+@interface SPObjectList : UITableViewController <NSFetchedResultsControllerDelegate, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, objectListDelegate, objectListDataSource, objectDelegate>
 
-@property (nonatomic, strong) NSManagedObject *objectSelected;
+@property (nonatomic, strong) id objectSelected;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContextAdd;
 
