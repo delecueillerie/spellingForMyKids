@@ -7,7 +7,7 @@
 //
 
 #import "SPSpellingTestList.h"
-#import "SpellingTest.h"
+#import "SpellingTest+enhanced.h"
 #import "Spelling.h"
 
 @interface SPSpellingTestList ()
@@ -24,7 +24,7 @@
 }
 
 - (NSString *) sortDescriptor {
-    return @"startedAt";
+    return @"endedAt";
 }
 
 - (NSString *) storyboardVCId {
@@ -35,11 +35,16 @@
     return @"Spelling test list";
 }
 
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-//OVERRIDE METHOD
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
+-(NSString *) sectionNameKeyPath {
+    return @"dayAt";
+}
+
+-(BOOL) sortDescriptorAscending {
+    return NO;
+}
+/*///////////////////////////////////////////////////////////////////////
+ OVERRIDE METHOD
+///////////////////////////////////////////////////////////////////////*/
 
 
 // Customize the appearance of table view cells.
@@ -47,13 +52,23 @@
     [super configureCell:tableViewCell withObject:object];
     SpellingTest * spellingTest = (SpellingTest *) object;
     tableViewCell.textLabel.text = spellingTest.spelling.name;
+    tableViewCell.detailTextLabel.text = [NSString stringWithFormat:@"%@-%@",[spellingTest getSpellingTestResult], [spellingTest getSpellingTestLevel]];
     return tableViewCell;
     
 }
 
-
-
-
-
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    id object = [[[[self.fetchedResultsController sections] objectAtIndex:section] objects] firstObject];
+    if ([object isKindOfClass:[SpellingTest class]]) {
+        SpellingTest *test = (SpellingTest *)object;
+        NSDate *date = test.endedAt;
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        //[dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        return [dateFormatter stringFromDate:date];
+    } else {
+        return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
+    }
+}
 
 @end

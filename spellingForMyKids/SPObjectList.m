@@ -22,7 +22,6 @@
 
 @property (nonatomic, strong) UIBarButtonItem *rightBarButtonItem;
 @property (strong, nonatomic) NSArray *searchResults;
-
 @property (strong, nonatomic) NSIndexPath *indexPathLastSelectedRow;
 
 @end
@@ -56,7 +55,6 @@
     return _managedObjectContextAdd;
 }
 
-
 - (NSManagedObject *) objectSelected {
     if ([self.dataSource arrayData: self]) {
         _objectSelected = [[self.dataSource arrayData:self] objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
@@ -65,6 +63,7 @@
     }
     return _objectSelected;
 }
+
 
 ////////////////////////////////////////////////////////////////////////
 //LIFE CYCLE
@@ -163,8 +162,9 @@
         
     } else if ([self.delegate rowSelected:self] == rowSelectedOpenVC) {
         if ([self.delegate respondsToSelector:@selector(viewControllerForObject:)]) {
-            if ([self.delegate viewControllerForObject:self.objectSelected]) {
-                [self.navigationController pushViewController:[self.delegate viewControllerForObject:self.objectSelected] animated:NO];
+            UIViewController *VC = [self.delegate viewControllerForObject:self.objectSelected];
+            if (VC) {
+                [self.navigationController pushViewController:VC animated:NO];
             } else {
                 [self detailVCToPushWithObject:self.objectSelected];
             }
@@ -172,12 +172,14 @@
             [self detailVCToPushWithObject:self.objectSelected];
         }
         
-        
     } else if ([self.delegate rowSelected:self] == rowSelectedUniqueAndPop) {
         NSManagedObject *object;
         object= [self.fetchedResultsController objectAtIndexPath:indexPath];
         [self.dataSource addObjectToList:object];
         [self.navigationController popViewControllerAnimated:NO];
+        
+    } else if ([self.delegate rowSelected:self] == rowSelectedDisabled) {
+        //no action
     }
 }
 
@@ -254,13 +256,12 @@
                 if ([arrayData count] > 0) {
                     object = [arrayData objectAtIndex:indexPath.row];
                 }
-
-            }
                 break;
+            }
             case datasourceFetched:
             {
                 object= [self.fetchedResultsController objectAtIndexPath:indexPath];
-
+                break;
             }
                 
             default:
@@ -284,8 +285,6 @@
 
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    
-    // Display the authors' names as section headings.
     return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
 }
 
@@ -331,18 +330,17 @@
     
     // Create and configure a fetch request with the Book entity.
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSLog(@"entity %@", self.entityName);
-    [fetchRequest setEntity:[NSEntityDescription entityForName:self.entityName inManagedObjectContext:self.managedObjectContext]];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:[self entityName] inManagedObjectContext:self.managedObjectContext]];
     
     // Create the sort descriptors array.
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:self.sortDescriptor ascending:YES];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:[self sortDescriptor] ascending:[self sortDescriptorAscending]];
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
     //predicate
     fetchRequest.predicate = [self.dataSource predicate:self];
     
     // Create and initialize the fetch results controller.
-    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:[self sectionNameKeyPath] cacheName:nil];
     _fetchedResultsController.delegate = self;
     
     NSError *error;
@@ -355,14 +353,25 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-    
-
-    NSLog(@"fetched Objects count %lu",(unsigned long)[[_fetchedResultsController fetchedObjects] count]);
-    
+        
     return _fetchedResultsController;
 }
 
 
+-(NSString *) entityName {
+    return nil;
+}
+-(NSString *) sortDescriptor {
+    return nil;
+}
+
+-(NSString *) sectionNameKeyPath {
+    return nil;
+}
+
+- (BOOL) sortDescriptorAscending {
+    return YES;
+}
 
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////

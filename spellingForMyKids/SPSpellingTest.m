@@ -13,14 +13,20 @@
 #import "SPWordList.h"
 #import "SPSpellingTestList.h"
 #import "SPTestVC.h"
+#import "SPMenuVC.h"
+#import "SPWordTestList.h"
 
 @interface SPSpellingTest ()
 
+//UI outlet
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+@property (weak, nonatomic) IBOutlet UIView *viewResult;
 @property (weak, nonatomic) IBOutlet UILabel *spellingName;
 @property (weak, nonatomic) IBOutlet UIView *containerWordList;
+@property (weak, nonatomic) IBOutlet UIImageView *imageViewUser;
+@property (weak, nonatomic) IBOutlet UIImageView *imageViewLevel;
 
-
-@property (strong, nonatomic) SPWordList *wordListVC;
+@property (strong, nonatomic) UIViewController *containerVC;
 @property (strong, nonatomic) SPSpellingTestList *spellingTestListVC;
 @property (strong, nonatomic) SpellingTest *spellingTestSelected;
 
@@ -54,7 +60,12 @@
 
 - (void) viewDidLoad {
     self.spellingName.text = self.spellingTestSelected.spelling.name;
-    self.wordListVC = (SPWordList *)[self addObjectListIdentifier:@"wordList" toView:self.containerWordList];
+    
+    if (self.spellingTestSelected.endedAt) {
+        self.containerVC = [self addObjectListIdentifier:@"wordTestList" toView:self.containerWordList];
+    } else {
+        self.containerVC = [self addObjectListIdentifier:@"wordList" toView:self.containerWordList];
+    }
 }
 
 /*/////////////////////////////////////////////////////////////////////////////////////////
@@ -72,16 +83,24 @@
  ObjectList delegate & datasource
  ////////////////////////////////////////////////////////////////////////////////////*/
 
+- (datasource) datasource:(id)sender {
+    return datasourceArray;
+}
+
 - (NSString *) titleNavigationBar :(id) sender {
-    if ([sender isKindOfClass:[Spelling class]]) {
-    return @"Choose your spelling";
-    }
-    else return nil;
+    if ([sender isKindOfClass:[SPWordList class]]) {
+        return @"Word list";
+    } else if ([sender isKindOfClass:[SPWordTestList class]]) {
+        return @"Word test";
+    } else return nil;
 }
 
 - (NSArray *) arrayData:(id) sender {
     if ([sender isKindOfClass:[SPWordList class]]) {
         return [self.spellingTestSelected.spelling.words allObjects];
+    } else if ([sender isKindOfClass:[SPWordTestList class]]) {
+        //NSLog(@"number of wordTest %i", [[self.spellingTestSelected.wordTests allObjects] count] );
+        return [self.spellingTestSelected.wordTests allObjects];
     } else {
         return nil;
     }
@@ -95,6 +114,10 @@
         } else {
             return rowSelectedUniqueAndPop;
         }
+        
+    } else if ([sender isKindOfClass:[SPWordTestList class]]) {
+        return rowSelectedDisabled;
+        
     } else {
         return rowSelectedUniqueAndPop;
     }

@@ -157,6 +157,7 @@ Accessors
             break;
         case 1:
             self.spellingSelected.explication = textField.text;
+            break;
         default:
             break;
     }

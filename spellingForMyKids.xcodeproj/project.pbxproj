@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		090B5B3219DA902C000A7493 /* SPWordTestList.h in Headers */ = {isa = PBXBuildFile; fileRef = 090B5B3019DA902C000A7493 /* SPWordTestList.h */; };
+		090B5B3319DA902C000A7493 /* SPWordTestList.m in Sources */ = {isa = PBXBuildFile; fileRef = 090B5B3119DA902C000A7493 /* SPWordTestList.m */; };
 		090BE69F18907F4000A1DE0C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090BE69E18907F4000A1DE0C /* Foundation.framework */; };
 		090BE6A118907F4000A1DE0C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090BE6A018907F4000A1DE0C /* CoreGraphics.framework */; };
 		090BE6A318907F4000A1DE0C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090BE6A218907F4000A1DE0C /* UIKit.framework */; };
@@ -146,6 +148,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		090B5B3019DA902C000A7493 /* SPWordTestList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPWordTestList.h; sourceTree = "<group>"; };
+		090B5B3119DA902C000A7493 /* SPWordTestList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPWordTestList.m; sourceTree = "<group>"; };
 		090BE69B18907F4000A1DE0C /* spellingForMyKids.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spellingForMyKids.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		090BE69E18907F4000A1DE0C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		090BE6A018907F4000A1DE0C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -599,6 +603,8 @@
 				092C3A091935372200A6E2B6 /* SPPhonemeList.m */,
 				09514BF619B745A900FD651C /* SPSpellingTestList.h */,
 				09514BF719B745A900FD651C /* SPSpellingTestList.m */,
+				090B5B3019DA902C000A7493 /* SPWordTestList.h */,
+				090B5B3119DA902C000A7493 /* SPWordTestList.m */,
 			);
 			name = subclasses;
 			sourceTree = "<group>";
@@ -696,6 +702,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				090B5B3219DA902C000A7493 /* SPWordTestList.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -869,6 +876,7 @@
 				095692041913A54200A5386F /* SPKidList.m in Sources */,
 				09569211191983F300A5386F /* SPTestResult.m in Sources */,
 				090C0E7A18A3CC5E00CE5E60 /* wordCell.m in Sources */,
+				090B5B3319DA902C000A7493 /* SPWordTestList.m in Sources */,
 				0956920B19152A3A00A5386F /* SPObjectList.m in Sources */,
 				0947544318F420DE00FBBAFC /* FDSoundActivatedRecorder.m in Sources */,
 				090BE6AF18907F4000A1DE0C /* AppDelegate.m in Sources */,

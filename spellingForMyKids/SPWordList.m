@@ -46,7 +46,6 @@
     tableViewCell.textLabel.text = word.name;
     [tableViewCell.imageView rounThumbnaildWithImage:[UIImage imageWithData:word.image]];
     return tableViewCell;
-    
 }
 
 - (objectState) objectState:(id)sender {

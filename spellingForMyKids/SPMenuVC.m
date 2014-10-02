@@ -317,26 +317,31 @@
 
 - (UIImage *) cellImageFor:(NSManagedObject *)object {
     
-    UIImage *medal;
+    UIImage *medal = nil;
     //NSLog(@"obect description%@", [object description]);
     if ([object isKindOfClass:[Spelling class]]) {
+        Spelling *spelling = (Spelling *) object;
         
-        NSSet *setSpellingTest = (NSSet *)[self.objectSelected valueForKey:@"spellingTests"];
-        [setSpellingTest filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"result == 0"]];
-        NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"endedAt" ascending:YES]];
-
-        NSArray *arraySorted = [[setSpellingTest allObjects] sortedArrayUsingDescriptors:sortDescriptors];
-        SpellingTest *lastTest = [arraySorted lastObject];
-        
-        //first we test if the last test exist, else all spelling will have a bronze medal
-        if (!lastTest) {
-            medal = nil;
-        } else if ([lastTest.level intValue] == spellingTestLevelEasy) {
-            medal = [UIImage imageNamed:@"medal_bronze"];
-        } else if ([lastTest.level intValue] == spellingTestLevelMedium) {
-            medal = [UIImage imageNamed:@"medal_silver"];
-        } else if ([lastTest.level intValue]== spellingTestLevelHard) {
-            medal = [UIImage imageNamed:@"medal_gold"];
+        switch ([spelling spellingMedalFor:[self kidSelected]]) {
+            case spellingMedalEmpty:
+                medal = nil;
+                break;
+            
+            case spellingMedalBronze:
+                medal = [UIImage imageNamed:@"medal_bronze"];
+                break;
+                
+            case spellingMedalSilver:
+                medal = [UIImage imageNamed:@"medal_silver"];
+                break;
+                
+            case spellingMedalGold:
+                medal = [UIImage imageNamed:@"medal_gold"];
+                break;
+                
+            default:
+                medal =nil;
+                break;
         }
     }
     return medal;
@@ -356,8 +361,6 @@
         Spelling *spellingSelected = (Spelling *) object;
         
         //create a new spellingTest object and display the VC associated to it
-        
-        
         SpellingTest *newSpellingTest = [SpellingTest spellingTestFor:[[self kidSelected] kidInManagedObjectContext:self.managedObjectContextAdd]
                                                              spelling:[spellingSelected spellingInManagedObjectContext:self.managedObjectContextAdd]];
         

@@ -60,6 +60,15 @@
 
 @implementation SPTestVC
 
+/*//////////////////////////////////////////////////////////////////////////////////////////////
+ Accessors
+ //////////////////////////////////////////////////////////////////////////////////////////////*/
+
+- (void) setWordTestSelected:(WordTest *)wordTestSelected {
+    _wordTestSelected = wordTestSelected;
+    _wordTestSelected.startedAt = [NSDate date];
+}
+
 - (NSArray *) arrayWordTests {
     if (!_arrayWordTests) {
         self.maxWordLength = 0;
@@ -92,6 +101,8 @@
     return _gameController;
 }
 
+
+
 /*//////////////////////////////////////////////////////////////////////////////////////////////
  VC LIFECYCLE
 //////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -100,12 +111,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.spellingTestSelected.startedAt = [NSDate date];
     [self.gameController newQuestion];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-    NSLog(@"viewDidAppear");
     [self.view layoutSubviews];
 }
 
@@ -115,8 +125,8 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"testResult"]) {
-        SPTestResult *testResultViewController = (SPTestResult *) segue.destinationViewController;
-        testResultViewController.gameResult = self.gameController.gameResult;
+        //SPTestResult *testResultViewController = (SPTestResult *) segue.destinationViewController;
+        //testResultViewController.gameResult = self.gameController.gameResult;
     }
 }
 
@@ -131,6 +141,12 @@
 }
 
 - (IBAction)swipeGestureImageView:(id)sender {
+    [self gameInput:self.gameController.boardController.input];
+    [self.gameController newQuestion];
+    
+}
+- (IBAction)next:(id)sender {
+    [self gameInput:self.gameController.boardController.input];
     [self.gameController newQuestion];
 }
 
@@ -146,8 +162,11 @@
 }
 
 /*//////////////////////////////////////////////////////////////////////////////////////////////
- Triggered Action
+ Utilities
  //////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+
 
 /*
 - (void) starDust {
@@ -222,7 +241,11 @@
     return [self.spellingTestSelected.level intValue];
 }
 
-- (void) scoreBoardWithGameResult:(NSArray *)gameResult {
+- (void) gameDidFinish {
+    self.spellingTestSelected.endedAt = [NSDate date];
+    [self.spellingTestSelected setSpellingTestResult];
+    
+    [self save];
     [self performSegueWithIdentifier:@"testResult" sender:self];
 }
 
@@ -237,6 +260,7 @@
             break;
         case spellingTestLevelHard:
             coef = 2;
+            break;
         default:
             coef = 1;
             break;
@@ -250,6 +274,19 @@
 
 - (UIView *) gameViewContainer:(id)sender {
     return self.viewBoard;
+}
+
+- (void) gameInput:(NSString *)input {
+    self.wordTestSelected.endedAt = [NSDate date];
+    self.wordTestSelected.input = input;
+    
+    if ([self.wordTestSelected.word.name isEqualToString:input]) {
+        self.wordTestSelected.result = [NSNumber numberWithInt:wordTestResultPass];
+    } else {
+        self.wordTestSelected.result = [NSNumber numberWithInt:wordTestResultFail];
+    }
+
+    [self save];
 }
 
 

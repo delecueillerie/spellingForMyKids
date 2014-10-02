@@ -58,7 +58,6 @@
 
 - (UIImage *) kidImage {
     if (!self.kidSelected.image) {
-        NSLog(@"NSMan&gedObjectContext %@", [self.kidSelected.managedObjectContext description]);
         self.kidSelected.image = UIImagePNGRepresentation([UIImage imageNamed:@"bonhommeVide.png"]);
     } else {
         _kidImage = [UIImage imageWithData:self.kidSelected.image];
@@ -86,9 +85,7 @@
 //////////////////////////////////////////////////////////
 
 - (void) viewDidLoad {
-    [super viewDidLoad];
-    NSLog(@"Kid object MOC%@", [[self.objectSelected valueForKey:@"managedObjectContext"] description]);
-    
+    [super viewDidLoad];    
     //load VC for container
     photoPickerViewController *photoPickerVC = [photoPickerViewController instantiateInitialViewControllerWithPhotoPickerDelegate:self withCamera:YES];
     [self addChildViewController:photoPickerVC];
@@ -135,6 +132,7 @@
         
         case 1:
             self.kidSelected.age = [NSNumber numberWithInt:[textField.text intValue]];
+            break;
         default:
             break;
     }

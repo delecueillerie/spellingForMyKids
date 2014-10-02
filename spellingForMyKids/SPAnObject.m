@@ -161,9 +161,7 @@
 - (void) save {
     
     [self loadInput];
-    NSError *error;
-    NSLog(@"name %@", [self.objectSelected description]);
-    
+    NSError *error;    
     [self.managedObjectContext save:&error];
     NSManagedObjectContext *parentContext = [self.managedObjectContext parentContext];
     
