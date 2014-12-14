@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		090B5B3219DA902C000A7493 /* SPWordTestList.h in Headers */ = {isa = PBXBuildFile; fileRef = 090B5B3019DA902C000A7493 /* SPWordTestList.h */; };
 		090B5B3319DA902C000A7493 /* SPWordTestList.m in Sources */ = {isa = PBXBuildFile; fileRef = 090B5B3119DA902C000A7493 /* SPWordTestList.m */; };
+		090B5B4219DD43A2000A7493 /* UIImage+medal.h in Headers */ = {isa = PBXBuildFile; fileRef = 090B5B4019DD43A2000A7493 /* UIImage+medal.h */; };
+		090B5B4319DD43A2000A7493 /* UIImage+medal.m in Sources */ = {isa = PBXBuildFile; fileRef = 090B5B4119DD43A2000A7493 /* UIImage+medal.m */; };
 		090BE69F18907F4000A1DE0C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090BE69E18907F4000A1DE0C /* Foundation.framework */; };
 		090BE6A118907F4000A1DE0C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090BE6A018907F4000A1DE0C /* CoreGraphics.framework */; };
 		090BE6A318907F4000A1DE0C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 090BE6A218907F4000A1DE0C /* UIKit.framework */; };
@@ -20,7 +22,7 @@
 		090C0E7A18A3CC5E00CE5E60 /* wordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 090C0E7918A3CC5E00CE5E60 /* wordCell.m */; };
 		090F238318A527480095F2E7 /* SPAWordTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F238218A527480095F2E7 /* SPAWordTVC.m */; };
 		090F239518A8DDB80095F2E7 /* SPMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F239218A8DDB80095F2E7 /* SPMenuVC.m */; };
-		090F239D18A984B50095F2E7 /* SPAKidTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F239C18A984B50095F2E7 /* SPAKidTVC.m */; };
+		090F239D18A984B50095F2E7 /* SPAKidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 090F239C18A984B50095F2E7 /* SPAKidVC.m */; };
 		091489BE192142E10040F7C5 /* roundGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 091489BD192142E10040F7C5 /* roundGreen.png */; };
 		091489C219216BEF0040F7C5 /* UIImage+resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 091489C119216BEF0040F7C5 /* UIImage+resize.m */; };
 		091489C5192176E90040F7C5 /* UIImageView+cornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 091489C4192176E90040F7C5 /* UIImageView+cornerRadius.m */; };
@@ -67,7 +69,6 @@
 		095692011913A05100A5386F /* SPSpellingList.m in Sources */ = {isa = PBXBuildFile; fileRef = 095692001913A05100A5386F /* SPSpellingList.m */; };
 		095692041913A54200A5386F /* SPKidList.m in Sources */ = {isa = PBXBuildFile; fileRef = 095692031913A54200A5386F /* SPKidList.m */; };
 		0956920B19152A3A00A5386F /* SPObjectList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0956920A19152A3A00A5386F /* SPObjectList.m */; };
-		09569211191983F300A5386F /* SPTestResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 09569210191983F300A5386F /* SPTestResult.m */; };
 		09569214191FA0B000A5386F /* navBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 09569213191FA0B000A5386F /* navBarBackground.png */; };
 		09569217191FB13800A5386F /* Cursive standard.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09569216191FB13800A5386F /* Cursive standard.ttf */; };
 		095C882F1907BA3200E85581 /* tabBarIcon_kids.png in Resources */ = {isa = PBXBuildFile; fileRef = 095C882E1907BA3200E85581 /* tabBarIcon_kids.png */; };
@@ -83,7 +84,6 @@
 		09F054B818F8030F00C2FB42 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F054B318F8030F00C2FB42 /* camera.png */; };
 		09F054B918F8030F00C2FB42 /* nothing.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F054B418F8030F00C2FB42 /* nothing.png */; };
 		09F054BA18F8030F00C2FB42 /* directory.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F054B518F8030F00C2FB42 /* directory.png */; };
-		09F9F55C192E43EA00953982 /* SPTestResultTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F9F55B192E43EA00953982 /* SPTestResultTVCell.m */; };
 		09F9F562192F371E00953982 /* iconsResultGood.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F9F560192F371E00953982 /* iconsResultGood.png */; };
 		09F9F563192F371E00953982 /* iconsResultWrong.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F9F561192F371E00953982 /* iconsResultWrong.png */; };
 /* End PBXBuildFile section */
@@ -150,6 +150,8 @@
 /* Begin PBXFileReference section */
 		090B5B3019DA902C000A7493 /* SPWordTestList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPWordTestList.h; sourceTree = "<group>"; };
 		090B5B3119DA902C000A7493 /* SPWordTestList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPWordTestList.m; sourceTree = "<group>"; };
+		090B5B4019DD43A2000A7493 /* UIImage+medal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+medal.h"; sourceTree = "<group>"; };
+		090B5B4119DD43A2000A7493 /* UIImage+medal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+medal.m"; sourceTree = "<group>"; };
 		090BE69B18907F4000A1DE0C /* spellingForMyKids.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spellingForMyKids.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		090BE69E18907F4000A1DE0C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		090BE6A018907F4000A1DE0C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -172,8 +174,8 @@
 		090F238218A527480095F2E7 /* SPAWordTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAWordTVC.m; sourceTree = "<group>"; };
 		090F239218A8DDB80095F2E7 /* SPMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMenuVC.m; sourceTree = "<group>"; };
 		090F239418A8DDB80095F2E7 /* SPMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMenuVC.h; sourceTree = "<group>"; };
-		090F239B18A984B50095F2E7 /* SPAKidTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAKidTVC.h; sourceTree = "<group>"; };
-		090F239C18A984B50095F2E7 /* SPAKidTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAKidTVC.m; sourceTree = "<group>"; };
+		090F239B18A984B50095F2E7 /* SPAKidVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAKidVC.h; sourceTree = "<group>"; };
+		090F239C18A984B50095F2E7 /* SPAKidVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAKidVC.m; sourceTree = "<group>"; };
 		091489BD192142E10040F7C5 /* roundGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = roundGreen.png; path = media/roundGreen.png; sourceTree = SOURCE_ROOT; };
 		091489C019216BEF0040F7C5 /* UIImage+resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+resize.h"; sourceTree = "<group>"; };
 		091489C119216BEF0040F7C5 /* UIImage+resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+resize.m"; sourceTree = "<group>"; };
@@ -245,8 +247,6 @@
 		095692031913A54200A5386F /* SPKidList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPKidList.m; sourceTree = "<group>"; };
 		0956920919152A2100A5386F /* SPObjectList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPObjectList.h; sourceTree = "<group>"; };
 		0956920A19152A3A00A5386F /* SPObjectList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPObjectList.m; sourceTree = "<group>"; };
-		0956920F191983F300A5386F /* SPTestResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTestResult.h; sourceTree = "<group>"; };
-		09569210191983F300A5386F /* SPTestResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPTestResult.m; sourceTree = "<group>"; };
 		09569213191FA0B000A5386F /* navBarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = navBarBackground.png; path = media/navBarBackground.png; sourceTree = SOURCE_ROOT; };
 		09569216191FB13800A5386F /* Cursive standard.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cursive standard.ttf"; sourceTree = "<group>"; };
 		095C882E1907BA3200E85581 /* tabBarIcon_kids.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tabBarIcon_kids.png; path = media/tabBarIcon_kids.png; sourceTree = SOURCE_ROOT; };
@@ -263,8 +263,6 @@
 		09F054B318F8030F00C2FB42 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = camera.png; path = addOn/photoPicker/writingTool/photoPicker/camera.png; sourceTree = "<group>"; };
 		09F054B418F8030F00C2FB42 /* nothing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nothing.png; path = addOn/photoPicker/writingTool/photoPicker/nothing.png; sourceTree = "<group>"; };
 		09F054B518F8030F00C2FB42 /* directory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = directory.png; path = addOn/photoPicker/writingTool/photoPicker/directory.png; sourceTree = "<group>"; };
-		09F9F55A192E43EA00953982 /* SPTestResultTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTestResultTVCell.h; sourceTree = "<group>"; };
-		09F9F55B192E43EA00953982 /* SPTestResultTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPTestResultTVCell.m; sourceTree = "<group>"; };
 		09F9F560192F371E00953982 /* iconsResultGood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconsResultGood.png; path = media/iconsResultGood.png; sourceTree = SOURCE_ROOT; };
 		09F9F561192F371E00953982 /* iconsResultWrong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconsResultWrong.png; path = media/iconsResultWrong.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -295,7 +293,6 @@
 				092D2D2919546A19004661C2 /* syncWithAFNetworking.xcodeproj */,
 				09D3F3C919C1AB430026277A /* scrabbleKeyboard.xcodeproj */,
 				0962E82F1896940D005A9A9F /* addOn */,
-				091489BF19216BBC0040F7C5 /* category */,
 				090BE6A418907F4000A1DE0C /* spellingForMyKids */,
 				090BE6C618907F4100A1DE0C /* spellingForMyKidsTests */,
 				090BE69D18907F4000A1DE0C /* Frameworks */,
@@ -395,21 +392,23 @@
 			name = views;
 			sourceTree = "<group>";
 		};
-		091489BF19216BBC0040F7C5 /* category */ = {
+		091489BF19216BBC0040F7C5 /* categoryCocoa */ = {
 			isa = PBXGroup;
 			children = (
 				091489C019216BEF0040F7C5 /* UIImage+resize.h */,
 				091489C119216BEF0040F7C5 /* UIImage+resize.m */,
+				090B5B4019DD43A2000A7493 /* UIImage+medal.h */,
+				090B5B4119DD43A2000A7493 /* UIImage+medal.m */,
 				091489C3192176E90040F7C5 /* UIImageView+cornerRadius.h */,
 				091489C4192176E90040F7C5 /* UIImageView+cornerRadius.m */,
 			);
-			name = category;
-			path = spellingForMyKids;
+			name = categoryCocoa;
 			sourceTree = "<group>";
 		};
 		09148AC9192564DD0040F7C5 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				091489BF19216BBC0040F7C5 /* categoryCocoa */,
 				09A5B21A19D0600800EA02BD /* phonemView */,
 				09148ACA192565320040F7C5 /* SPKeyboardButton.h */,
 				09148ACB192565320040F7C5 /* SPKeyboardButton.m */,
@@ -426,17 +425,6 @@
 				0932614219C04A1E00C4DD53 /* speechUtterance */,
 			);
 			name = controller;
-			sourceTree = "<group>";
-		};
-		09148AD3192579D70040F7C5 /* result */ = {
-			isa = PBXGroup;
-			children = (
-				0956920F191983F300A5386F /* SPTestResult.h */,
-				09569210191983F300A5386F /* SPTestResult.m */,
-				09F9F55A192E43EA00953982 /* SPTestResultTVCell.h */,
-				09F9F55B192E43EA00953982 /* SPTestResultTVCell.m */,
-			);
-			name = result;
 			sourceTree = "<group>";
 		};
 		092D2D2A19546A19004661C2 /* Products */ = {
@@ -472,7 +460,6 @@
 				09A5B21619D05F2200EA02BD /* objectVC */,
 				09C1F4DF18C92DB60038B5C5 /* objects List */,
 				09514BEF19B6FED100FD651C /* test */,
-				09148AD3192579D70040F7C5 /* result */,
 			);
 			name = viewController;
 			sourceTree = "<group>";
@@ -624,8 +611,8 @@
 			children = (
 				090F238118A527480095F2E7 /* SPAWordTVC.h */,
 				090F238218A527480095F2E7 /* SPAWordTVC.m */,
-				090F239B18A984B50095F2E7 /* SPAKidTVC.h */,
-				090F239C18A984B50095F2E7 /* SPAKidTVC.m */,
+				090F239B18A984B50095F2E7 /* SPAKidVC.h */,
+				090F239C18A984B50095F2E7 /* SPAKidVC.m */,
 				09A5B21819D05F7700EA02BD /* objectWithList */,
 			);
 			name = subclasses;
@@ -702,6 +689,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				090B5B4219DD43A2000A7493 /* UIImage+medal.h in Headers */,
 				090B5B3219DA902C000A7493 /* SPWordTestList.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -874,7 +862,6 @@
 				095691F819127DEF00A5386F /* SPSpelling.m in Sources */,
 				092C3A0D1935389F00A6E2B6 /* SPPhoneme.m in Sources */,
 				095692041913A54200A5386F /* SPKidList.m in Sources */,
-				09569211191983F300A5386F /* SPTestResult.m in Sources */,
 				090C0E7A18A3CC5E00CE5E60 /* wordCell.m in Sources */,
 				090B5B3319DA902C000A7493 /* SPWordTestList.m in Sources */,
 				0956920B19152A3A00A5386F /* SPObjectList.m in Sources */,
@@ -882,11 +869,10 @@
 				090BE6AF18907F4000A1DE0C /* AppDelegate.m in Sources */,
 				091489C219216BEF0040F7C5 /* UIImage+resize.m in Sources */,
 				09CC998E18FA890E00BA4238 /* photoPickerViewController.m in Sources */,
-				090F239D18A984B50095F2E7 /* SPAKidTVC.m in Sources */,
+				090F239D18A984B50095F2E7 /* SPAKidVC.m in Sources */,
 				092C3A041934C7CD00A6E2B6 /* segueFromMenuToTabBar.m in Sources */,
 				095691FE19139CEB00A5386F /* SPWordList.m in Sources */,
 				0947544618F420DE00FBBAFC /* MIMicrophoneUI.m in Sources */,
-				09F9F55C192E43EA00953982 /* SPTestResultTVCell.m in Sources */,
 				091489C5192176E90040F7C5 /* UIImageView+cornerRadius.m in Sources */,
 				090F238318A527480095F2E7 /* SPAWordTVC.m in Sources */,
 				094ABF7B19387C300091283E /* SPPhonemeView.m in Sources */,
@@ -897,6 +883,7 @@
 				093AAD8718D10069005B8EA1 /* SPAnObject.m in Sources */,
 				090F239518A8DDB80095F2E7 /* SPMenuVC.m in Sources */,
 				090BE6AB18907F4000A1DE0C /* main.m in Sources */,
+				090B5B4319DD43A2000A7493 /* UIImage+medal.m in Sources */,
 				0947544718F420DE00FBBAFC /* MIViewController.m in Sources */,
 				094ABFA91938DAA30091283E /* SPAnObjectWithList.m in Sources */,
 				09514C0119B7C0B300FD651C /* SPSpellingTest.m in Sources */,

@@ -6,29 +6,17 @@
 //  Copyright (c) 2014 Olivier Delecueillerie. All rights reserved.
 //
 
-
+//MODEL
 #import "Word.h"
 #import "WordTest+enhanced.h"
 
-
+//CONTROLLER
 #import "SPTestVC.h"
-#import "SPTestResult.h"
-//#import "config.h"
 
-//ScrabbleKeyboard Module
-//#import "config.h"
+//VIEW
 #import "SKHUDView.h"
-
-//Category
 #import "UIImageView+cornerRadius.h"
-
-//View
 #import "SKStarDustView.h"
-
-
-
-#define scrabble @"scrabble"
-
 
 @interface SPTestVC ()
 
@@ -41,20 +29,13 @@
 @property (weak, nonatomic) IBOutlet SKHUDView *viewHud;
 @property (weak, nonatomic) IBOutlet SKCounterLabelView *viewCounter;
 
-
 @property (strong, nonatomic) WordTest *wordTestSelected;
-//@property (strong, nonatomic) Word *wordSelected;
-//@property (strong, nonatomic) NSArray *arrayWords;
 @property (strong, nonatomic) NSArray *arrayWordTests;
 @property (nonatomic) NSUInteger maxWordLength; //use for define the size of the tiles
 @property (strong, nonatomic) AVAudioPlayer *player;
 
-
-
 //scrabbleKeyboard
 @property (strong, nonatomic) SKGameController* gameController;
-//@property (strong, nonatomic) SKBoardController *boardController;
-//@property (strong, nonatomic) SKWordsData *spelling;
 
 @end
 
@@ -244,7 +225,6 @@
 - (void) gameDidFinish {
     self.spellingTestSelected.endedAt = [NSDate date];
     [self.spellingTestSelected setSpellingTestResult];
-    
     [self save];
     [self performSegueWithIdentifier:@"testResult" sender:self];
 }

@@ -53,9 +53,6 @@
 }
 
 
-- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.phonemeSelected.graphems count];
-}
 
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

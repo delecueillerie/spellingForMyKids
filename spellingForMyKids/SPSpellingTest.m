@@ -6,15 +6,23 @@
 //  Copyright (c) 2014 Olivier Delecueillerie. All rights reserved.
 //
 
+
+//MODEL
+#import "SpellingTest+enhanced.h"
+#import "Spelling+enhanced.h"
+
 #import "SPSpellingTest.h"
-#import "SpellingTest.h"
-#import "SPSpelling.h"
-#import "SPSpellingList.h"
+//#import "SPSpelling.h"
+//#import "SPSpellingList.h"
 #import "SPWordList.h"
 #import "SPSpellingTestList.h"
 #import "SPTestVC.h"
-#import "SPMenuVC.h"
+//#import "SPMenuVC.h"
 #import "SPWordTestList.h"
+
+//VIEW
+#import "UIImageView+cornerRadius.h"
+#import "UIImage+medal.h"
 
 @interface SPSpellingTest ()
 
@@ -59,11 +67,22 @@
  /*////////////////////////////////////////////////////////////////////////////////////////*/
 
 - (void) viewDidLoad {
+    
     self.spellingName.text = self.spellingTestSelected.spelling.name;
+    [self.imageViewUser roundWithImage:[UIImage imageWithData:self.spellingTestSelected.kid.image]];
+    self.imageViewLevel.image = [UIImage medalFor:[self.spellingTestSelected spellingTestMedal]];
     
     if (self.spellingTestSelected.endedAt) {
+        //update UI visibility
+        self.toolbar.hidden = YES;
+        self.viewResult.hidden = NO;
+        //add wordTest list
         self.containerVC = [self addObjectListIdentifier:@"wordTestList" toView:self.containerWordList];
     } else {
+        //update UI visibility
+        self.toolbar.hidden = NO;
+        self.viewResult.hidden = YES;
+        //add word list
         self.containerVC = [self addObjectListIdentifier:@"wordList" toView:self.containerWordList];
     }
 }
@@ -114,7 +133,6 @@
         } else {
             return rowSelectedUniqueAndPop;
         }
-        
     } else if ([sender isKindOfClass:[SPWordTestList class]]) {
         return rowSelectedDisabled;
         

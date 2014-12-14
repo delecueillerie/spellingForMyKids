@@ -20,11 +20,12 @@
 #import "SPSpellingList.h"
 #import "SPSpellingTestList.h"
 #import "SPKidList.h"
-#import "SPAKidTVC.h"
+#import "SPAKidVC.h"
 #import "SPSpellingTest.h"
-//View
+//VIEW
 #import "SPKeyboardButton.h"
 #import "SPLevelButton.h"
+#import "UIImage+medal.h"
 
 @interface SPMenuVC ()
 
@@ -239,7 +240,7 @@
 - (IBAction)tapOnPicture:(UITapGestureRecognizer *)sender {
     
     if ([self kidSelected]) {
-        SPAKidTVC *VC = (SPAKidTVC *)[self.storyboard instantiateViewControllerWithIdentifier:@"AKid"];
+        SPAKidVC *VC = (SPAKidVC *)[self.storyboard instantiateViewControllerWithIdentifier:@"AKid"];
         VC.objectSelected = [self kidSelected];
         VC.delegate = self;
         
@@ -249,7 +250,7 @@
         [managedObjectContextAdd setParentContext:self.managedObjectContext];*/
  
         NSManagedObject *objectNew = [NSEntityDescription insertNewObjectForEntityForName:@"Kid" inManagedObjectContext:self.managedObjectContextAdd];
-        SPAKidTVC *viewControllerAnObject = [self.storyboard instantiateViewControllerWithIdentifier:@"AKid"];
+        SPAKidVC *viewControllerAnObject = [self.storyboard instantiateViewControllerWithIdentifier:@"AKid"];
         NSLog(@"object new MOC%@",[objectNew.managedObjectContext description]);
         viewControllerAnObject.objectSelected = objectNew;
         viewControllerAnObject.managedObjectContext = [objectNew managedObjectContext];
@@ -297,7 +298,7 @@
 
 - (objectState) objectState:(id)sender {
     objectState state;
-    if ([sender isKindOfClass:[SPAKidTVC class]]) {
+    if ([sender isKindOfClass:[SPAKidVC class]]) {
         if ([sender valueForKey:@"managedObjectContext"]==self.managedObjectContext) {
             state = objectStateRead;
         } else {
@@ -321,28 +322,7 @@
     //NSLog(@"obect description%@", [object description]);
     if ([object isKindOfClass:[Spelling class]]) {
         Spelling *spelling = (Spelling *) object;
-        
-        switch ([spelling spellingMedalFor:[self kidSelected]]) {
-            case spellingMedalEmpty:
-                medal = nil;
-                break;
-            
-            case spellingMedalBronze:
-                medal = [UIImage imageNamed:@"medal_bronze"];
-                break;
-                
-            case spellingMedalSilver:
-                medal = [UIImage imageNamed:@"medal_silver"];
-                break;
-                
-            case spellingMedalGold:
-                medal = [UIImage imageNamed:@"medal_gold"];
-                break;
-                
-            default:
-                medal =nil;
-                break;
-        }
+        return [UIImage medalFor:[spelling spellingMedalFor:[self kidSelected]]];
     }
     return medal;
 }
